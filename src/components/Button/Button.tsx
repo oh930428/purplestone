@@ -2,12 +2,7 @@ import styled, { css } from 'styled-components';
 import { colors, fonts } from '../../styles';
 import { ButtonProps } from '../../types/button.types';
 
-export const Button = ({
-  theme,
-  size,
-  label,
-  isRegular = false,
-}: ButtonProps) => {
+const Button = ({ theme, size, label, isRegular = false }: ButtonProps) => {
   return (
     <Container type="button" theme={theme} size={size} isRegular={isRegular}>
       {label}
@@ -115,3 +110,5 @@ const Container = styled.button<{
     transform: translate(0, 0);
   }
 `;
+
+export default Button;
