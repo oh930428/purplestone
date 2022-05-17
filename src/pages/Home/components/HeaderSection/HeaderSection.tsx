@@ -45,6 +45,7 @@ const Container = styled.section`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 50px;
     padding: 200px 20px;
     z-index: 100;
   }

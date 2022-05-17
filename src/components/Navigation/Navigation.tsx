@@ -7,28 +7,30 @@ import { Link } from 'react-router-dom';
 const Navigation = () => {
   return (
     <Container>
-      <Logo>
-        <Link to="/">PurpleStone</Link>
-      </Logo>
+      <div className="wrapper">
+        <Logo>
+          <Link to="/">PurpleStone</Link>
+        </Logo>
 
-      <Gnb>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/all-coffes">All Coffes</Link>
-        </li>
-        <li className="nav-button-item">
-          <Link to="/mycard">
-            <Button
-              size="medium"
-              theme="primary"
-              label="Create My Card"
-              isRegular
-            ></Button>
-          </Link>
-        </li>
-      </Gnb>
+        <Gnb>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/all-coffes">All Coffes</Link>
+          </li>
+          <li className="nav-button-item">
+            <Link to="/mycard">
+              <Button
+                size="medium"
+                theme="primary"
+                label="Create My Card"
+                isRegular
+              ></Button>
+            </Link>
+          </li>
+        </Gnb>
+      </div>
     </Container>
   );
 };
@@ -38,12 +40,17 @@ export default Navigation;
 const Container = styled.nav`
   position: absolute;
   top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   padding: 0 100px;
   z-index: 100;
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
   a {
     color: ${colors.Primary_01};

@@ -4,6 +4,7 @@ import 'reset-css';
 export default createGlobalStyle`
     * {
       box-sizing: border-box;
+      font-size: 62.5%;
     }
 
     a {
@@ -16,6 +17,7 @@ export default createGlobalStyle`
       color:#040505;
       touch-action: pan-y;
       -webkit-font-smoothing: antialiased;
+      font-size: 62.5%;
     }
 
     button {
