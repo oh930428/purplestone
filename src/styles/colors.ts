@@ -20,4 +20,5 @@ export default {
   Secondary_01: '#75372A',
   Secondary_02: '#F5EE84',
   Secondary_03: '#F5F2C2',
+  Secondary_04: '#614E32',
 };
