@@ -1,24 +1,32 @@
 import styled from 'styled-components';
 
+import { Button } from 'components';
 import { fonts, colors } from 'styles';
 import { maxWidth } from 'styles/mixin';
+import { useMouseEffect } from 'hooks/useMouseEffect';
 
-import background from '../../../../assets/Images/bg-section.jpg';
 import Card from '../../../../assets/Images/card-image.png';
+import background from '../../../../assets/Images/bg-section.jpg';
 
 const HeaderSection = () => {
+  const ImageRef = useMouseEffect();
+
   return (
     <Container>
       <div className="wrapper">
-        <Title>
-          <h1>
-            <span>My Cup </span>
-            <br />
-            <span>of Coffee💕</span>
-          </h1>
-          <p>내가 좋아하는 커피 취향 카드 만들기</p>
-        </Title>
-        <CardImage>
+        <LeftBox>
+          <Title>
+            <h1>
+              <span>My Cup </span>
+              <br />
+              <span>of Coffee💕</span>
+            </h1>
+            <p>내가 좋아하는 커피 취향 카드 만들기</p>
+          </Title>
+          <Button theme="primary" label="취향 카드 만들기" size="large" />
+        </LeftBox>
+
+        <CardImage ref={ImageRef}>
           <img src={Card} alt="카드 완성 이미지" />
         </CardImage>
       </div>
@@ -38,12 +46,17 @@ const Container = styled.section`
     justify-content: space-between;
     align-items: flex-start;
     padding: 200px 20px;
+    z-index: 100;
   }
 `;
 
-const Title = styled.div`
+const LeftBox = styled.div`
   flex: 1;
-  padding-top: 10px;
+  z-index: 100;
+`;
+
+const Title = styled.div`
+  padding: 10px 0 60px;
 
   h1 {
     ${fonts.Hero1};
@@ -70,4 +83,18 @@ const CardImage = styled.figure`
   flex: 1;
   width: 511px;
   cursor: pointer;
+
+  img {
+    --x: calc(var(--px) - 0.5);
+    --y: calc(var(--py) - 0.5);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    transition: transform 0.5s ease-in-out;
+
+    &:hover {
+      transition: none;
+      transform: perspective(1000px) rotateY(calc(var(--x) * 35deg))
+        rotateX(calc(var(--y) * -35deg));
+    }
+  }
 `;
