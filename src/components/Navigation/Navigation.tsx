@@ -37,12 +37,13 @@ export default Navigation;
 
 const Container = styled.nav`
   position: absolute;
-  top: 15px;
+  top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 80px;
+  padding: 0 100px;
+  z-index: 100;
 
   a {
     color: ${colors.Primary_01};
