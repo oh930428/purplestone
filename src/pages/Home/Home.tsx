@@ -1,7 +1,14 @@
+import { ProfileCard } from 'components';
 import styled from 'styled-components';
+import { HeaderSection, Creators } from './components';
 
 const Home = () => {
-  return <Container>Home</Container>;
+  return (
+    <Container>
+      <HeaderSection />
+      <Creators />
+    </Container>
+  );
 };
 
 export default Home;
