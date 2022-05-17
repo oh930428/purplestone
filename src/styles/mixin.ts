@@ -1,6 +1,6 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 export const maxWidth = css`
-  max-width: 960px;
+  max-width: 1400px;
   margin: 0 auto;
 `;
