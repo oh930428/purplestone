@@ -1,40 +1,40 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IContact } from "../../models/example.model";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { IContact } from '../../types/example.types';
 
 export const contactsApi = createApi({
-  reducerPath: "contactsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/" }),
-  tagTypes: ["Contact"],
-  endpoints: (builder) => ({
+  reducerPath: 'contactsApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
+  tagTypes: ['Contact'],
+  endpoints: builder => ({
     fetchContacts: builder.query<IContact[], void>({
-      query: () => "/contacts",
-      providesTags: ["Contact"],
+      query: () => '/contacts',
+      providesTags: ['Contact'],
     }),
     fetchContactById: builder.query<IContact, string>({
-      query: (id) => `/contacts/${id}`,
+      query: id => `/contacts/${id}`,
     }),
     addContact: builder.mutation<{}, IContact>({
-      query: (contact) => ({
-        url: "/contacts",
-        method: "POST",
+      query: contact => ({
+        url: '/contacts',
+        method: 'POST',
         body: contact,
       }),
-      invalidatesTags: ["Contact"],
+      invalidatesTags: ['Contact'],
     }),
     deleteContact: builder.mutation<void, string>({
-      query: (id) => ({
+      query: id => ({
         url: `/contacts/${id}`,
-        method: "DELETE",
+        method: 'DELETE',
       }),
-      invalidatesTags: ["Contact"],
+      invalidatesTags: ['Contact'],
     }),
     upDateContact: builder.mutation<void, IContact>({
       query: ({ id, ...rest }) => ({
         url: `/contacts/${id}`,
-        method: "PUT",
+        method: 'PUT',
         body: rest,
       }),
-      invalidatesTags: ["Contact"],
+      invalidatesTags: ['Contact'],
     }),
   }),
 });
