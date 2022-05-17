@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+
 import { Header, ProfileCard } from 'components';
 import { maxWidth } from 'styles/mixin';
 import { useFetchCreatorsQuery } from 'store/api/creators';
 import { ProfileCardProps } from '../../../../types/profileCard.type';
+import ConfettiComponents from './Confetti';
 
 const Creators = () => {
   const { data, error, isLoading, isSuccess } = useFetchCreatorsQuery();
@@ -10,26 +12,30 @@ const Creators = () => {
   console.log(data);
   return (
     <Container>
-      {isSuccess && <Header title={data.title} subTitle={data.subTitle} />}
+      <ConfettiComponents />
 
-      {isSuccess && (
-        <div className="profile-box">
-          {data.profiles.map((profile: ProfileCardProps, index: number) => (
-            <ProfileCard
-              key={index}
-              userName={profile.userName}
-              descrition={profile.descrition}
-              thumbnail={profile.thumbnail}
-              background={profile.background}
-              iconSocial={profile.iconSocial}
-            />
-          ))}
-        </div>
-      )}
+      <div className="wrapper">
+        {isSuccess && <Header title={data.title} subTitle={data.subTitle} />}
 
-      {isLoading && <div>로딩중..</div>}
+        {isSuccess && (
+          <div className="profile-box">
+            {data.profiles.map((profile: ProfileCardProps, index: number) => (
+              <ProfileCard
+                key={index}
+                userName={profile.userName}
+                descrition={profile.descrition}
+                thumbnail={profile.thumbnail}
+                background={profile.background}
+                iconSocial={profile.iconSocial}
+              />
+            ))}
+          </div>
+        )}
 
-      {error && <div>데이터를 불러오지 못했습니다.</div>}
+        {isLoading && <div>로딩중..</div>}
+
+        {error && <div>데이터를 불러오지 못했습니다.</div>}
+      </div>
     </Container>
   );
 };
@@ -37,8 +43,13 @@ const Creators = () => {
 export default Creators;
 
 const Container = styled.section`
-  ${maxWidth}
+  position: relative;
   padding: 100px 20px;
+  overflow: hidden;
+
+  .wrapper {
+    ${maxWidth}
+  }
 
   .profile-box {
     display: flex;
