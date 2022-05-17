@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import "reset-css";
+import { createGlobalStyle } from 'styled-components';
+import 'reset-css';
 
 export default createGlobalStyle`
     * {
@@ -14,7 +14,6 @@ export default createGlobalStyle`
     html,body {
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
       color:#040505;
-      background-color: white;
       touch-action: pan-y;
       -webkit-font-smoothing: antialiased;
     }
