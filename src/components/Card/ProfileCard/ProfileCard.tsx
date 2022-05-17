@@ -57,6 +57,20 @@ const Container = styled.div<{ background: string }>`
     .header-thumbnail {
       width: 160px;
       height: 160px;
+      border-radius: 20px;
+      border: 2px solid ${colors.Secondary_04};
+      background-color: rgb(238, 237, 222);
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: all 0.3s ease 0s;
+
+        &:hover {
+          transform: translateY(-25px) scale(1.2);
+        }
+      }
     }
 
     .header-title {
