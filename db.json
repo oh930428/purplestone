@@ -9,7 +9,7 @@
         "descrition": "프론트엔드 담당<br/> 에어자이저 <br/> 아이디어 뱅크",
         "thumbnail": "profile_01.png",
         "background": "bg-profile_01.png",
-        "icon": [
+        "iconSocial": [
           {
             "name": "facebook"
           },
@@ -26,7 +26,7 @@
         "descrition": "프론트엔드 담당<br/> 꼼꼼한 일정관리 자신있다<br/>심플 이즈 베스트",
         "thumbnail": "profile_02.png",
         "background": "bg-profile_02.png",
-        "icon": [
+        "iconSocial": [
           {
             "name": "facebook"
           },
@@ -43,7 +43,7 @@
         "descrition": "디자인 담당<br/>혼란스러운 디자인",
         "thumbnail": "profile_03.png",
         "background": "bg-profile_03.png",
-        "icon": [
+        "iconSocial": [
           {
             "name": "facebook"
           },

@@ -9,7 +9,7 @@ const ProfileCard = ({
   descrition,
   thumbnail,
   background,
-  iconSocials,
+  iconSocial,
 }: ProfileCardProps) => {
   return (
     <Container background={background}>
@@ -30,7 +30,7 @@ const ProfileCard = ({
           dangerouslySetInnerHTML={{ __html: descrition }}
         ></div>
         <div className="main-socials">
-          {iconSocials.map((icon, index) => (
+          {iconSocial.map((icon, index) => (
             <IconSocial key={index} name={icon.name} />
           ))}
         </div>
