@@ -1,7 +1,6 @@
 import GlobalStyled from 'styles/global';
-import { Navigation } from 'components';
+import { Footer, Navigation } from 'components';
 import { Home, AllCoffes, MyCard } from 'pages';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -16,6 +15,7 @@ const App = () => {
           <Route path="all-coffes" element={<AllCoffes />}></Route>
           <Route path="/mycard" element={<MyCard />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
