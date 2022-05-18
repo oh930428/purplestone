@@ -1,30 +1,34 @@
 import styled from 'styled-components';
 import background from '../../assets/Images/bg-section.jpg';
 
-import { CoffeeOption, Header } from 'components';
-import { useFetchMyCardQuery } from 'store/api/myCard';
 import { maxWidth } from 'styles/mixin';
+import { Header, MakeMyCard } from 'components';
+import { useFetchMyCardQuery } from 'store/api/myCard';
+import { CoffeeOptionSection } from './components';
+import { useEffect } from 'react';
 
-const MakeMyCard = () => {
+const MyCard = () => {
   const { data, error, isLoading, isSuccess } = useFetchMyCardQuery();
 
   return (
     <Container>
-      <Wrpper>
-        {isSuccess && <Header title={data.title} subTitle={data.subTitle} />}
+      {isSuccess && (
+        <Wrpper>
+          <Header title={data.title} subTitle={data.subTitle} />
+          <Flex>
+            <CoffeeOptionSection data={data} />
+            <MakeMyCard />
+          </Flex>
+        </Wrpper>
+      )}
 
-        <CoffeeOptionContainer>
-          {data &&
-            data.coffeeOption.map((option, index) => (
-              <CoffeeOption key={index} option={option} />
-            ))}
-        </CoffeeOptionContainer>
-      </Wrpper>
+      {isLoading && <div>로딩중..</div>}
+      {error && <div>no data</div>}
     </Container>
   );
 };
 
-export default MakeMyCard;
+export default MyCard;
 
 const Container = styled.div`
   width: 100%;
@@ -36,8 +40,10 @@ const Wrpper = styled.div`
   ${maxWidth}
 `;
 
-const CoffeeOptionContainer = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  gap: 1.5rem;
+const Flex = styled.div`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
 `;
