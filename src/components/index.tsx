@@ -6,3 +6,4 @@ export { default as IconSocial } from './Icon/IconSocial';
 export { default as CoffeeOption } from './CoffeeOption/CoffeeOption';
 export { default as MakeMyCard } from './Card/MakeMyCard/MakeMyCard';
 export { default as ProfileCard } from './Card/ProfileCard/ProfileCard';
+export { default as ProcessCard } from './Card/ProcessCard/ProcessCard';
