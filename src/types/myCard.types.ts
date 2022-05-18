@@ -1,4 +1,4 @@
-export interface MakeMyCardProps {
+export interface MyCardProps {
   title: string;
   subTitle: string;
   coffeeOption: CoffeeOptionProps[];

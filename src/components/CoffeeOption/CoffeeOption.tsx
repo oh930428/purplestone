@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import circle from '../../assets/Images/bg-circle.png';
 import circleActive from '../../assets/Images/bg-circle-active.png';
 import { useState } from 'react';
-import { CoffeeOptionProps } from 'types/makeMyCard.types';
+import { CoffeeOptionProps } from 'types/myCard.types';
 
 interface Props {
   option: CoffeeOptionProps;
