@@ -61,6 +61,33 @@
   "mycard": {
     "title": "Make My Coffee Card",
     "subTitle": "내가 좋아하는 커피 취향을 만들어요",
+    "coffeeOption": [
+      {
+        "id": 10,
+        "name": "brand",
+        "image": "brands/ediya.png"
+      },
+      {
+        "id": 20,
+        "name": "beans",
+        "image": "beans/colombiaSupremo.png"
+      },
+      {
+        "id": 30,
+        "name": "coffeeType",
+        "image": "coffeetypes/americano.png"
+      },
+      {
+        "id": 40,
+        "name": "bottle",
+        "image": "bottles/cup-tumbler.png"
+      },
+      {
+        "id": 50,
+        "name": "temperature",
+        "image": "temperature/hot.png"
+      }
+    ],
     "brand": {
       "text": "브랜드를 선택하세요",
       "type": [
@@ -144,29 +171,6 @@
         }
       ]
     },
-    "temperature": {
-      "text": "차가운 것과 뜨거운 것",
-      "type": [
-        {
-          "id": 13,
-          "name": "쪄.죽.따",
-          "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
-          "thumbnail": "temperature/hot.png"
-        },
-        {
-          "id": 14,
-          "name": "반.반",
-          "description": "커피도 반반, 내 얼굴도 반반",
-          "thumbnail": "temperature/half.png"
-        },
-        {
-          "id": 15,
-          "name": "얼.죽.아",
-          "description": "겨울에도 차가운 아이스 커피 못 잃어",
-          "thumbnail": "temperature/ice.png"
-        }
-      ]
-    },
     "coffeeType": {
       "text": "좋아하는 커피 종류를 선택해주세요",
       "type": [
@@ -246,6 +250,29 @@
           "name": "찻 잔",
           "description": "찻 잔",
           "thumbnail": "bottles/cup-tea.png"
+        }
+      ]
+    },
+    "temperature": {
+      "text": "차가운 것과 뜨거운 것",
+      "type": [
+        {
+          "id": 13,
+          "name": "쪄.죽.따",
+          "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
+          "thumbnail": "temperature/hot.png"
+        },
+        {
+          "id": 14,
+          "name": "반.반",
+          "description": "커피도 반반, 내 얼굴도 반반",
+          "thumbnail": "temperature/half.png"
+        },
+        {
+          "id": 15,
+          "name": "얼.죽.아",
+          "description": "겨울에도 차가운 아이스 커피 못 잃어",
+          "thumbnail": "temperature/ice.png"
         }
       ]
     }
