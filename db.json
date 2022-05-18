@@ -56,5 +56,18 @@
         ]
       }
     ]
+  },
+  "othersCoffee": {
+    "title": "Other's Coffee",
+    "subTitle": "다른 사람들은 어떤 취향을 가지고 있을까요?",
+    "cardImages": [
+      { "id": 1, "thumbnail": "coffee-card-image.png" },
+      { "id": 2, "thumbnail": "coffee-card-image.png" },
+      { "id": 3, "thumbnail": "coffee-card-image.png" },
+      { "id": 4, "thumbnail": "coffee-card-image.png" },
+      { "id": 5, "thumbnail": "coffee-card-image.png" },
+      { "id": 6, "thumbnail": "coffee-card-image.png" },
+      { "id": 7, "thumbnail": "coffee-card-image.png" }
+    ]
   }
 }
