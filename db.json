@@ -56,5 +56,229 @@
         ]
       }
     ]
+  },
+
+  "mycard": {
+    "title": "Make My Coffee Card",
+    "subTitle": "내가 좋아하는 커피 취향을 만들어요",
+    "coffeeOption": [
+      {
+        "id": "10",
+        "name": "brand",
+        "text": "브랜드를 선택하세요",
+        "thumbnail": "brands/ediya.png",
+        "types": [
+          {
+            "id": 1,
+            "name": "EDIYA COFFEE",
+            "description": "이디아 브랜드가 좋아요",
+            "image": "brands/ediya.png"
+          },
+          {
+            "id": 2,
+            "name": "STARBUCKS",
+            "description": "스타벅스 브랜드가 좋아요",
+            "image": "brands/starbucks.png"
+          },
+          {
+            "id": 3,
+
+            "name": "COFFEE BEEN",
+            "description": "커피빈 브랜드가 좋아요",
+            "image": "brands/coffeebean.png"
+          },
+          {
+            "id": 4,
+            "name": "TWOSOME PLACE",
+            "description": "투썸 브랜드가 좋아요",
+            "image": "brands/twosome.png"
+          },
+          {
+            "id": 5,
+            "name": "HOLLYS COFFEE",
+            "description": "할리스 브랜드가 좋아요",
+            "image": "brands/hollys.png"
+          },
+          {
+            "id": 6,
+            "name": "PASCUCCI COFFEE",
+            "description": "파스쿠찌 브랜드가 좋아요",
+            "image": "brands/pascucci.png"
+          }
+        ]
+      },
+      {
+        "id": "20",
+        "name": "beans",
+        "text": "원두 종류를 선택하세요",
+        "thumbnail": "beans/colombiaSupremo.png",
+        "types": [
+          {
+            "id": 7,
+            "name": "콜롬비아 수프리모",
+            "description": "적절한 산미가 깔끔한 맛의 콜롬비아 수프리모가 내 취향~",
+            "image": "beans/colombiaSupremo.png"
+          },
+          {
+            "id": 8,
+            "name": "에티오피아 예가체프",
+            "description": "적절한 산미가 깔끔한 맛의 에티오피아 예가체프가 내 취향~",
+            "image": "beans/ethiopiaYirgacheffee.png"
+          },
+          {
+            "id": 9,
+            "name": "과테말라 SHB",
+            "description": "적절한 산미가 깔끔한 맛의 과테말라 SHB가 내 취향~",
+            "image": "beans/guatemalaAntiguaSHB.png"
+          },
+          {
+            "id": 10,
+            "name": "케냐 AA",
+            "description": "적절한 산미가 깔끔한 맛의 케냐 AA가 내 취향~",
+            "image": "beans/kenyaAA.png"
+          },
+          {
+            "id": 11,
+            "name": "탄자니아 AA",
+            "description": "적절한 산미가 깔끔한 맛의 탄자니아 AA가 내 취향~",
+            "image": "beans/tanzaniaAA.png"
+          },
+          {
+            "id": 12,
+            "name": "자메이카 블루마운틴",
+            "description": "적절한 산미가 깔끔한 맛의 자메이카 블루마운틴가 내 취향~",
+            "image": "beans/jamaicaBlueMountain.png"
+          }
+        ]
+      },
+      {
+        "id": "30",
+        "name": "coffeeType",
+        "text": "좋아하는 커피 종류를 선택해주세요",
+        "thumbnail": "coffeetypes/americano.png",
+        "types": [
+          {
+            "id": 16,
+            "name": "아메리카노",
+            "description": "내 마음에 아메리카노",
+            "image": "coffeetypes/americano.png"
+          },
+          {
+            "id": 17,
+            "name": "카페라떼",
+            "description": "내 마음에 카페라떼",
+            "image": "coffeetypes/caffelatte.png"
+          },
+          {
+            "id": 18,
+            "name": "에스프레소",
+            "description": "내 마음에 에스프레소",
+            "image": "coffeetypes/espresso.png"
+          },
+          {
+            "id": 18,
+            "name": "카페모카",
+            "description": "내 마음에 카페모카",
+            "image": "coffeetypes/cappuccino.png"
+          },
+          {
+            "id": 19,
+            "name": "카푸치노",
+            "description": "내 마음에 카푸치노",
+            "image": "coffeetypes/cappuccino.png"
+          },
+          {
+            "id": 20,
+            "name": "마끼아또",
+            "description": "내 마음에 마끼아또",
+            "image": "coffeetypes/macchiato.png"
+          }
+        ]
+      },
+      {
+        "id": "40",
+        "name": "bottle",
+        "text": "컵은 어떤 것을 사용하시나요?",
+        "thumbnail": "bottles/cup-tumbler.png",
+        "types": [
+          {
+            "id": 21,
+            "name": "텀블러",
+            "description": "텀블러",
+            "image": "bottles/cup-tumbler.png"
+          },
+          {
+            "id": 22,
+            "name": "테이크 아웃(뜨)",
+            "description": "테이크 아웃(뜨)",
+            "image": "bottles/cup-takeout-hot.png"
+          },
+          {
+            "id": 23,
+            "name": "테이크 아웃(아)",
+            "description": "테이크 아웃(아)",
+            "image": "bottles/cup-disposable.png"
+          },
+          {
+            "id": 24,
+            "name": "머그 컵",
+            "description": "머그 컵",
+            "image": "bottles/cup-mug.png"
+          },
+          {
+            "id": 25,
+            "name": "재사용 컵",
+            "description": "테이크 아웃(뜨)",
+            "image": "bottles/cup-reuseable.png"
+          },
+          {
+            "id": 26,
+            "name": "찻 잔",
+            "description": "찻 잔",
+            "image": "bottles/cup-tea.png"
+          }
+        ]
+      },
+      {
+        "id": "50",
+        "name": "temperature",
+        "text": "차가운 것과 뜨거운 것",
+        "thumbnail": "temperature/hot.png",
+        "types": [
+          {
+            "id": 13,
+            "name": "쪄.죽.따",
+            "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
+            "image": "temperature/hot.png"
+          },
+          {
+            "id": 14,
+            "name": "반.반",
+            "description": "커피도 반반, 내 얼굴도 반반",
+            "image": "temperature/half.png"
+          },
+          {
+            "id": 15,
+            "name": "얼.죽.아",
+            "description": "겨울에도 차가운 아이스 커피 못 잃어",
+            "image": "temperature/ice.png"
+          }
+        ]
+      }
+    ]
+  },
+
+  "othersCoffee": {
+    "title": "Other's Coffee",
+    "subTitle": "다른 사람들은 어떤 취향을 가지고 있을까요?",
+    "cardImages": [
+      { "id": 1, "thumbnail": "coffee-card-image.png" },
+      { "id": 2, "thumbnail": "coffee-card-image.png" },
+      { "id": 3, "thumbnail": "coffee-card-image.png" },
+      { "id": 4, "thumbnail": "coffee-card-image.png" },
+      { "id": 5, "thumbnail": "coffee-card-image.png" },
+      { "id": 6, "thumbnail": "coffee-card-image.png" },
+      { "id": 7, "thumbnail": "coffee-card-image.png" }
+    ]
   }
 }
