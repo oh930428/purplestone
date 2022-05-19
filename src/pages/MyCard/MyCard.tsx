@@ -5,7 +5,6 @@ import { maxWidth } from 'styles/mixin';
 import { Header, MakeMyCard } from 'components';
 import { useFetchMyCardQuery } from 'store/api/myCard';
 import { CoffeeOptionSection } from './components';
-import { useEffect } from 'react';
 
 const MyCard = () => {
   const { data, error, isLoading, isSuccess } = useFetchMyCardQuery();
