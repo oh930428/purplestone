@@ -34,4 +34,5 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  z-index: 200;
 `;
