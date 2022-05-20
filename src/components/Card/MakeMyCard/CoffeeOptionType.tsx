@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 import { useRef } from 'react';
-import { fonts } from 'styles';
+import { fonts, colors } from 'styles';
+import { CoffeeOptionProps } from '../../../types/myCard.types';
 
-const CoffeeOptionType = ({ option, selectedOption }) => {
+interface Props {
+  option: CoffeeOptionProps;
+  selectedOption: any;
+}
+
+const CoffeeOptionType = ({ option, selectedOption }: Props) => {
   const optionRef = useRef<HTMLDivElement>(null);
   const { name, description, image } = option.types[0];
+  // console.log(`image ${selectedOption.image}`);
 
   return (
     <Container
@@ -16,20 +23,20 @@ const CoffeeOptionType = ({ option, selectedOption }) => {
         <>
           <span className="name">{selectedOption.name}</span>
           <p className="description ">{selectedOption.description}</p>
-          <figure className="image-container">
+          <ImageContainer className={`${option.name}-image`}>
             <img
               src={require(`../../../assets/Icons/${selectedOption.image}`)}
               alt={selectedOption.name}
             />
-          </figure>
+          </ImageContainer>
         </>
       ) : (
         <>
           <span className="name">{name}</span>
           <p className="description ">{description}</p>
-          <figure className="image-container">
+          <ImageContainer className={`${option.name}-image`}>
             <img src={require(`../../../assets/Icons/${image}`)} alt={name} />
-          </figure>
+          </ImageContainer>
         </>
       )}
     </Container>
@@ -45,8 +52,8 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 10.2rem;
-    left: 22.9rem;
+    top: 14rem;
+    left: 30.3rem;
 
     .name {
       margin-right: 1rem;
@@ -58,49 +65,76 @@ const Container = styled.div`
     }
   }
 
-  &.temperature {
-    top: 17.7rem;
-    left: 3.7rem;
-    width: 13.1rem;
-    text-align: right;
-  }
-
   &.beans {
-    top: 172px;
-    right: 36px;
-    width: 133px;
-    text-align: left;
+    top: 25.2rem;
+    right: 5.5rem;
+    width: 15.5rem;
   }
 
   &.coffeeType {
-    bottom: 4.1rem;
-    left: 14.1rem;
-    width: 12.1rem;
+    bottom: 8.4rem;
+    left: 14.3rem;
+    width: 15.5rem;
+    text-align: right;
   }
 
   &.bottle {
-    bottom: 5.4rem;
-    right: 11.3rem;
-    width: 11.4rem;
+    bottom: 8.4rem;
+    right: 14.3rem;
+    width: 15.5rem;
+  }
+
+  &.temperature {
+    top: 25.2rem;
+    left: 5.5rem;
+    width: 15.5rem;
+    text-align: right;
   }
 
   .name {
     ${fonts.Headline4}
     color: #614E32;
+    word-break: keep-all;
   }
 
   .description {
-    ${fonts.MediumCaption}
+    ${fonts.MediumCaption};
+    color: ${colors.Gray_02};
+    word-break: keep-all;
+  }
+`;
+
+const ImageContainer = styled.figure`
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .image-container {
-    width: 9rem;
-    height: 9rem;
+  &.coffeeType-image {
+    width: 10rem;
+    height: 10rem;
+    top: -167px;
+    left: 167px;
+    z-index: 100;
+  }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  &.brand-image {
+    left: 3rem;
+    top: 10.5rem;
+  }
+
+  &.beans-image {
+    right: 238px;
+    top: 0px;
+  }
+
+  &.temperature-image {
+    top: 5rem;
+    left: 24rem;
   }
 `;

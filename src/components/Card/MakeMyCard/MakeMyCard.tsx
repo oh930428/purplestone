@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
 
@@ -15,6 +16,7 @@ const MakeMyCard = () => {
   const span = useRef<HTMLSpanElement>(null);
 
   const selectedOption = useSelector<RootState>(state => state.myCardReducer);
+
   const { data, isLoading, isError, isSuccess } = useFetchMyCardQuery();
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const MakeMyCard = () => {
           />
         </Header>
 
-        <Digram Digram={DigramImage} />
+        <Digram Digram={DigramImage}></Digram>
 
         {data.coffeeOption.map((option, index) => (
           <CoffeeOptionType
@@ -113,7 +115,7 @@ const Header = styled.header<{ width: number }>`
 
     ::placeholder {
       color: ${colors.Primary_01};
-      opacity: 0.7;
+      opacity: 0.9;
     }
   }
 `;

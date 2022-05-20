@@ -15,6 +15,8 @@ interface Props {
 const CoffeeOption = ({ option, selectedOption }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
+  const [selected, setSelected] = useState<any>();
+  console.log(`state => ${selected}, useSelector => ${selectedOption.image}`);
 
   const onClickActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;
@@ -39,10 +41,10 @@ const CoffeeOption = ({ option, selectedOption }: Props) => {
       circle={circle}
       circleActive={circleActive}
     >
-      {selectedOption.type === optionRef.current?.dataset.type ? (
+      {selected ? (
         <img
           className="option-image"
-          src={require(`../../assets/Icons/${selectedOption.image}`)}
+          src={require(`../../assets/Icons/${selected}`)}
           alt={option.name}
         />
       ) : (
@@ -55,7 +57,7 @@ const CoffeeOption = ({ option, selectedOption }: Props) => {
 
       {isPopupCard && (
         <ProcessCardContainer className="process-card-container">
-          <ProcessCard option={option} />
+          <ProcessCard option={option} setSelected={setSelected} />
         </ProcessCardContainer>
       )}
     </Container>
