@@ -16,7 +16,10 @@ const CoffeeOption = ({ option, selectedOption }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>();
-  console.log(`state => ${selected}, useSelector => ${selectedOption.image}`);
+  // console.log(`state => ${selected}, useSelector => ${selectedOption.type}`);
+  console.log(
+    `state => ${selected}, useSelector => ${selectedOption.selected.id}`
+  );
 
   const onClickActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;

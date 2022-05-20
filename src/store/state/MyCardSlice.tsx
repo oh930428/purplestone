@@ -1,25 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { MyCardTypeProps } from 'types/myCard.types';
 
-const initialState: MyCardTypeProps = {
-  id: '',
+const initialState = {
   type: '',
-  name: '',
-  description: '',
-  image: '',
+  selected: {},
 };
 
 export const myCardSlice = createSlice({
   name: 'coffeeType',
   initialState,
   reducers: {
-    setSelectOptions: (state, action: PayloadAction<MyCardTypeProps>) => {
-      const { id, type, name, description, image } = action.payload;
-      state.id = id;
-      state.type = type;
-      state.name = name;
-      state.description = description;
-      state.image = image;
+    setSelectOptions: (state, action: PayloadAction<any>) => {
+      const { type, selected } = action.payload;
+      const _type = type || state.type;
+      const _selected = selected || state.selected;
+      return { ...state, type: _type, selected: _selected };
     },
   },
 });

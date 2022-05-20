@@ -5,6 +5,7 @@ import { MyCardTypeProps } from 'types/myCard.types';
 import { CoffeeOptionProps } from 'types/myCard.types';
 import { useDispatch } from 'react-redux';
 import { setSelectOptions } from 'store/state/MyCardSlice';
+import { useCallback } from 'react';
 
 interface Props {
   option: CoffeeOptionProps;
@@ -14,32 +15,19 @@ interface Props {
 const ProcessCard = ({ option, setSelected }: Props) => {
   const dispatch = useDispatch();
 
-  const handleSelectedOption = (
-    e: any,
-    id: string,
-    name: string,
-    description: string,
-    image: string
-  ) => {
-    const target =
-      e.currentTarget.dataset.type || e.currentTarget.parentNode.dataset.type;
-    setSelected(image);
-
-    dispatch(
-      setSelectOptions({
-        id: String(id),
-        type: target,
-        name: name,
-        description: description,
-        image: image,
-      })
-    );
-
-    // const activeClass = e.target.closest('.active');
-    // if (activeClass) {
-    //   activeClass.classList.remove('active'); // TODO: active가 안지워짐. 수정필요
-    // }
-  };
+  const handleSelectedOption = useCallback(
+    (e: any, type: any, image: any) => {
+      const target =
+        e.currentTarget.dataset.type || e.currentTarget.parentNode.dataset.type;
+      setSelected(image);
+      dispatch(setSelectOptions({ type: target, selected: type }));
+      // const activeClass = e.target.closest('.active');
+      // if (activeClass) {
+      //   activeClass.classList.remove('active'); // TODO: active가 안지워짐. 수정필요
+      // }
+    },
+    [dispatch, setSelected]
+  );
 
   return (
     <Container className="option-item">
@@ -51,15 +39,7 @@ const ProcessCard = ({ option, setSelected }: Props) => {
               data-type={option.name}
               className="main-section"
               key={index}
-              onClick={e =>
-                handleSelectedOption(
-                  e,
-                  type.id,
-                  type.name,
-                  type.description,
-                  type.image
-                )
-              }
+              onClick={e => handleSelectedOption(e, type, type.image)}
             >
               <div className="main-thumbnail">
                 <img

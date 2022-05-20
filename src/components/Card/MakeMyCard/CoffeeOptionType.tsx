@@ -12,6 +12,7 @@ const CoffeeOptionType = ({ option, selectedOption }: Props) => {
   const optionRef = useRef<HTMLDivElement>(null);
   const { name, description, image } = option.types[0];
   // console.log(`image ${selectedOption.image}`);
+  // console.log(selectedOption)
 
   return (
     <Container
@@ -19,14 +20,15 @@ const CoffeeOptionType = ({ option, selectedOption }: Props) => {
       className={`type-box ${option.name}`}
       data-type={`${option.name}`}
     >
-      {selectedOption.type === optionRef.current?.dataset.type ? (
+      {selectedOption.type !== undefined &&
+      selectedOption.type === optionRef.current?.dataset.type ? (
         <>
-          <span className="name">{selectedOption.name}</span>
-          <p className="description ">{selectedOption.description}</p>
+          <span className="name">{selectedOption.selected.name}</span>
+          <p className="description ">{selectedOption.selected.description}</p>
           <ImageContainer className={`${option.name}-image`}>
             <img
-              src={require(`../../../assets/Icons/${selectedOption.image}`)}
-              alt={selectedOption.name}
+              src={require(`../../../assets/Icons/${selectedOption.selected.image}`)}
+              alt={selectedOption.selected.name}
             />
           </ImageContainer>
         </>
