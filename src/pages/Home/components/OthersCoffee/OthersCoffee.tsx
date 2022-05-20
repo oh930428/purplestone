@@ -4,19 +4,23 @@ import styled from 'styled-components';
 import { Header } from 'components';
 import { maxWidth } from 'styles/mixin';
 import CoverflowSection from './CoverflowSection';
+import HeaderSkeleton from 'components/Skeleton/HeaderSkeleton';
+
 import { useFetchOthersCoffeeQuery } from 'store/api/otherscoffee';
 
 const OthersCoffee = () => {
-  const { data, error, isLoading, isSuccess } = useFetchOthersCoffeeQuery();
+  const { data, isSuccess } = useFetchOthersCoffeeQuery();
 
   return (
     <Container>
-      {isSuccess && (
-        <div className="wrapper">
+      <div className="wrapper">
+        {isSuccess ? (
           <Header title={data.title} subTitle={data.subTitle} />
-          <CoverflowSection />
-        </div>
-      )}
+        ) : (
+          <HeaderSkeleton />
+        )}
+        <CoverflowSection />
+      </div>
     </Container>
   );
 };
