@@ -24,5 +24,23 @@ export const myCardSlice = createSlice({
   },
 });
 
+// interface Option {
+//   id: [],
+//   type: [],
+//   name: [],
+//   description: [],
+//   image: [],
+// }
+
+// export const myCardAddSlice = createSlice({
+//   name: 'coffeeType',
+//   initialState: [] as Option[],
+//   reducers: {
+//     addCard: (state, action: PayloadAction<any>) => {
+//       state.push(action.payload);
+//     },
+//   },
+// });
+
 export default myCardSlice.reducer;
 export const { setSelectOptions } = myCardSlice.actions;

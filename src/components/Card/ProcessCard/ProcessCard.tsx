@@ -8,9 +8,10 @@ import { setSelectOptions } from 'store/state/MyCardSlice';
 
 interface Props {
   option: CoffeeOptionProps;
+  setSelected: any;
 }
 
-const ProcessCard = ({ option }: Props) => {
+const ProcessCard = ({ option, setSelected }: Props) => {
   const dispatch = useDispatch();
 
   const handleSelectedOption = (
@@ -18,17 +19,19 @@ const ProcessCard = ({ option }: Props) => {
     id: string,
     name: string,
     description: string,
-    selectedImage: string
+    image: string
   ) => {
     const target =
       e.currentTarget.dataset.type || e.currentTarget.parentNode.dataset.type;
+    setSelected(image);
+
     dispatch(
       setSelectOptions({
-        id: id,
+        id: String(id),
         type: target,
         name: name,
         description: description,
-        image: selectedImage,
+        image: image,
       })
     );
 
