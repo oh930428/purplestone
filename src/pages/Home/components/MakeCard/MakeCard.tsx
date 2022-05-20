@@ -93,7 +93,7 @@ const Items = styled.ul`
   flex-flow: column;
   align-items: center;
   justify-content: start;
-  padding-top: 10rem;
+  padding-top: 12rem;
 `;
 
 const Item = styled.li`
@@ -105,14 +105,16 @@ const Item = styled.li`
     justify-content: flex-start;
     img {
       width: 40rem;
-      height: 30rem;
+      height: 32rem;
+      border-radius: 2rem;
     }
   }
   &:nth-child(even) {
     justify-content: flex-end;
     img {
       width: 40rem;
-      height: 30rem;
+      height: 32rem;
+      border-radius: 2rem;
     }
   }
 
@@ -122,13 +124,13 @@ const Item = styled.li`
 
     img {
       width: 40rem;
-      height: 25rem;
+      height: 23rem;
     }
   }
 
   &:nth-child(7) {
     justify-content: center;
-    margin-top: 16rem;
+    margin-top: 8rem;
     img {
       width: 40rem;
       height: 30rem;
