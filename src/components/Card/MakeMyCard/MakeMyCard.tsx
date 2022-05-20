@@ -1,23 +1,23 @@
-import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { colors, fonts } from 'styles';
-import Card from '../../../assets/Images/bg-card.png';
-import Digram from '../../../assets/Images/bg-digram.png';
-// import { MakeMyCardProps } from '../../../types/makeMyCard.type';
+import CardImage from '../../../assets/Images/bg-card.png';
+import DigramImage from '../../../assets/Images/bg-digram.png';
 
-const MakeMyCard = ({
-  bgCard,
-  bgDigram,
-  brand,
-  temperature,
-  beans,
-  coffee,
-  bottle,
-}: any) => {
+import { colors, fonts } from 'styles';
+import { useSelector } from 'react-redux';
+import { CoffeeOptionType } from 'components';
+import { RootState } from '../../../store/index';
+import { useState, useRef, useEffect } from 'react';
+import { useFetchMyCardQuery } from 'store/api/myCard';
+
+const MakeMyCard = () => {
   const [content, setContent] = useState<string>('');
   const [width, setWidth] = useState<number>(0);
   const span = useRef<HTMLSpanElement>(null);
+
+  const selectedOption = useSelector<RootState>(state => state.myCardReducer);
+
+  const { data, isLoading, isError, isSuccess } = useFetchMyCardQuery();
 
   useEffect(() => {
     if (!content) {
@@ -31,54 +31,55 @@ const MakeMyCard = ({
     setContent(e.currentTarget.value);
   };
 
-  return (
-    <Container Card={Card}>
-      <Header width={width}>
-        <span className="hide" ref={span}>
-          {content}
-        </span>
-        <input
-          type="text"
-          placeholder={content}
-          autoFocus
-          onChange={changeHandler}
-        />
-      </Header>
+  if (isSuccess) {
+    return (
+      <Container Card={CardImage}>
+        <Header width={width}>
+          <span className="hide" ref={span}>
+            {content}
+          </span>
+          <input
+            type="text"
+            placeholder={content}
+            autoFocus
+            onChange={changeHandler}
+          />
+        </Header>
 
-      <Dirgram Digram={Digram}>
-        {/* <img
-          className="digram-thumbnail"
-          src={bottle.thumbnail}
-          alt={bottle.name}
-        /> */}
-      </Dirgram>
+        <Digram Digram={DigramImage}></Digram>
 
-      <div className="barnd col">
-        <div className="name">dddd</div>
-        <p className="description">dddd</p>
+        {data.coffeeOption.map((option, index) => (
+          <CoffeeOptionType
+            key={index}
+            option={option}
+            selectedOption={selectedOption}
+          />
+        ))}
+      </Container>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div>
+        <div>로딩중..</div>
       </div>
+    );
+  }
 
-      <div className="beans col">
-        <div className="name">dddd</div>
-        <p className="description">dddd</p>
+  if (isError) {
+    return (
+      <div>
+        <div>데이터를 불러오지 못했음</div>
       </div>
-
-      <div className="bottle col">
-        <div className="name">dddd</div>
-        <p className="description">dddd</p>
+    );
+  } else {
+    return (
+      <div>
+        <div>NotFound</div>
       </div>
-
-      <div className="coffee col">
-        <div className="name">test</div>
-        <p className="description">test</p>
-      </div>
-
-      <div className="temperature col">
-        <div className="name">test</div>
-        <p className="description">test</p>
-      </div>
-    </Container>
-  );
+    );
+  }
 };
 
 export default MakeMyCard;
@@ -88,60 +89,11 @@ const Container = styled.div<{ Card: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 564px;
-  height: 423px;
+  width: 72rem;
+  height: 55rem;
   background-image: ${props => `url(${props.Card})`};
   background-repeat: no-repeat;
   background-size: cover;
-  .col {
-    position: absolute;
-  }
-  p {
-    margin: 0;
-  }
-  .barnd {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 102px;
-    left: 229px;
-    .name {
-      margin-right: 10px;
-    }
-    .description {
-      position: relative;
-      top: 1px;
-    }
-  }
-  .temperature {
-    top: 177px;
-    left: 37px;
-    width: 131px;
-    text-align: right;
-  }
-  .beans {
-    top: 172px;
-    right: 36px;
-    width: 133px;
-    text-align: left;
-  }
-  .coffee {
-    bottom: 41px;
-    left: 141px;
-    width: 121px;
-  }
-  .bottle {
-    bottom: 54px;
-    right: 113px;
-    width: 114px;
-  }
-  .name {
-    ${fonts.Headline4}
-    color: #614E32;
-  }
-  .description {
-    ${fonts.MediumCaption}
-  }
 `;
 
 const Header = styled.header<{ width: number }>`
@@ -151,37 +103,34 @@ const Header = styled.header<{ width: number }>`
     opacity: 0;
     z-index: -100;
   }
+
   input {
     width: ${props => props.width}px;
-    margin-top: 50px;
+    max-width: 46rem;
+    margin-top: 5.5rem;
     color: ${colors.Primary_01};
-    outline: 0;
-    border: 0;
-    background: 0;
-    background: linear-gradient(to top, #f5f2c2 50%, transparent 50%);
     ${fonts.Hero3}
+    background: linear-gradient(to top, #f5f2c2 50%, transparent 50%);
+    border: 0;
+
     ::placeholder {
       color: ${colors.Primary_01};
-      opacity: 0.7;
+      opacity: 0.9;
     }
   }
 `;
 
-const Dirgram = styled.figure<{ Digram: string }>`
+const Digram = styled.figure<{ Digram: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 210px;
-  height: 190px;
   position: absolute;
-  top: 50%;
+  top: 54%;
+  width: 100%;
+  height: 24rem;
   transform: translateY(-50%);
   background-image: ${props => `url(${props.Digram})`};
   background-size: contain;
   background-repeat: no-repeat;
-  .digram-thumbnail {
-    width: 90px;
-    margin-top: 10px;
-    object-fit: cover;
-  }
+  background-position: center center;
 `;

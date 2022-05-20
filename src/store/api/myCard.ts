@@ -10,7 +10,15 @@ export const myCardApi = createApi({
       query: () => '/mycard',
       providesTags: ['myCard'],
     }),
+    addMyCard: builder.mutation<{}, MyCardProps>({
+      query: option => ({
+        url: '/mycard',
+        method: 'POST',
+        body: option,
+      }),
+      invalidatesTags: ['myCard'],
+    }),
   }),
 });
 
-export const { useFetchMyCardQuery } = myCardApi;
+export const { useFetchMyCardQuery, useAddMyCardMutation } = myCardApi;

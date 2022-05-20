@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { colors, fonts } from '../../../styles';
 import { MyCardTypeProps } from 'types/myCard.types';
 import { CoffeeOptionProps } from 'types/myCard.types';
+import { useDispatch } from 'react-redux';
+import { setSelectOptions } from 'store/state/MyCardSlice';
 
 interface Props {
   option: CoffeeOptionProps;
@@ -10,12 +12,33 @@ interface Props {
 }
 
 const ProcessCard = ({ option, setSelected }: Props) => {
-  const handleSelectedImage = (e: any, selectedImage: string) => {
-    const activeClass = e.target.closest('.active');
-    if (activeClass) {
-      activeClass.classList.remove('active'); // TODO: active가 안지워짐. 수정필요
-    }
-    setSelected(selectedImage);
+  const dispatch = useDispatch();
+
+  const handleSelectedOption = (
+    e: any,
+    id: string,
+    name: string,
+    description: string,
+    image: string
+  ) => {
+    const target =
+      e.currentTarget.dataset.type || e.currentTarget.parentNode.dataset.type;
+    setSelected(image);
+
+    dispatch(
+      setSelectOptions({
+        id: String(id),
+        type: target,
+        name: name,
+        description: description,
+        image: image,
+      })
+    );
+
+    // const activeClass = e.target.closest('.active');
+    // if (activeClass) {
+    //   activeClass.classList.remove('active'); // TODO: active가 안지워짐. 수정필요
+    // }
   };
 
   return (
@@ -25,9 +48,18 @@ const ProcessCard = ({ option, setSelected }: Props) => {
         {option.types &&
           option.types.map((type: MyCardTypeProps, index: number) => (
             <article
+              data-type={option.name}
               className="main-section"
               key={index}
-              onClick={e => handleSelectedImage(e, type.image)}
+              onClick={e =>
+                handleSelectedOption(
+                  e,
+                  type.id,
+                  type.name,
+                  type.description,
+                  type.image
+                )
+              }
             >
               <div className="main-thumbnail">
                 <img

@@ -1,14 +1,17 @@
 import styled from 'styled-components';
+import Button from 'components/Button/Button';
 import background from '../../assets/Images/bg-section.jpg';
 
 import { maxWidth } from 'styles/mixin';
 import { Header, MakeMyCard } from 'components';
 import { useFetchMyCardQuery } from 'store/api/myCard';
 import { CoffeeOptionSection } from './components';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 const MyCard = () => {
   const { data, error, isLoading, isSuccess } = useFetchMyCardQuery();
+
+  const handleClick = () => {};
 
   return (
     <Container>
@@ -19,6 +22,15 @@ const MyCard = () => {
             <CoffeeOptionSection data={data} />
             <MakeMyCard />
           </Flex>
+          <ButtonContainer>
+            <Button size="large" theme="primary" label="저장하기" />
+            <Button
+              size="large"
+              theme="primary"
+              label="공유하기"
+              onClick={handleClick}
+            />
+          </ButtonContainer>
         </Wrpper>
       )}
 
@@ -45,5 +57,14 @@ const Flex = styled.div`
 
   justify-content: center;
   align-items: center;
+  gap: 5rem;
+`;
+
+const ButtonContainer = styled.div`
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 5rem;
 `;
