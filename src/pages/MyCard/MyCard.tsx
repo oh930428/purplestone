@@ -3,15 +3,40 @@ import Button from 'components/Button/Button';
 import background from '../../assets/Images/bg-section.jpg';
 
 import { maxWidth } from 'styles/mixin';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/index';
+import { useState, useEffect } from 'react';
 import { Header, MakeMyCard } from 'components';
-import { useFetchMyCardQuery } from 'store/api/myCard';
 import { CoffeeOptionSection } from './components';
-import { useState } from 'react';
+import { MyCardTypeProps } from '../../types/myCard.types';
+import { useFetchMyCardQuery, useAddMyCardMutation } from 'store/api/myCard';
 
 const MyCard = () => {
   const { data, error, isLoading, isSuccess } = useFetchMyCardQuery();
+  const [cardOpton, setCardOpton] = useState({});
 
-  const handleClick = () => {};
+  const [addMyCard] = useAddMyCardMutation(); // TODO: 카드 추가하는 api
+  const selectedOption = useSelector<RootState>(state => state.myCardReducer);
+
+  useEffect(() => {
+    data && setCardOpton(data?.makeMyCardOption);
+    localStorage.setItem(
+      'cardOptionItem',
+      JSON.stringify(data?.makeMyCardOption)
+    );
+  }, [data]);
+
+  const cardOptionUpdate = (option: MyCardTypeProps) => {
+    setCardOpton(cardInitOpton => {
+      const updated = { ...cardInitOpton };
+      updated[option.type] = option;
+      return updated;
+    });
+  };
+
+  const handleClickSubmit = async (cardOpton: any) => {
+    // await addMyCard();
+  };
 
   return (
     <Container>
@@ -19,8 +44,15 @@ const MyCard = () => {
         <Wrpper>
           <Header title={data.title} subTitle={data.subTitle} />
           <Flex>
-            <CoffeeOptionSection data={data} />
-            <MakeMyCard />
+            <CoffeeOptionSection
+              data={data}
+              cardOptionUpdate={cardOptionUpdate}
+            />
+            <MakeMyCard
+              cardOpton={cardOpton}
+              selectedOption={selectedOption}
+              handleClickSubmit={handleClickSubmit}
+            />
           </Flex>
           <ButtonContainer>
             <Button size="large" theme="primary" label="저장하기" />
@@ -28,7 +60,7 @@ const MyCard = () => {
               size="large"
               theme="primary"
               label="공유하기"
-              onClick={handleClick}
+              onClick={() => handleClickSubmit(cardOpton)}
             />
           </ButtonContainer>
         </Wrpper>

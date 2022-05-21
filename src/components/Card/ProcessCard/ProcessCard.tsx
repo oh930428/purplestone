@@ -1,32 +1,29 @@
 import styled from 'styled-components';
-
 import { colors, fonts } from '../../../styles';
+
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { MyCardTypeProps } from 'types/myCard.types';
 import { CoffeeOptionProps } from 'types/myCard.types';
-import { useDispatch } from 'react-redux';
 import { setSelectOptions } from 'store/state/MyCardSlice';
-import { useCallback } from 'react';
 
 interface Props {
   option: CoffeeOptionProps;
   setSelected: any;
+  cardOptionUpdate: any;
 }
 
-const ProcessCard = ({ option, setSelected }: Props) => {
+const ProcessCard = ({ option, setSelected, cardOptionUpdate }: Props) => {
   const dispatch = useDispatch();
-
   const handleSelectedOption = useCallback(
-    (e: any, type: any, image: any) => {
-      const target =
-        e.currentTarget.dataset.type || e.currentTarget.parentNode.dataset.type;
-      setSelected(image);
-      dispatch(setSelectOptions({ type: target, selected: type }));
-      // const activeClass = e.target.closest('.active');
-      // if (activeClass) {
-      //   activeClass.classList.remove('active'); // TODO: active가 안지워짐. 수정필요
-      // }
+    (selected: MyCardTypeProps) => {
+      setSelected(selected.image);
+      cardOptionUpdate({
+        ...selected,
+      });
+      dispatch(setSelectOptions({ ...selected }));
     },
-    [dispatch, setSelected]
+    [cardOptionUpdate, dispatch, setSelected]
   );
 
   return (
@@ -39,7 +36,7 @@ const ProcessCard = ({ option, setSelected }: Props) => {
               data-type={option.name}
               className="main-section"
               key={index}
-              onClick={e => handleSelectedOption(e, type, type.image)}
+              onClick={() => handleSelectedOption(type)}
             >
               <div className="main-thumbnail">
                 <img
