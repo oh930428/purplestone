@@ -5,36 +5,34 @@ import { maxWidth } from 'styles/mixin';
 import { useFetchCreatorsQuery } from 'store/api/creators';
 import { ProfileCardProps } from '../../../../types/profileCard.type';
 import ConfettiComponents from './Confetti';
+import ProfileCardSkeleton from '../../../../components/Skeleton/ProfileCardSkeleton';
 
 const Creators = () => {
-  const { data, error, isLoading, isSuccess } = useFetchCreatorsQuery();
+  const { data, isSuccess } = useFetchCreatorsQuery();
 
-  console.log(data);
   return (
     <Container>
       <ConfettiComponents />
-
       <div className="wrapper">
-        {isSuccess && <Header title={data.title} subTitle={data.subTitle} />}
-
-        {isSuccess && (
-          <div className="profile-box">
-            {data.profiles.map((profile: ProfileCardProps, index: number) => (
-              <ProfileCard
-                key={index}
-                userName={profile.userName}
-                descrition={profile.descrition}
-                thumbnail={profile.thumbnail}
-                background={profile.background}
-                iconSocial={profile.iconSocial}
-              />
-            ))}
-          </div>
+        {isSuccess ? (
+          <>
+            <Header title={data.title} subTitle={data.subTitle} />
+            <div className="profile-box">
+              {data.profiles.map((profile: ProfileCardProps, index: number) => (
+                <ProfileCard
+                  key={index}
+                  userName={profile.userName}
+                  descrition={profile.descrition}
+                  thumbnail={profile.thumbnail}
+                  background={profile.background}
+                  iconSocial={profile.iconSocial}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <ProfileCardSkeleton />
         )}
-
-        {isLoading && <div>로딩중..</div>}
-
-        {error && <div>데이터를 불러오지 못했습니다.</div>}
       </div>
     </Container>
   );

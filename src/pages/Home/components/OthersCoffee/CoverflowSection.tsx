@@ -7,9 +7,10 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
 import { useFetchOthersCoffeeQuery } from 'store/api/otherscoffee';
+import Skeleton from 'components/Skeleton/Skeleton';
 
 const CoverflowSection = () => {
-  const { data, error, isLoading, isSuccess } = useFetchOthersCoffeeQuery();
+  const { data, isSuccess } = useFetchOthersCoffeeQuery();
 
   return (
     <Container>
@@ -31,15 +32,43 @@ const CoverflowSection = () => {
         modules={[EffectCoverflow, Pagination]}
         className="swiper-container"
       >
-        {data?.cardImages.map(card => (
-          <SwiperSlide key={card.id}>
-            <img
-              src={require(`../../../../assets/Images/${card.thumbnail}`)}
-              alt="커피 취향 인증서"
-              className="photo"
-            />
-          </SwiperSlide>
-        ))}
+        {isSuccess ? (
+          <>
+            {data?.cardImages.map(card => (
+              <SwiperSlide key={card.id}>
+                <img
+                  src={require(`../../../../assets/Images/${card.thumbnail}`)}
+                  alt="커피 취향 인증서"
+                  className="photo"
+                />
+              </SwiperSlide>
+            ))}
+          </>
+        ) : (
+          <>
+            <SwiperSlide>
+              <Skeleton style={{ width: 400, height: 300 }} animated />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Skeleton style={{ width: 400, height: 300 }} animated />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Skeleton style={{ width: 400, height: 300 }} animated />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Skeleton style={{ width: 400, height: 300 }} animated />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Skeleton style={{ width: 400, height: 300 }} animated />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Skeleton style={{ width: 400, height: 300 }} animated />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Skeleton style={{ width: 400, height: 300 }} animated />
+            </SwiperSlide>
+          </>
+        )}
       </Swiper>
     </Container>
   );
