@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { myCardApi } from './api/myCard';
 import { creatorsApi } from './api/creators';
-import { myCardApi } from './api/myCard';
 import { otherscoffeeApi } from './api/otherscoffee';
 import { myCardSlice } from './state/MyCardSlice';
 
