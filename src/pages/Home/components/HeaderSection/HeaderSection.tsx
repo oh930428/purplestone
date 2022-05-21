@@ -71,9 +71,9 @@ const Title = styled.div`
 
   p {
     padding-top: 12px;
-    font-family: Noto Sans;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 30px;
     letter-spacing: -0.01em;
     color: ${colors.Secondary_01};

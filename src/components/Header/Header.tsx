@@ -26,6 +26,7 @@ const Container = styled.div<{ textAlign?: string }>`
   .title {
     display: flex;
     align-items: flex-end;
+    margin-bottom: 1rem;
 
     span {
       ${fonts.Hero2}
@@ -41,6 +42,7 @@ const Container = styled.div<{ textAlign?: string }>`
   }
   .subtitle {
     span {
+      font-family: 'Noto Sans KR', sans-serif;
       font-size: 24px;
       font-weight: 500;
       line-height: 32px;

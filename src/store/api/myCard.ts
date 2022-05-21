@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { MyCardProps } from '../../types/myCard.types';
+import { MyCardProps, MyCardTypeProps } from '../../types/myCard.types';
 
 export const myCardApi = createApi({
   reducerPath: 'myCardApi',
@@ -10,7 +10,15 @@ export const myCardApi = createApi({
       query: () => '/mycard',
       providesTags: ['myCard'],
     }),
+    addMyCard: builder.mutation<{}, MyCardTypeProps>({
+      query: option => ({
+        url: '/mycard',
+        method: 'POST',
+        body: option,
+      }),
+      invalidatesTags: ['myCard'],
+    }),
   }),
 });
 
-export const { useFetchMyCardQuery } = myCardApi;
+export const { useFetchMyCardQuery, useAddMyCardMutation } = myCardApi;

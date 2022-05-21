@@ -89,7 +89,7 @@ const Container = styled.button<{
     css`
       width: 244px;
       height: 85px;
-      font-family: 'Noto Sans';
+      font-family: 'Noto Sans KR', sans-serif;
       font-style: normal;
       font-weight: 500;
       font-size: 24px;
