@@ -1,22 +1,30 @@
 import styled from 'styled-components';
-
 import { colors, fonts } from '../../../styles';
+
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { MyCardTypeProps } from 'types/myCard.types';
 import { CoffeeOptionProps } from 'types/myCard.types';
+import { setSelectOptions } from 'store/state/MyCardSlice';
 
 interface Props {
   option: CoffeeOptionProps;
   setSelected: any;
+  cardOptionUpdate: any;
 }
 
-const ProcessCard = ({ option, setSelected }: Props) => {
-  const handleSelectedImage = (e: any, selectedImage: string) => {
-    const activeClass = e.target.closest('.active');
-    if (activeClass) {
-      activeClass.classList.remove('active'); // TODO: active가 안지워짐. 수정필요
-    }
-    setSelected(selectedImage);
-  };
+const ProcessCard = ({ option, setSelected, cardOptionUpdate }: Props) => {
+  const dispatch = useDispatch();
+  const handleSelectedOption = useCallback(
+    (selected: MyCardTypeProps) => {
+      setSelected(selected.image);
+      cardOptionUpdate({
+        ...selected,
+      });
+      dispatch(setSelectOptions({ ...selected }));
+    },
+    [cardOptionUpdate, dispatch, setSelected]
+  );
 
   return (
     <Container className="option-item">
@@ -25,9 +33,10 @@ const ProcessCard = ({ option, setSelected }: Props) => {
         {option.types &&
           option.types.map((type: MyCardTypeProps, index: number) => (
             <article
+              data-type={option.name}
               className="main-section"
               key={index}
-              onClick={e => handleSelectedImage(e, type.image)}
+              onClick={() => handleSelectedOption(type)}
             >
               <div className="main-thumbnail">
                 <img

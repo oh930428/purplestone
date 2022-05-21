@@ -3,19 +3,28 @@ import circle from '../../assets/Images/bg-circle.png';
 import circleActive from '../../assets/Images/bg-circle-active.png';
 import ProcessCard from 'components/Card/ProcessCard/ProcessCard';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
 import { CoffeeOptionProps } from 'types/myCard.types';
 
 interface Props {
   option: CoffeeOptionProps;
+  selectedOption: any;
+  cardOptionUpdate: any;
 }
 
-const CoffeeOption = ({ option }: Props) => {
+const CoffeeOption = ({ option, selectedOption, cardOptionUpdate }: Props) => {
+  const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState<any>();
+
+  // console.log(`state => ${selected}, useSelector => ${selectedOption.type}`);
+  // console.log(
+  //   `state => ${selected}, useSelector => ${selectedOption.selected.id}`
+  // );
 
   const onClickActive = (e: any) => {
-    const target = e.currentTarget;
+    const target = e.currentTarget || e.currentTarget.parentNode;
     const optionItem = document.querySelectorAll('.option-box');
     const newOptionItem = Array.from(optionItem);
 
@@ -24,19 +33,20 @@ const CoffeeOption = ({ option }: Props) => {
         item.classList.remove('active');
       }
     }
-
     target.classList.add('active');
     setIsPupupCard(prev => !prev);
   };
 
   return (
     <Container
+      ref={optionRef}
       className="option-box"
+      data-type={`${option.name}`}
       onClick={onClickActive}
       circle={circle}
       circleActive={circleActive}
     >
-      {selected !== '' ? (
+      {selected ? (
         <img
           className="option-image"
           src={require(`../../assets/Icons/${selected}`)}
@@ -52,7 +62,11 @@ const CoffeeOption = ({ option }: Props) => {
 
       {isPopupCard && (
         <ProcessCardContainer className="process-card-container">
-          <ProcessCard option={option} setSelected={setSelected} />
+          <ProcessCard
+            option={option}
+            setSelected={setSelected}
+            cardOptionUpdate={cardOptionUpdate}
+          />
         </ProcessCardContainer>
       )}
     </Container>
