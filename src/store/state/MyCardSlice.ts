@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MyCardTypeProps } from 'types/myCard.types';
 
 const initialState = {
-  type: '',
-  selected: {},
+  // selected: localStorage.getItem('cardOptionItem')
+  //   ? JSON.parse(localStorage.getItem('cardOptionItem'))
+  //   : {},
 };
 
 export const myCardSlice = createSlice({
@@ -11,10 +11,10 @@ export const myCardSlice = createSlice({
   initialState,
   reducers: {
     setSelectOptions: (state, action: PayloadAction<any>) => {
-      const { type, selected } = action.payload;
-      const _type = type || state.type;
-      const _selected = selected || state.selected;
-      return { ...state, type: _type, selected: _selected };
+      const updated = { ...state };
+      updated[action.payload.type] = action.payload;
+      // localStorage.setItem('cardOptionItem', JSON.stringify(state.selected));
+      return updated;
     },
   },
 });
