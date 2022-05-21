@@ -2,6 +2,7 @@ export interface MyCardProps {
   title: string;
   subTitle: string;
   coffeeOption: CoffeeOptionProps[];
+  makeMyCardOption: MyCardTypeProps;
 }
 
 export interface CoffeeOptionProps {

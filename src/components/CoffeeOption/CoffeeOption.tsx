@@ -10,13 +10,18 @@ import { CoffeeOptionProps } from 'types/myCard.types';
 interface Props {
   option: CoffeeOptionProps;
   selectedOption: any;
+  cardOptionUpdate: any;
 }
 
-const CoffeeOption = ({ option, selectedOption }: Props) => {
+const CoffeeOption = ({ option, selectedOption, cardOptionUpdate }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>();
-  console.log(`state => ${selected}, useSelector => ${selectedOption.image}`);
+
+  // console.log(`state => ${selected}, useSelector => ${selectedOption.type}`);
+  // console.log(
+  //   `state => ${selected}, useSelector => ${selectedOption.selected.id}`
+  // );
 
   const onClickActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;
@@ -57,7 +62,11 @@ const CoffeeOption = ({ option, selectedOption }: Props) => {
 
       {isPopupCard && (
         <ProcessCardContainer className="process-card-container">
-          <ProcessCard option={option} setSelected={setSelected} />
+          <ProcessCard
+            option={option}
+            setSelected={setSelected}
+            cardOptionUpdate={cardOptionUpdate}
+          />
         </ProcessCardContainer>
       )}
     </Container>

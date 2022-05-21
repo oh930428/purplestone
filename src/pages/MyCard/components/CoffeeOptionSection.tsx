@@ -7,9 +7,10 @@ import { RootState } from '../../../store/index';
 
 interface Props {
   data: MyCardProps;
+  cardOptionUpdate: any;
 }
 
-const CoffeeOptionSection = ({ data }: Props) => {
+const CoffeeOptionSection = ({ data, cardOptionUpdate }: Props) => {
   const selectedOption = useSelector<RootState>(state => state.myCardReducer);
 
   return (
@@ -20,6 +21,7 @@ const CoffeeOptionSection = ({ data }: Props) => {
             key={index}
             option={option}
             selectedOption={selectedOption}
+            cardOptionUpdate={cardOptionUpdate}
           />
         ))}
     </Container>

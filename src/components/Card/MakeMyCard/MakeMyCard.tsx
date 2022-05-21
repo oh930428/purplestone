@@ -1,23 +1,16 @@
 import styled from 'styled-components';
-
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
+import MakeMyCardOption from './MakeMyCardOption';
 
 import { colors, fonts } from 'styles';
-import { useSelector } from 'react-redux';
-import { CoffeeOptionType } from 'components';
-import { RootState } from '../../../store/index';
 import { useState, useRef, useEffect } from 'react';
-import { useFetchMyCardQuery } from 'store/api/myCard';
 
-const MakeMyCard = () => {
+const MakeMyCard = ({ cardOpton, selectedOption, handleClickSubmit }) => {
   const [content, setContent] = useState<string>('');
   const [width, setWidth] = useState<number>(0);
   const span = useRef<HTMLSpanElement>(null);
-
-  const selectedOption = useSelector<RootState>(state => state.myCardReducer);
-
-  const { data, isLoading, isError, isSuccess } = useFetchMyCardQuery();
+  const brandRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!content) {
@@ -31,7 +24,7 @@ const MakeMyCard = () => {
     setContent(e.currentTarget.value);
   };
 
-  if (isSuccess) {
+  if (cardOpton) {
     return (
       <Container Card={CardImage}>
         <Header width={width}>
@@ -46,39 +39,17 @@ const MakeMyCard = () => {
           />
         </Header>
 
-        <Digram Digram={DigramImage}></Digram>
-
-        {data.coffeeOption.map((option, index) => (
-          <CoffeeOptionType
-            key={index}
-            option={option}
-            selectedOption={selectedOption}
-          />
-        ))}
+        <Digram Digram={DigramImage}>
+          <div ref={brandRef} className="card-option">
+            {Object.keys(cardOpton).map(key => (
+              <MakeMyCardOption key={key} option={cardOpton[key]} />
+            ))}
+          </div>
+        </Digram>
       </Container>
     );
-  }
-
-  if (isLoading) {
-    return (
-      <div>
-        <div>로딩중..</div>
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div>
-        <div>데이터를 불러오지 못했음</div>
-      </div>
-    );
   } else {
-    return (
-      <div>
-        <div>NotFound</div>
-      </div>
-    );
+    return <div>로딩</div>;
   }
 };
 
