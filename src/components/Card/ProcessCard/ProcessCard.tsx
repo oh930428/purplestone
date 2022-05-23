@@ -1,29 +1,25 @@
 import styled from 'styled-components';
-import { colors, fonts } from '../../../styles';
 
 import { useCallback } from 'react';
+import { colors, fonts } from '../../../styles';
+import { CoffeeOptionProps, MyCardTypeProps } from 'types/myCard.types';
+
 import { useDispatch } from 'react-redux';
-import { MyCardTypeProps } from 'types/myCard.types';
-import { CoffeeOptionProps } from 'types/myCard.types';
 import { setSelectOptions } from 'store/state/MyCardSlice';
 
 interface Props {
   option: CoffeeOptionProps;
-  setSelected: any;
-  cardOptionUpdate: any;
+  setSelected: (arg: string) => void;
 }
-
-const ProcessCard = ({ option, setSelected, cardOptionUpdate }: Props) => {
+const ProcessCard = ({ option, setSelected }: Props) => {
   const dispatch = useDispatch();
+
   const handleSelectedOption = useCallback(
-    (selected: MyCardTypeProps) => {
+    async (selected: MyCardTypeProps) => {
       setSelected(selected.image);
-      cardOptionUpdate({
-        ...selected,
-      });
       dispatch(setSelectOptions({ ...selected }));
     },
-    [cardOptionUpdate, dispatch, setSelected]
+    [dispatch, setSelected]
   );
 
   return (
