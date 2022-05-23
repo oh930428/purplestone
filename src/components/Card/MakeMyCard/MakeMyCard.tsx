@@ -1,34 +1,33 @@
 import styled from 'styled-components';
+import MakeMyCardOption from './MakeMyCardOption';
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
-import MakeMyCardOption from './MakeMyCardOption';
 
 import { colors, fonts } from 'styles';
 import { useState, useRef, useEffect } from 'react';
 
-const MakeMyCard = ({ cardOpton, selectedOption, handleClickSubmit }) => {
+const MakeMyCard = ({ userMyCard, handleClickSubmit }) => {
   const [content, setContent] = useState<string>('');
   const [width, setWidth] = useState<number>(0);
-  const span = useRef<HTMLSpanElement>(null);
-  const brandRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!content) {
       setContent('이름을 입력하세요');
     }
 
-    span.current && setWidth(span.current.offsetWidth);
+    textRef.current && setWidth(textRef.current.offsetWidth);
   }, [content]);
 
   const changeHandler = (e: { currentTarget: HTMLInputElement }) => {
     setContent(e.currentTarget.value);
   };
 
-  if (cardOpton) {
+  if (userMyCard) {
     return (
       <Container Card={CardImage}>
         <Header width={width}>
-          <span className="hide" ref={span}>
+          <span ref={textRef} className="hide">
             {content}
           </span>
           <input
@@ -40,9 +39,9 @@ const MakeMyCard = ({ cardOpton, selectedOption, handleClickSubmit }) => {
         </Header>
 
         <Digram Digram={DigramImage}>
-          <div ref={brandRef} className="card-option">
-            {Object.keys(cardOpton).map(key => (
-              <MakeMyCardOption key={key} option={cardOpton[key]} />
+          <div className="card-option">
+            {Object.keys(userMyCard).map((key, index) => (
+              <MakeMyCardOption key={index} option={userMyCard[key]} />
             ))}
           </div>
         </Digram>
@@ -79,8 +78,8 @@ const Header = styled.header<{ width: number }>`
     width: ${props => props.width}px;
     max-width: 46rem;
     margin-top: 5.5rem;
-    color: ${colors.Primary_01};
     ${fonts.Hero3}
+    color: ${colors.Primary_01};
     background: linear-gradient(to top, #f5f2c2 50%, transparent 50%);
     border: 0;
 

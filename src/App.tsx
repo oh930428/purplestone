@@ -1,6 +1,6 @@
 import GlobalStyled from 'styles/global';
 import { Footer, Navigation } from 'components';
-import { Home, AllCoffes, MyCard } from 'pages';
+import { Home, AllCoffes, CreateMyCard } from 'pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="all-coffes" element={<AllCoffes />}></Route>
-          <Route path="/mycard" element={<MyCard />}></Route>
+          <Route path="/mycard" element={<CreateMyCard />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

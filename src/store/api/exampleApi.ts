@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IContact } from '../../types/example.types';
+import { IContact } from '../../types/example.type';
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',

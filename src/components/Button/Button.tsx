@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { colors, fonts } from '../../styles';
-import { ButtonProps } from '../../types/button.types';
+import { ButtonProps } from '../../types/button.type';
 
 const Button = ({ theme, size, label, isRegular = false }: ButtonProps) => {
   return (

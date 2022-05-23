@@ -6,7 +6,7 @@ import { maxWidth } from 'styles/mixin';
 import { Header } from 'components';
 import DrawSvg from './DrawSvg';
 
-const MakeCard = () => {
+const CreateMyCard = () => {
   return (
     <Container>
       <div className="wrapper">
@@ -63,7 +63,7 @@ const MakeCard = () => {
   );
 };
 
-export default MakeCard;
+export default CreateMyCard;
 
 const Container = styled.section`
   background: url(${background});

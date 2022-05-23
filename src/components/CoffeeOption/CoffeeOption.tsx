@@ -2,26 +2,17 @@ import styled from 'styled-components';
 import circle from '../../assets/Images/bg-circle.png';
 import circleActive from '../../assets/Images/bg-circle-active.png';
 import ProcessCard from 'components/Card/ProcessCard/ProcessCard';
-
 import { useRef, useState } from 'react';
-
 import { CoffeeOptionProps } from 'types/myCard.types';
 
 interface Props {
   option: CoffeeOptionProps;
-  selectedOption: any;
-  cardOptionUpdate: any;
 }
 
-const CoffeeOption = ({ option, selectedOption, cardOptionUpdate }: Props) => {
+const CoffeeOption = ({ option }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>();
-
-  // console.log(`state => ${selected}, useSelector => ${selectedOption.type}`);
-  // console.log(
-  //   `state => ${selected}, useSelector => ${selectedOption.selected.id}`
-  // );
 
   const onClickActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;
@@ -62,11 +53,7 @@ const CoffeeOption = ({ option, selectedOption, cardOptionUpdate }: Props) => {
 
       {isPopupCard && (
         <ProcessCardContainer className="process-card-container">
-          <ProcessCard
-            option={option}
-            setSelected={setSelected}
-            cardOptionUpdate={cardOptionUpdate}
-          />
+          <ProcessCard option={option} setSelected={setSelected} />
         </ProcessCardContainer>
       )}
     </Container>
@@ -107,8 +94,7 @@ const Container = styled.article<{
 
 const ProcessCardContainer = styled.ul`
   position: absolute;
-  left: 14rem;
-  top: 3rem;
+  top: 14.5rem;
   width: 45rem;
   z-index: 100;
   display: none;
