@@ -5,7 +5,7 @@ import background from '../../assets/Images/bg-section.jpg';
 import { maxWidth } from 'styles/mixin';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
-import { Header, MakeMyCard } from 'components';
+import { Header, UserCard } from 'components';
 import { CoffeeOptionSection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
 
@@ -22,8 +22,8 @@ const CreateMyCard = () => {
         <Wrpper>
           <Header title={data.title} subTitle={data.subTitle} />
           <Flex>
-            <CoffeeOptionSection data={data} />
-            <MakeMyCard
+            <CoffeeOptionSection />
+            <UserCard
               handleClickSubmit={handleClickSubmit}
               userMyCard={userMyCard}
             />

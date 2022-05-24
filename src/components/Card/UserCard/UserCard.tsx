@@ -1,12 +1,18 @@
 import styled from 'styled-components';
-import MakeMyCardOption from './MakeMyCardOption';
+import UserCardOption from './UserCardOption';
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
 
 import { colors, fonts } from 'styles';
 import { useState, useRef, useEffect } from 'react';
 
-const MakeMyCard = ({ userMyCard, handleClickSubmit }) => {
+interface Props {
+  userMyCard: any;
+  handleClickSubmit: () => void;
+}
+
+const UserCard = ({ userMyCard, handleClickSubmit }: Props) => {
+  console.log(userMyCard);
   const [content, setContent] = useState<string>('');
   const [width, setWidth] = useState<number>(0);
   const textRef = useRef<HTMLSpanElement>(null);
@@ -41,7 +47,7 @@ const MakeMyCard = ({ userMyCard, handleClickSubmit }) => {
         <Digram Digram={DigramImage}>
           <div className="card-option">
             {Object.keys(userMyCard).map((key, index) => (
-              <MakeMyCardOption key={index} option={userMyCard[key]} />
+              <UserCardOption key={index} option={userMyCard[key]} />
             ))}
           </div>
         </Digram>
@@ -52,7 +58,7 @@ const MakeMyCard = ({ userMyCard, handleClickSubmit }) => {
   }
 };
 
-export default MakeMyCard;
+export default UserCard;
 
 const Container = styled.div<{ Card: string }>`
   position: relative;

@@ -1,19 +1,28 @@
 export interface MyCardProps {
   title: string;
   subTitle: string;
-  coffeeOption: CoffeeOptionProps[];
-  makeMyCardOption: MyCardTypeProps;
+  chooseCoffeeOption: ChooseCoffeeOptionProps[];
+  userCard: UserCardProps;
 }
 
-export interface CoffeeOptionProps {
+export interface ChooseCoffeeOptionProps {
+  id: string;
   name: string;
   text: string;
   thumbnail: string;
-  types: MyCardTypeProps[];
+  types: CoffeeTypeProps[];
 }
 
-export interface MyCardTypeProps {
-  id: string;
+export interface UserCardProps {
+  brand: CoffeeTypeProps;
+  beans: CoffeeTypeProps;
+  coffeeType: CoffeeTypeProps;
+  bottle: CoffeeTypeProps;
+  temperature: CoffeeTypeProps;
+}
+
+export interface CoffeeTypeProps {
+  id: number;
   type: string;
   name: string;
   description: string;

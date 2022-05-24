@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { fonts, colors } from 'styles';
-import { MyCardTypeProps } from '../../../types/myCard.types';
+import { CoffeeTypeProps } from '../../../types/myCard.types';
 interface Props {
-  option: MyCardTypeProps;
+  option: CoffeeTypeProps;
 }
 
-const MakeMyCardOption = ({ option }: Props) => {
+const UserCardOption = ({ option }: Props) => {
   return (
     <Container className={`type-box ${option.type}`}>
       <span className="name">{option.name}</span>
@@ -20,7 +20,7 @@ const MakeMyCardOption = ({ option }: Props) => {
   );
 };
 
-export default MakeMyCardOption;
+export default UserCardOption;
 
 const Container = styled.article`
   position: absolute;

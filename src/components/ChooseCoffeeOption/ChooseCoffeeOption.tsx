@@ -3,13 +3,13 @@ import circle from '../../assets/Images/bg-circle.png';
 import circleActive from '../../assets/Images/bg-circle-active.png';
 import ProcessCard from 'components/Card/ProcessCard/ProcessCard';
 import { useRef, useState } from 'react';
-import { CoffeeOptionProps } from 'types/myCard.types';
+import { ChooseCoffeeOptionProps } from 'types/myCard.types';
 
 interface Props {
-  option: CoffeeOptionProps;
+  option: ChooseCoffeeOptionProps;
 }
 
-const CoffeeOption = ({ option }: Props) => {
+const ChooseCoffeeOption = ({ option }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<any>();
@@ -60,7 +60,7 @@ const CoffeeOption = ({ option }: Props) => {
   );
 };
 
-export default CoffeeOption;
+export default ChooseCoffeeOption;
 
 const Container = styled.article<{
   circle: string;

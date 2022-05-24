@@ -58,10 +58,10 @@
     ]
   },
 
-  "mycard": {
+  "createMyCard": {
     "title": "Make My Coffee Card",
     "subTitle": "내가 좋아하는 커피 취향을 만들어요",
-    "coffeeOption": [
+    "chooseCoffeeOption": [
       {
         "id": "1",
         "name": "brand",
@@ -286,7 +286,7 @@
         ]
       }
     ],
-    "makeMyCardOption": {
+    "userCard": {
       "brand": {
         "id": 1,
         "name": "EDIYA COFFEE",
