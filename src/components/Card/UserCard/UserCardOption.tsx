@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { fonts, colors } from 'styles';
-import { CoffeeTypeProps } from '../../../types/myCard.types';
+import { CoffeeTypeProps } from '../../../types/createMyCard';
 interface Props {
   option: CoffeeTypeProps;
 }

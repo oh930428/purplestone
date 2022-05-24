@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { useCallback } from 'react';
 import { colors, fonts } from '../../../styles';
-import { ChooseCoffeeOptionProps, CoffeeTypeProps } from 'types/myCard.types';
+import { ChooseCoffeeOptionProps, CoffeeTypeProps } from 'types/createMyCard';
 
 import { useDispatch } from 'react-redux';
 import { setSelectOptions } from 'store/state/MyCardSlice';

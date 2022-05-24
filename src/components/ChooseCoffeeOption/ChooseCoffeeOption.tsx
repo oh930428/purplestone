@@ -3,7 +3,7 @@ import circle from '../../assets/Images/bg-circle.png';
 import circleActive from '../../assets/Images/bg-circle-active.png';
 import ProcessCard from 'components/Card/ProcessCard/ProcessCard';
 import { useRef, useState } from 'react';
-import { ChooseCoffeeOptionProps } from 'types/myCard.types';
+import { ChooseCoffeeOptionProps } from 'types/createMyCard';
 
 interface Props {
   option: ChooseCoffeeOptionProps;

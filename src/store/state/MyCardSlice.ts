@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserCardProps, CoffeeTypeProps } from './../../types/myCard.types';
+import { UserCardProps, CoffeeTypeProps } from '../../types/createMyCard';
 
 const userMyCard: UserCardProps = {
   brand: {

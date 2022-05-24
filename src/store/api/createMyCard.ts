@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { MyCardProps } from '../../types/myCard.types';
+import { createMyCard } from '../../types/createMyCard';
 
 export const createMyCardApi = createApi({
-  reducerPath: 'myCardApi',
+  reducerPath: 'createMyCardApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
-  tagTypes: ['myCard'],
+  tagTypes: ['MyCard'],
   endpoints: builder => ({
-    fetchMyCard: builder.query<MyCardProps, void>({
-      query: () => '/mycard',
-      providesTags: ['myCard'],
+    fetchMyCard: builder.query<createMyCard, void>({
+      query: () => '/createMyCard',
+      providesTags: ['MyCard'],
     }),
   }),
 });
