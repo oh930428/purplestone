@@ -8,34 +8,34 @@ import ConfettiComponents from './Confetti';
 import ProfileCardSkeleton from '../../../../components/Skeleton/ProfileCardSkeleton';
 
 const Creators = () => {
-  const { data, isSuccess } = useFetchCreatorsQuery();
+  const { data, isSuccess, isLoading } = useFetchCreatorsQuery();
 
-  return (
-    <Container>
-      <ConfettiComponents />
-      <div className="wrapper">
-        {isSuccess ? (
-          <>
-            <Header title={data.title} subTitle={data.subTitle} />
-            <div className="profile-box">
-              {data.profiles.map((profile: ProfileCardProps, index: number) => (
-                <ProfileCard
-                  key={index}
-                  userName={profile.userName}
-                  descrition={profile.descrition}
-                  thumbnail={profile.thumbnail}
-                  background={profile.background}
-                  iconSocial={profile.iconSocial}
-                />
-              ))}
-            </div>
-          </>
-        ) : (
-          <ProfileCardSkeleton />
-        )}
-      </div>
-    </Container>
-  );
+  if (isSuccess) {
+    return (
+      <Container>
+        <ConfettiComponents />
+        <div className="wrapper">
+          <Header title={data.title} subTitle={data.subTitle} />
+          <div className="profile-box">
+            {data.profiles.map((profile: ProfileCardProps, index: number) => (
+              <ProfileCard
+                key={index}
+                userName={profile.userName}
+                descrition={profile.descrition}
+                thumbnail={profile.thumbnail}
+                background={profile.background}
+                iconSocial={profile.iconSocial}
+              />
+            ))}
+          </div>
+        </div>
+      </Container>
+    );
+  } else if (isLoading) {
+    return <ProfileCardSkeleton />;
+  } else {
+    return <div>not found</div>;
+  }
 };
 
 export default Creators;

@@ -1,48 +1,55 @@
 import styled from 'styled-components';
+import UserCardOption from './UserCardOption';
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
-import MakeMyCardOption from './MakeMyCardOption';
 
 import { colors, fonts } from 'styles';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
-const MakeMyCard = ({ cardOpton, selectedOption, handleClickSubmit }) => {
-  const [content, setContent] = useState<string>('');
+interface UserCardProps {
+  userMyCard: any;
+  userName: string;
+  setUserName: (value: string) => void;
+}
+
+const UserCard = ({ userMyCard, userName, setUserName }: UserCardProps) => {
   const [width, setWidth] = useState<number>(0);
-  const span = useRef<HTMLSpanElement>(null);
-  const brandRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!content) {
-      setContent('이름을 입력하세요');
+    if (!userName) {
+      setUserName('이름을 입력하세요');
     }
+    textRef.current && setWidth(textRef.current.offsetWidth);
+  }, [setUserName, userName]);
 
-    span.current && setWidth(span.current.offsetWidth);
-  }, [content]);
+  const changeHandler = useCallback(
+    (e: { currentTarget: HTMLInputElement }) => {
+      setUserName(e.currentTarget.value);
+    },
+    [setUserName]
+  );
 
-  const changeHandler = (e: { currentTarget: HTMLInputElement }) => {
-    setContent(e.currentTarget.value);
-  };
-
-  if (cardOpton) {
+  if (userMyCard) {
     return (
       <Container Card={CardImage}>
         <Header width={width}>
-          <span className="hide" ref={span}>
-            {content}
+          <span ref={textRef} className="hide">
+            {userName}
           </span>
           <input
+            maxLength={7}
             type="text"
-            placeholder={content}
+            placeholder={userName}
             autoFocus
             onChange={changeHandler}
           />
         </Header>
 
         <Digram Digram={DigramImage}>
-          <div ref={brandRef} className="card-option">
-            {Object.keys(cardOpton).map(key => (
-              <MakeMyCardOption key={key} option={cardOpton[key]} />
+          <div className="card-option">
+            {Object.keys(userMyCard).map((key, index) => (
+              <UserCardOption key={index} option={userMyCard[key]} />
             ))}
           </div>
         </Digram>
@@ -53,7 +60,7 @@ const MakeMyCard = ({ cardOpton, selectedOption, handleClickSubmit }) => {
   }
 };
 
-export default MakeMyCard;
+export default UserCard;
 
 const Container = styled.div<{ Card: string }>`
   position: relative;
@@ -79,8 +86,8 @@ const Header = styled.header<{ width: number }>`
     width: ${props => props.width}px;
     max-width: 46rem;
     margin-top: 5.5rem;
-    color: ${colors.Primary_01};
     ${fonts.Hero3}
+    color: ${colors.Primary_01};
     background: linear-gradient(to top, #f5f2c2 50%, transparent 50%);
     border: 0;
 
