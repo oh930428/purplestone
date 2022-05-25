@@ -8,12 +8,21 @@ import { RootState } from '../../store/index';
 import { Header, UserCard } from 'components';
 import { CoffeeOptionSection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
+import { useState } from 'react';
+import { useAddUserCardListMutation } from 'store/api/userCardList';
 
 const CreateMyCard = () => {
   const { data, isLoading, isSuccess } = useFetchMyCardQuery();
+  const [addUserCardList] = useAddUserCardListMutation();
+  const [userName, setUserName] = useState<string>('');
   const userMyCard = useSelector<RootState>(state => state.myCardReducer);
-  const handleClickSubmit = async () => {
-    // await addMyCard(content);
+
+  const handleAddCard = async () => {
+    await addUserCardList({
+      id: Date.now(),
+      userName: userName,
+      userCardSmallType: userMyCard,
+    });
   };
 
   if (isSuccess) {
@@ -24,19 +33,20 @@ const CreateMyCard = () => {
           <Flex>
             <CoffeeOptionSection />
             <UserCard
-              handleClickSubmit={handleClickSubmit}
               userMyCard={userMyCard}
+              userName={userName}
+              setUserName={setUserName}
             />
+            <ButtonWrapper>
+              <Button size="large" theme="primary" label="캡처하기" />
+              <Button
+                size="large"
+                theme="primary"
+                label="게시하기"
+                onPress={handleAddCard}
+              />
+            </ButtonWrapper>
           </Flex>
-          <ButtonContainer>
-            <Button size="large" theme="primary" label="저장하기" />
-            <Button
-              size="large"
-              theme="primary"
-              label="공유하기"
-              onClick={() => handleClickSubmit()}
-            />
-          </ButtonContainer>
         </Wrpper>
       </Container>
     );
@@ -67,12 +77,11 @@ const Flex = styled.div`
   gap: 5rem;
 `;
 
-const ButtonContainer = styled.div`
+const ButtonWrapper = styled.div`
   position: relative;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5rem;
-  padding-top: 5rem;
 `;
