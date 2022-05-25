@@ -12,7 +12,7 @@ interface Props {
 const ChooseCoffeeOption = ({ option }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
-  const [selected, setSelected] = useState<any>();
+  const [selected, setSelected] = useState<string>('');
 
   const onClickActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;

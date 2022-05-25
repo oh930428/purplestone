@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ChooseCoffeeOption } from 'components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
-import { ChooseCoffeeOptionProps } from 'types/myCard.types';
+import { ChooseCoffeeOptionProps } from 'types/createMyCard';
 
 const CoffeeOptionSection = () => {
   const { data, isLoading, isSuccess } = useFetchMyCardQuery();

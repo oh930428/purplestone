@@ -7,11 +7,12 @@ import { ChooseCoffeeOptionProps, CoffeeTypeProps } from 'types/createMyCard';
 import { useDispatch } from 'react-redux';
 import { setSelectOptions } from 'store/state/MyCardSlice';
 
-interface Props {
+interface ProcessCardProps {
   option: ChooseCoffeeOptionProps;
   setSelected: (arg: string) => void;
 }
-const ProcessCard = ({ option, setSelected }: Props) => {
+
+const ProcessCard = ({ option, setSelected }: ProcessCardProps) => {
   const dispatch = useDispatch();
 
   const handleSelectedOption = useCallback(

@@ -81,11 +81,6 @@ const Digram = styled.figure<{ bgDigram: string }>`
       &.brand {
         left: 31%;
         top: -19%;
-
-        img {
-          width: 95%;
-          height: 95%;
-        }
       }
       &.beans {
         right: -5%;
