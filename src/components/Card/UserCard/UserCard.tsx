@@ -1,38 +1,46 @@
 import styled from 'styled-components';
-import MakeMyCardOption from './MakeMyCardOption';
+import UserCardOption from './UserCardOption';
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
 
 import { colors, fonts } from 'styles';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
-const MakeMyCard = ({ userMyCard, handleClickSubmit }) => {
-  const [content, setContent] = useState<string>('');
+interface UserCardProps {
+  userMyCard: any;
+  userName: string;
+  setUserName: (value: string) => void;
+}
+
+const UserCard = ({ userMyCard, userName, setUserName }: UserCardProps) => {
   const [width, setWidth] = useState<number>(0);
   const textRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!content) {
-      setContent('이름을 입력하세요');
+    if (!userName) {
+      setUserName('이름을 입력하세요');
     }
-
     textRef.current && setWidth(textRef.current.offsetWidth);
-  }, [content]);
+  }, [setUserName, userName]);
 
-  const changeHandler = (e: { currentTarget: HTMLInputElement }) => {
-    setContent(e.currentTarget.value);
-  };
+  const changeHandler = useCallback(
+    (e: { currentTarget: HTMLInputElement }) => {
+      setUserName(e.currentTarget.value);
+    },
+    [setUserName]
+  );
 
   if (userMyCard) {
     return (
       <Container Card={CardImage}>
         <Header width={width}>
           <span ref={textRef} className="hide">
-            {content}
+            {userName}
           </span>
           <input
+            maxLength={7}
             type="text"
-            placeholder={content}
+            placeholder={userName}
             autoFocus
             onChange={changeHandler}
           />
@@ -41,7 +49,7 @@ const MakeMyCard = ({ userMyCard, handleClickSubmit }) => {
         <Digram Digram={DigramImage}>
           <div className="card-option">
             {Object.keys(userMyCard).map((key, index) => (
-              <MakeMyCardOption key={index} option={userMyCard[key]} />
+              <UserCardOption key={index} option={userMyCard[key]} />
             ))}
           </div>
         </Digram>
@@ -52,7 +60,7 @@ const MakeMyCard = ({ userMyCard, handleClickSubmit }) => {
   }
 };
 
-export default MakeMyCard;
+export default UserCard;
 
 const Container = styled.div<{ Card: string }>`
   position: relative;

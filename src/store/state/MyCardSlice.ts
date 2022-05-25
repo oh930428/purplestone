@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { UserCardProps, CoffeeTypeProps } from '../../types/createMyCard';
 
-const userMyCard = {
+const userMyCard: UserCardProps = {
   brand: {
     id: 1,
     name: 'EDIYA COFFEE',
@@ -42,7 +43,7 @@ export const myCardSlice = createSlice({
   name: 'coffeeOption',
   initialState: userMyCard,
   reducers: {
-    setSelectOptions: (state, action: PayloadAction<any>) => {
+    setSelectOptions: (state, action: PayloadAction<CoffeeTypeProps>) => {
       const updated = { ...state };
       updated[action.payload.type] = action.payload;
       return updated;

@@ -2,9 +2,20 @@ import styled, { css } from 'styled-components';
 import { colors, fonts } from '../../styles';
 import { ButtonProps } from '../../types/button.type';
 
-const Button = ({ theme, size, label, isRegular = false }: ButtonProps) => {
+const Button = ({
+  theme,
+  size,
+  label,
+  isRegular = false,
+  onPress,
+}: ButtonProps) => {
   return (
-    <Container type="button" theme={theme} size={size} isRegular={isRegular}>
+    <Container
+      theme={theme}
+      size={size}
+      isRegular={isRegular}
+      onClick={onPress}
+    >
       {label}
     </Container>
   );
@@ -26,7 +37,7 @@ const Container = styled.button<{
     css`
       ${fonts.Headline4}
       width: 100%;
-      height: 60px;
+      height: 6rem;
       color: rgb(102, 102, 102);
       border: 1px solid ${colors.Gray_01};
     `}

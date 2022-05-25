@@ -1,20 +1,26 @@
 import styled from 'styled-components';
-import { CoffeeOption } from 'components';
-import { CoffeeOptionProps, MyCardProps } from 'types/myCard.types';
+import { ChooseCoffeeOption } from 'components';
+import { useFetchMyCardQuery } from 'store/api/createMyCard';
+import { ChooseCoffeeOptionProps } from 'types/createMyCard';
 
-interface Props {
-  data: MyCardProps;
-}
+const CoffeeOptionSection = () => {
+  const { data, isLoading, isSuccess } = useFetchMyCardQuery();
 
-const CoffeeOptionSection = ({ data }: Props) => {
-  return (
-    <Container>
-      {data &&
-        data.coffeeOption.map((option: CoffeeOptionProps, index: number) => (
-          <CoffeeOption key={index} option={option} />
-        ))}
-    </Container>
-  );
+  if (isSuccess) {
+    return (
+      <Container>
+        {data.chooseCoffeeOption.map(
+          (option: ChooseCoffeeOptionProps, index: number) => (
+            <ChooseCoffeeOption key={index} option={option} />
+          )
+        )}
+      </Container>
+    );
+  } else if (isLoading) {
+    return <div>로딩중</div>;
+  } else {
+    return <div>no found</div>;
+  }
 };
 
 export default CoffeeOptionSection;
