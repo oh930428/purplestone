@@ -1,31 +1,62 @@
 import styled from 'styled-components';
 import { maxWidth } from 'styles/mixin';
 import { Header, UserCardSmall } from 'components';
-import { useFetchUserCardListQuery } from 'store/api/userCardList';
+import { useGetUserCardMutation } from 'store/api/userCardList';
+import { useInfiniteQuery } from 'react-query';
+import useIntersectionObserver from 'hooks/useIntersectionObserver';
 
+// TODO: 기능만 구현, 내일 코드 리팩토링
 const UserCardListSection = () => {
-  const { data, isSuccess, isLoading } = useFetchUserCardListQuery();
+  const [getUserCard] = useGetUserCardMutation();
 
-  if (isSuccess) {
-    return (
-      <Container>
-        <Header
-          title={"Other's Coffee."}
-          subTitle={'다른 사람들은 어떤 취향을 가지고 있을까요?'}
-          textAlign={'start'}
-        />
-        <CardListContainer>
-          {data.map((card: any, index: number) => (
+  const {
+    isLoading,
+    isError,
+    error,
+    data,
+    fetchNextPage,
+    isFetching,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery(
+    ['card'],
+    ({ pageParam = 1 }) => getUserCard(pageParam),
+    {
+      getNextPageParam: (lastPage, allPages) => {
+        const nextPage = allPages.length + 1;
+        return nextPage; // 다음 페이지로
+      },
+    }
+  );
+
+  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
+    isIntersecting && fetchNextPage();
+  };
+
+  const { setTarget } = useIntersectionObserver({
+    onIntersect,
+    enabled: !!hasNextPage,
+  });
+
+  return (
+    <Container>
+      <Header
+        title={"Other's Coffee."}
+        subTitle={'다른 사람들은 어떤 취향을 가지고 있을까요?'}
+        textAlign={'start'}
+      />
+
+      <CardListContainer>
+        {data?.pages.map((cards: any) => {
+          return cards.data.map((card, index) => (
             <UserCardSmall key={index} card={card} />
-          ))}
-        </CardListContainer>
-      </Container>
-    );
-  } else if (isLoading) {
-    return <div>로딩중..</div>;
-  } else {
-    return <div>not found</div>;
-  }
+          ));
+        })}
+      </CardListContainer>
+
+      <div ref={setTarget}>{isFetchingNextPage ? 'Loading more...' : ''}</div>
+    </Container>
+  );
 };
 
 export default UserCardListSection;
