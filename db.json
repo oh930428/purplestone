@@ -2,7 +2,6 @@
   "creators": {
     "title": "Creators.",
     "subTitle": "커피를 좋아하는 친구들이 재미로 만든 사이트입니다💕 즐겨주세요!",
-
     "profiles": [
       {
         "userName": "KIM BORA",
@@ -57,7 +56,6 @@
       }
     ]
   },
-
   "createMyCard": {
     "title": "Make My Coffee Card",
     "subTitle": "내가 좋아하는 커피 취향을 만들어요",
@@ -324,17 +322,354 @@
       }
     }
   },
+  "userCardSmallList": [
+    {
+      "id": 1,
+      "userName": "김보라",
+      "userCardSmallType": {
+        "brand": {
+          "id": 1,
+          "name": "EDIYA COFFEE",
+          "image": "brands/ediya.png",
+          "type": "brand"
+        },
+        "beans": {
+          "id": 2,
+          "name": "콜롬비아 수프리모",
+          "image": "beans/colombiaSupremo.png",
+          "type": "beans"
+        },
+        "coffeeType": {
+          "id": 3,
+          "name": "아메리카노",
+          "image": "coffeetypes/americano.png",
+          "type": "coffeeType"
+        },
+        "bottle": {
+          "id": 4,
+          "name": "텀블러",
+          "image": "bottles/cup-tumbler.png",
+          "type": "bottle"
+        },
+        "temperature": {
+          "id": 5,
+          "name": "쪄.죽.따",
+          "image": "temperature/hot.png",
+          "type": "temperature"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "userName": "김코코",
+      "userCardSmallType": {
+        "brand": {
+          "id": 1,
+          "name": "EDIYA COFFEE",
+          "image": "brands/ediya.png",
+          "type": "brand"
+        },
+        "beans": {
+          "id": 2,
+          "name": "콜롬비아 수프리모",
+          "image": "beans/colombiaSupremo.png",
+          "type": "beans"
+        },
+        "coffeeType": {
+          "id": 3,
+          "name": "아메리카노",
+          "image": "coffeetypes/americano.png",
+          "type": "coffeeType"
+        },
+        "bottle": {
+          "id": 4,
+          "name": "텀블러",
+          "image": "bottles/cup-tumbler.png",
+          "type": "bottle"
+        },
+        "temperature": {
+          "id": 5,
+          "name": "쪄.죽.따",
+          "image": "temperature/hot.png",
+          "type": "temperature"
+        }
+      }
+    },
+    {
+      "userName": "이름을 입력하세요",
+      "userCardSmallType": {
+        "brand": {
+          "id": 6,
+          "type": "brand",
+          "name": "PASCUCCI COFFEE",
+          "description": "파스쿠찌 브랜드가 좋아요",
+          "image": "brands/pascucci.png"
+        },
+        "beans": {
+          "type": "beans",
+          "name": "과테말라 SHB",
+          "description": "적절한 산미가 깔끔한 맛의 과테말라 SHB가 내 취향~",
+          "image": "beans/guatemalaAntiguaSHB.png"
+        },
+        "coffeeType": {
+          "id": 8,
+          "type": "coffeeType",
+          "name": "카페라떼",
+          "description": "내 마음에 카페라떼",
+          "image": "coffeetypes/caffelatte.png"
+        },
+        "bottle": {
+          "id": 16,
+          "type": "bottle",
+          "name": "테이크 아웃(아)",
+          "description": "테이크 아웃(아)",
+          "image": "bottles/cup-disposable.png"
+        },
+        "temperature": {
+          "id": 5,
+          "name": "쪄.죽.따",
+          "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
+          "image": "temperature/hot.png",
+          "type": "temperature"
+        }
+      },
+      "id": 3
+    },
+    {
+      "userName": "이름을 입력하세요",
+      "userCardSmallType": {
+        "brand": {
+          "id": 2,
+          "type": "brand",
+          "name": "STARBUCKS",
+          "description": "스타벅스 브랜드가 좋아요",
+          "image": "brands/starbucks.png"
+        },
+        "beans": {
+          "type": "beans",
+          "name": "과테말라 SHB",
+          "description": "적절한 산미가 깔끔한 맛의 과테말라 SHB가 내 취향~",
+          "image": "beans/guatemalaAntiguaSHB.png"
+        },
+        "coffeeType": {
+          "id": 3,
+          "name": "아메리카노",
+          "description": "내 마음에 아메리카노",
+          "image": "coffeetypes/americano.png",
+          "type": "coffeeType"
+        },
+        "bottle": {
+          "id": 18,
+          "type": "bottle",
+          "name": "재사용 컵",
+          "description": "테이크 아웃(뜨)",
+          "image": "bottles/cup-reuseable.png"
+        },
+        "temperature": {
+          "id": 5,
+          "name": "쪄.죽.따",
+          "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
+          "image": "temperature/hot.png",
+          "type": "temperature"
+        }
+      },
+      "id": 4
+    },
+    {
+      "userName": "이름을 입력하세요",
+      "userCardSmallType": {
+        "brand": {
+          "id": 1,
+          "name": "EDIYA COFFEE",
+          "description": "이디아 브랜드가 좋아요",
+          "image": "brands/ediya.png",
+          "type": "brand"
+        },
+        "beans": {
+          "id": 2,
+          "name": "콜롬비아 수프리모",
+          "description": "적절한 산미가 깔끔한 맛의 콜롬비아 수프리모가 내 취향~",
+          "image": "beans/colombiaSupremo.png",
+          "type": "beans"
+        },
+        "coffeeType": {
+          "id": 3,
+          "name": "아메리카노",
+          "description": "내 마음에 아메리카노",
+          "image": "coffeetypes/americano.png",
+          "type": "coffeeType"
+        },
+        "bottle": {
+          "id": 4,
+          "name": "텀블러",
+          "description": "텀블러",
+          "image": "bottles/cup-tumbler.png",
+          "type": "bottle"
+        },
+        "temperature": {
+          "id": 5,
+          "name": "쪄.죽.따",
+          "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
+          "image": "temperature/hot.png",
+          "type": "temperature"
+        }
+      },
+      "id": 5
+    },
+    {
+      "userName": "이름을 입력하세요",
+      "userCardSmallType": {
+        "brand": {
+          "id": 5,
+          "type": "brand",
+          "name": "HOLLYS COFFEE",
+          "description": "할리스 브랜드가 좋아요",
+          "image": "brands/hollys.png"
+        },
+        "beans": {
+          "id": 2,
+          "name": "콜롬비아 수프리모",
+          "description": "적절한 산미가 깔끔한 맛의 콜롬비아 수프리모가 내 취향~",
+          "image": "beans/colombiaSupremo.png",
+          "type": "beans"
+        },
+        "coffeeType": {
+          "id": 12,
+          "type": "coffeeType",
+          "name": "마끼아또",
+          "description": "내 마음에 마끼아또",
+          "image": "coffeetypes/macchiato.png"
+        },
+        "bottle": {
+          "id": 15,
+          "type": "bottle",
+          "name": "테이크 아웃(뜨)",
+          "description": "테이크 아웃(뜨)",
+          "image": "bottles/cup-takeout-hot.png"
+        },
+        "temperature": {
+          "id": 5,
+          "name": "쪄.죽.따",
+          "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
+          "image": "temperature/hot.png",
+          "type": "temperature"
+        }
+      },
+      "id": 6
+    },
+    {
+      "userName": "김보라입니다",
+      "userCardSmallType": {
+        "brand": {
+          "id": 4,
+          "type": "brand",
+          "name": "TWOSOME PLACE",
+          "description": "투썸 브랜드가 좋아요",
+          "image": "brands/twosome.png"
+        },
+        "beans": {
+          "type": "beans",
+          "name": "자메이카 블루마운틴",
+          "description": "적절한 산미가 깔끔한 맛의 자메이카 블루마운틴가 내 취향~",
+          "image": "beans/jamaicaBlueMountain.png"
+        },
+        "coffeeType": {
+          "id": 12,
+          "type": "coffeeType",
+          "name": "마끼아또",
+          "description": "내 마음에 마끼아또",
+          "image": "coffeetypes/macchiato.png"
+        },
+        "bottle": {
+          "id": 4,
+          "name": "텀블러",
+          "description": "텀블러",
+          "image": "bottles/cup-tumbler.png",
+          "type": "bottle"
+        },
+        "temperature": {
+          "id": 21,
+          "type": "temperature",
+          "name": "반.반",
+          "description": "커피도 반반, 내 얼굴도 반반",
+          "image": "temperature/half.png"
+        }
+      },
+      "id": 7
+    },
+    {
+      "userName": "김보라입니다님",
+      "userCardSmallType": {
+        "brand": {
+          "id": 4,
+          "type": "brand",
+          "name": "TWOSOME PLACE",
+          "description": "투썸 브랜드가 좋아요",
+          "image": "brands/twosome.png"
+        },
+        "beans": {
+          "type": "beans",
+          "name": "자메이카 블루마운틴",
+          "description": "적절한 산미가 깔끔한 맛의 자메이카 블루마운틴가 내 취향~",
+          "image": "beans/jamaicaBlueMountain.png"
+        },
+        "coffeeType": {
+          "id": 12,
+          "type": "coffeeType",
+          "name": "마끼아또",
+          "description": "내 마음에 마끼아또",
+          "image": "coffeetypes/macchiato.png"
+        },
+        "bottle": {
+          "id": 4,
+          "name": "텀블러",
+          "description": "텀블러",
+          "image": "bottles/cup-tumbler.png",
+          "type": "bottle"
+        },
+        "temperature": {
+          "id": 21,
+          "type": "temperature",
+          "name": "반.반",
+          "description": "커피도 반반, 내 얼굴도 반반",
+          "image": "temperature/half.png"
+        }
+      },
+      "id": 8
+    }
+  ],
   "othersCoffee": {
     "title": "Other's Coffee",
     "subTitle": "다른 사람들은 어떤 취향을 가지고 있을까요?",
     "cardImages": [
-      { "id": 1, "thumbnail": "coffee-card-image.png" },
-      { "id": 2, "thumbnail": "coffee-card-image.png" },
-      { "id": 3, "thumbnail": "coffee-card-image.png" },
-      { "id": 4, "thumbnail": "coffee-card-image.png" },
-      { "id": 5, "thumbnail": "coffee-card-image.png" },
-      { "id": 6, "thumbnail": "coffee-card-image.png" },
-      { "id": 7, "thumbnail": "coffee-card-image.png" }
+      {
+        "id": 1,
+        "thumbnail": "coffee-card-image.png"
+      },
+      {
+        "id": 2,
+        "thumbnail": "coffee-card-image.png"
+      },
+      {
+        "id": 3,
+        "thumbnail": "coffee-card-image.png"
+      },
+      {
+        "id": 4,
+        "thumbnail": "coffee-card-image.png"
+      },
+      {
+        "id": 5,
+        "thumbnail": "coffee-card-image.png"
+      },
+      {
+        "id": 6,
+        "thumbnail": "coffee-card-image.png"
+      },
+      {
+        "id": 7,
+        "thumbnail": "coffee-card-image.png"
+      }
     ]
   }
 }
