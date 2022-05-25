@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { colors, fonts } from 'styles';
-import { HeaderProps } from '../../types/header.types';
+import { HeaderProps } from '../../types/header.type';
 
 const Header = ({ title, subTitle, textAlign }: HeaderProps) => {
   return (

@@ -1,29 +1,26 @@
 import styled from 'styled-components';
-import { colors, fonts } from '../../../styles';
 
 import { useCallback } from 'react';
+import { colors, fonts } from '../../../styles';
+import { ChooseCoffeeOptionProps, CoffeeTypeProps } from 'types/createMyCard';
+
 import { useDispatch } from 'react-redux';
-import { MyCardTypeProps } from 'types/myCard.types';
-import { CoffeeOptionProps } from 'types/myCard.types';
 import { setSelectOptions } from 'store/state/MyCardSlice';
 
-interface Props {
-  option: CoffeeOptionProps;
-  setSelected: any;
-  cardOptionUpdate: any;
+interface ProcessCardProps {
+  option: ChooseCoffeeOptionProps;
+  setSelected: (arg: string) => void;
 }
 
-const ProcessCard = ({ option, setSelected, cardOptionUpdate }: Props) => {
+const ProcessCard = ({ option, setSelected }: ProcessCardProps) => {
   const dispatch = useDispatch();
+
   const handleSelectedOption = useCallback(
-    (selected: MyCardTypeProps) => {
+    async (selected: CoffeeTypeProps) => {
       setSelected(selected.image);
-      cardOptionUpdate({
-        ...selected,
-      });
       dispatch(setSelectOptions({ ...selected }));
     },
-    [cardOptionUpdate, dispatch, setSelected]
+    [dispatch, setSelected]
   );
 
   return (
@@ -31,7 +28,7 @@ const ProcessCard = ({ option, setSelected, cardOptionUpdate }: Props) => {
       <div className="header">{option.text}</div>
       <div className="main">
         {option.types &&
-          option.types.map((type: MyCardTypeProps, index: number) => (
+          option.types.map((type: CoffeeTypeProps, index: number) => (
             <article
               data-type={option.name}
               className="main-section"

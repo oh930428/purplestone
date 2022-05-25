@@ -1,4 +1,3 @@
-import { ProfileCard } from 'components';
 import styled from 'styled-components';
 import { HeaderSection, Creators, OthersCoffee, MakeCard } from './components';
 

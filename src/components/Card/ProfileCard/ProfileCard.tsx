@@ -52,6 +52,7 @@ const Container = styled.div<{ background: string }>`
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
+  z-index: 100;
 
   .header {
     .header-thumbnail {
