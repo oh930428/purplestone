@@ -9,14 +9,6 @@ export const userCardListApi = createApi({
       query: () => '/userCardSmallList',
       providesTags: ['CardList'],
     }),
-    getUserCard: builder.mutation<{}, any>({
-      query: ({ pageNumber }) => ({
-        url: `userCardSmallList?_page=${pageNumber}&_limit=3`,
-        method: 'GET',
-        body: pageNumber,
-      }),
-      invalidatesTags: ['CardList'],
-    }),
     addUserCardList: builder.mutation<{}, any>({
       query: ({ id, ...rest }) => ({
         url: '/userCardSmallList',
@@ -28,9 +20,5 @@ export const userCardListApi = createApi({
   }),
 });
 
-export const {
-  useFetchUserCardListQuery,
-  useGetUserCardMutation,
-  useAddUserCardListMutation,
-} = userCardListApi;
-export const { endpoints, reducerPath, reducer, middleware } = userCardListApi;
+export const { useFetchUserCardListQuery, useAddUserCardListMutation } =
+  userCardListApi;
