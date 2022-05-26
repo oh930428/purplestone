@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { UserCardListSection } from './components';
+import { MostPopularSection, UserCardListSection } from './components';
 
 const AllCoffees = () => {
   return (
     <Container>
+      <MostPopularSection />
       <UserCardListSection />
     </Container>
   );

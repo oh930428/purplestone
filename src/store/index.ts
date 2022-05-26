@@ -4,6 +4,7 @@ import { myCardSlice } from './state/MyCardSlice';
 import { createMyCardApi } from './api/createMyCard';
 import { otherscoffeeApi } from './api/otherscoffee';
 import { userCardListApi } from './api/userCardList';
+import { mostPopularApi } from './api/mostPopular';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     [createMyCardApi.reducerPath]: createMyCardApi.reducer,
     [otherscoffeeApi.reducerPath]: otherscoffeeApi.reducer,
     [userCardListApi.reducerPath]: userCardListApi.reducer,
+    [mostPopularApi.reducerPath]: mostPopularApi.reducer,
     myCardReducer: myCardSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
