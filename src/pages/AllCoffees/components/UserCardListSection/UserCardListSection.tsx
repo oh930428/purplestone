@@ -1,60 +1,73 @@
 import styled from 'styled-components';
 import { maxWidth } from 'styles/mixin';
-import { Header, UserCardSmall } from 'components';
-import { useGetUserCardMutation } from 'store/api/userCardList';
-import { useInfiniteQuery } from 'react-query';
-import useIntersectionObserver from 'hooks/useIntersectionObserver';
+import { Header, Loader, UserCardSmall } from 'components';
+import { userCardProps } from 'types/userCardSmall';
+import { getUserCard } from 'store/api/userCardListPageParam';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
-// TODO: 기능만 구현, 내일 코드 리팩토링
+const TOTAL_PAGES = 10;
+
 const UserCardListSection = () => {
-  const [getUserCard] = useGetUserCardMutation();
+  const [items, setItems] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
+  const observer = useRef<IntersectionObserver>();
 
-  const {
-    isLoading,
-    isError,
-    error,
-    data,
-    fetchNextPage,
-    isFetching,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery(
-    ['card'],
-    ({ pageParam = 1 }) => getUserCard(pageParam),
-    {
-      getNextPageParam: (lastPage, allPages) => {
-        const nextPage = allPages.length + 1;
-        return nextPage; // 다음 페이지로
-      },
-    }
+  useEffect(() => {
+    fetchUserCard(page);
+    setPage(page => page + 1);
+  }, []);
+
+  const lastItemRef = useCallback(
+    (node: HTMLElement) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          if (page < TOTAL_PAGES) {
+            fetchUserCard(page);
+            setPage(page => page + 1);
+          } else {
+            setHasMore(false);
+          }
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore]
   );
 
-  const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
-    isIntersecting && fetchNextPage();
+  const fetchUserCard = async (pageParam: number) => {
+    setIsLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    await getUserCard(pageParam) //
+      .then(resp => {
+        setItems([...items, ...resp.data]);
+        setIsLoading(false);
+      });
   };
-
-  const { setTarget } = useIntersectionObserver({
-    onIntersect,
-    enabled: !!hasNextPage,
-  });
 
   return (
     <Container>
       <Header
         title={"Other's Coffee."}
         subTitle={'다른 사람들은 어떤 취향을 가지고 있을까요?'}
-        textAlign={'start'}
       />
 
       <CardListContainer>
-        {data?.pages.map((cards: any) => {
-          return cards.data.map((card, index) => (
-            <UserCardSmall key={index} card={card} />
-          ));
-        })}
-      </CardListContainer>
+        {items?.map((item: userCardProps, index: number) =>
+          index + 1 === items.length ? (
+            <UserCardSmall key={index} card={item} reference={lastItemRef} />
+          ) : (
+            <UserCardSmall key={index} card={item} />
+          )
+        )}
 
-      <div ref={setTarget}>{isFetchingNextPage ? 'Loading more...' : ''}</div>
+        {isLoading && <Loader />}
+      </CardListContainer>
     </Container>
   );
 };
