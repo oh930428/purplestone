@@ -8,11 +8,12 @@ import { userCardProps } from '../../../types/userCardSmall';
 
 interface UserCardSmallProps {
   card: userCardProps;
+  reference?: any;
 }
 
-const UserCardSmall = ({ card }: UserCardSmallProps) => {
+const UserCardSmall = ({ card, reference }: UserCardSmallProps) => {
   return (
-    <Container bgCard={CardImage}>
+    <Container bgCard={CardImage} ref={reference}>
       <Card>
         <div className="header">
           <div className="header-title">

@@ -11,3 +11,4 @@ export { default as ProfileCard } from './Card/ProfileCard/ProfileCard';
 export { default as ProcessCard } from './Card/ProcessCard/ProcessCard';
 export { default as UserCardSmall } from './Card/UserCardSmall/UserCardSmall';
 export { default as UserCardSmallOption } from './Card/UserCardSmall/UserCardSmallOption';
+export { default as Loader } from './Loader/Loader';
