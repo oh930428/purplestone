@@ -1,33 +1,39 @@
 import styled from 'styled-components';
 
+import { useCallback } from 'react';
 import { colors, fonts } from '../../../styles';
-import { MyCardTypeProps } from 'types/myCard.types';
-import { CoffeeOptionProps } from 'types/myCard.types';
+import { ChooseCoffeeOptionProps, CoffeeTypeProps } from 'types/createMyCard';
 
-interface Props {
-  option: CoffeeOptionProps;
-  setSelected: any;
+import { useDispatch } from 'react-redux';
+import { setSelectOptions } from 'store/state/MyCardSlice';
+
+interface ProcessCardProps {
+  option: ChooseCoffeeOptionProps;
+  setSelected: (arg: string) => void;
 }
 
-const ProcessCard = ({ option, setSelected }: Props) => {
-  const handleSelectedImage = (e: any, selectedImage: string) => {
-    const activeClass = e.target.closest('.active');
-    if (activeClass) {
-      activeClass.classList.remove('active'); // TODO: active가 안지워짐. 수정필요
-    }
-    setSelected(selectedImage);
-  };
+const ProcessCard = ({ option, setSelected }: ProcessCardProps) => {
+  const dispatch = useDispatch();
+
+  const handleSelectedOption = useCallback(
+    async (selected: CoffeeTypeProps) => {
+      setSelected(selected.image);
+      dispatch(setSelectOptions({ ...selected }));
+    },
+    [dispatch, setSelected]
+  );
 
   return (
     <Container className="option-item">
       <div className="header">{option.text}</div>
       <div className="main">
         {option.types &&
-          option.types.map((type: MyCardTypeProps, index: number) => (
+          option.types.map((type: CoffeeTypeProps, index: number) => (
             <article
+              data-type={option.name}
               className="main-section"
               key={index}
-              onClick={e => handleSelectedImage(e, type.image)}
+              onClick={() => handleSelectedOption(type)}
             >
               <div className="main-thumbnail">
                 <img

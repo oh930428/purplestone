@@ -42,7 +42,7 @@ const Container = styled.footer`
 
 const Logo = styled.h1`
   margin-top: 2.6rem;
-  font-family: Noto Sans;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 3rem;
   font-weight: 700;
   line-height: 4.1rem;

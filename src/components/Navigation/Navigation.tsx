@@ -17,7 +17,7 @@ const Navigation = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/all-coffes">All Coffes</Link>
+            <Link to="/all-coffees">All Coffees</Link>
           </li>
           <li className="nav-button-item">
             <Link to="/mycard">
@@ -41,7 +41,6 @@ const Container = styled.nav`
   position: absolute;
   top: 20px;
   width: 100%;
-  padding: 0 100px;
   z-index: 100;
 
   .wrapper {

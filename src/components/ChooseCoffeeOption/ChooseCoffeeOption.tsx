@@ -2,20 +2,20 @@ import styled from 'styled-components';
 import circle from '../../assets/Images/bg-circle.png';
 import circleActive from '../../assets/Images/bg-circle-active.png';
 import ProcessCard from 'components/Card/ProcessCard/ProcessCard';
-
-import { useState } from 'react';
-import { CoffeeOptionProps } from 'types/myCard.types';
+import { useRef, useState } from 'react';
+import { ChooseCoffeeOptionProps } from 'types/createMyCard';
 
 interface Props {
-  option: CoffeeOptionProps;
+  option: ChooseCoffeeOptionProps;
 }
 
-const CoffeeOption = ({ option }: Props) => {
+const ChooseCoffeeOption = ({ option }: Props) => {
+  const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState<string>('');
 
   const onClickActive = (e: any) => {
-    const target = e.currentTarget;
+    const target = e.currentTarget || e.currentTarget.parentNode;
     const optionItem = document.querySelectorAll('.option-box');
     const newOptionItem = Array.from(optionItem);
 
@@ -24,19 +24,20 @@ const CoffeeOption = ({ option }: Props) => {
         item.classList.remove('active');
       }
     }
-
     target.classList.add('active');
     setIsPupupCard(prev => !prev);
   };
 
   return (
     <Container
+      ref={optionRef}
       className="option-box"
+      data-type={`${option.name}`}
       onClick={onClickActive}
       circle={circle}
       circleActive={circleActive}
     >
-      {selected !== '' ? (
+      {selected ? (
         <img
           className="option-image"
           src={require(`../../assets/Icons/${selected}`)}
@@ -59,7 +60,7 @@ const CoffeeOption = ({ option }: Props) => {
   );
 };
 
-export default CoffeeOption;
+export default ChooseCoffeeOption;
 
 const Container = styled.article<{
   circle: string;
@@ -93,8 +94,7 @@ const Container = styled.article<{
 
 const ProcessCardContainer = styled.ul`
   position: absolute;
-  left: 14rem;
-  top: 3rem;
+  top: 14.5rem;
   width: 45rem;
   z-index: 100;
   display: none;

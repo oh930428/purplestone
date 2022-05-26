@@ -39,19 +39,16 @@ const Container = styled.article<{ name: string }>`
   height: 32px;
   border-radius: 50%;
   cursor: pointer;
-
   ${props =>
     props.name === 'facebook' &&
     css`
       background-color: #3182ce; ;
     `}
-
   ${props =>
     props.name === 'google' &&
     css`
       background-color: #e53e3e;
     `}
-
     ${props =>
     props.name === 'instagram' &&
     css`
