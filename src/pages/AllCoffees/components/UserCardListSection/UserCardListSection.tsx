@@ -1,21 +1,17 @@
 import styled from 'styled-components';
+import useFetch from 'hooks/useFetch';
+
 import { maxWidth } from 'styles/mixin';
-import { Header, Loader, UserCardSmall } from 'components';
 import { userCardProps } from 'types/userCardSmall';
-import { getUserCard } from 'store/api/userCardListPageParam';
+import { Header, Loader, UserCardSmall } from 'components';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-const TOTAL_PAGES = 10;
-
 const UserCardListSection = () => {
-  const [items, setItems] = useState<any>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [hasMore, setHasMore] = useState<boolean>(true);
-  const [page, setPage] = useState<number>(1);
   const observer = useRef<IntersectionObserver>();
+  const [page, setPage] = useState<number>(1);
+  const { isLoading, isError, cards, hasMore } = useFetch(page);
 
   useEffect(() => {
-    fetchUserCard(page);
     setPage(page => page + 1);
   }, []);
 
@@ -26,12 +22,7 @@ const UserCardListSection = () => {
 
       observer.current = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting && hasMore) {
-          if (page < TOTAL_PAGES) {
-            fetchUserCard(page);
-            setPage(page => page + 1);
-          } else {
-            setHasMore(false);
-          }
+          setPage(prev => prev + 1);
         }
       });
 
@@ -39,16 +30,6 @@ const UserCardListSection = () => {
     },
     [isLoading, hasMore]
   );
-
-  const fetchUserCard = async (pageParam: number) => {
-    setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    await getUserCard(pageParam) //
-      .then(resp => {
-        setItems([...items, ...resp.data]);
-        setIsLoading(false);
-      });
-  };
 
   return (
     <Container>
@@ -58,15 +39,16 @@ const UserCardListSection = () => {
       />
 
       <CardListContainer>
-        {items?.map((item: userCardProps, index: number) =>
-          index + 1 === items.length ? (
-            <UserCardSmall key={index} card={item} reference={lastItemRef} />
+        {cards?.map((card: userCardProps, index: number) =>
+          index + 1 === cards.length ? ( // index + 1 번이 페이지의 마지막 item
+            <UserCardSmall key={index} card={card} reference={lastItemRef} />
           ) : (
-            <UserCardSmall key={index} card={item} />
+            <UserCardSmall key={index} card={card} />
           )
         )}
 
         {isLoading && <Loader />}
+        {isError && <div>not found</div>}
       </CardListContainer>
     </Container>
   );
