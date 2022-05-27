@@ -1,31 +1,57 @@
 import styled from 'styled-components';
+import useFetch from 'hooks/useFetch';
+
 import { maxWidth } from 'styles/mixin';
-import { Header, UserCardSmall } from 'components';
-import { useFetchUserCardListQuery } from 'store/api/userCardList';
+import { userCardProps } from 'types/userCardSmall';
+import { Header, Loader, UserCardSmall } from 'components';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 const UserCardListSection = () => {
-  const { data, isSuccess, isLoading } = useFetchUserCardListQuery();
+  const observer = useRef<IntersectionObserver>();
+  const [page, setPage] = useState<number>(1);
+  const { isLoading, isError, cards, hasMore } = useFetch(page);
 
-  if (isSuccess) {
-    return (
-      <Container>
-        <Header
-          title={"Other's Coffee."}
-          subTitle={'다른 사람들은 어떤 취향을 가지고 있을까요?'}
-          textAlign={'start'}
-        />
-        <CardListContainer>
-          {data.map((card: any, index: number) => (
+  useEffect(() => {
+    setPage(page => page + 1);
+  }, []);
+
+  const lastItemRef = useCallback(
+    (node: HTMLElement) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage(prev => prev + 1);
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore]
+  );
+
+  return (
+    <Container>
+      <Header
+        title={"Other's Coffee."}
+        subTitle={'다른 사람들은 어떤 취향을 가지고 있을까요?'}
+      />
+
+      <CardListContainer>
+        {cards?.map((card: userCardProps, index: number) =>
+          index + 1 === cards.length ? ( // index + 1 번이 페이지의 마지막 item
+            <UserCardSmall key={index} card={card} reference={lastItemRef} />
+          ) : (
             <UserCardSmall key={index} card={card} />
-          ))}
-        </CardListContainer>
-      </Container>
-    );
-  } else if (isLoading) {
-    return <div>로딩중..</div>;
-  } else {
-    return <div>not found</div>;
-  }
+          )
+        )}
+
+        {isLoading && <Loader />}
+        {isError && <div>not found</div>}
+      </CardListContainer>
+    </Container>
+  );
 };
 
 export default UserCardListSection;
