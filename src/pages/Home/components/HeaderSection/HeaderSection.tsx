@@ -82,10 +82,13 @@ const Title = styled.div`
 
 const CardImage = styled.figure`
   flex: 1;
-  width: 511px;
+  width: 100%;
   cursor: pointer;
 
   img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     --x: calc(var(--px) - 0.5);
     --y: calc(var(--py) - 0.5);
     transform-style: preserve-3d;
