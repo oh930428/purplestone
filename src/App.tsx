@@ -12,7 +12,11 @@ const App = () => {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />}></Route>
+
           <Route path="all-coffees" element={<AllCoffees />}></Route>
+
+          <Route path="/all-coffees" element={<AllCoffees />}></Route>
+
           <Route path="/mycard" element={<CreateMyCard />}></Route>
         </Routes>
         <Footer />
