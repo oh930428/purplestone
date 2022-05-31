@@ -842,6 +842,167 @@
         }
       },
       "id": 13
+    },
+    {
+      "userName": "예쓰쁘레쏘",
+      "userCardSmallType": {
+        "brand": {
+          "id": 6,
+          "type": "brand",
+          "name": "PASCUCCI COFFEE",
+          "description": "파스쿠찌 브랜드가 좋아요",
+          "image": "brands/pascucci.png"
+        },
+        "beans": {
+          "type": "beans",
+          "name": "케냐 AA",
+          "description": "적절한 산미가 깔끔한 맛의 케냐 AA가 내 취향~",
+          "image": "beans/kenyaAA.png"
+        },
+        "coffeeType": {
+          "id": 9,
+          "type": "coffeeType",
+          "name": "에스프레소",
+          "description": "내 마음에 에스프레소",
+          "image": "coffeetypes/espresso.png"
+        },
+        "bottle": {
+          "id": 14,
+          "type": "bottle",
+          "name": "텀블러",
+          "description": "텀블러",
+          "image": "bottles/cup-tumbler.png"
+        },
+        "temperature": {
+          "id": 21,
+          "type": "temperature",
+          "name": "반.반",
+          "description": "커피도 반반, 내 얼굴도 반반",
+          "image": "temperature/half.png"
+        }
+      },
+      "id": 14
+    },
+    {
+      "userName": "르아떼",
+      "userCardSmallType": {
+        "brand": {
+          "id": 1,
+          "type": "brand",
+          "name": "EDIYA COFFEE",
+          "description": "이디아 브랜드가 좋아요",
+          "image": "brands/ediya.png"
+        },
+        "beans": {
+          "type": "beans",
+          "name": "과테말라 SHB",
+          "description": "적절한 산미가 깔끔한 맛의 과테말라 SHB가 내 취향~",
+          "image": "beans/guatemalaAntiguaSHB.png"
+        },
+        "coffeeType": {
+          "id": 8,
+          "type": "coffeeType",
+          "name": "카페라떼",
+          "description": "내 마음에 카페라떼",
+          "image": "coffeetypes/caffelatte.png"
+        },
+        "bottle": {
+          "id": 19,
+          "type": "bottle",
+          "name": "찻 잔",
+          "description": "찻 잔",
+          "image": "bottles/cup-tea.png"
+        },
+        "temperature": {
+          "id": 21,
+          "type": "temperature",
+          "name": "반.반",
+          "description": "커피도 반반, 내 얼굴도 반반",
+          "image": "temperature/half.png"
+        }
+      },
+      "id": 15
+    },
+    {
+      "userName": "뭘까모카",
+      "userCardSmallType": {
+        "brand": {
+          "id": 2,
+          "type": "brand",
+          "name": "STARBUCKS",
+          "description": "스타벅스 브랜드가 좋아요",
+          "image": "brands/starbucks.png"
+        },
+        "beans": {
+          "type": "beans",
+          "name": "에티오피아 예가체프",
+          "description": "적절한 산미가 깔끔한 맛의 에티오피아 예가체프가 내 취향~",
+          "image": "beans/ethiopiaYirgacheffee.png"
+        },
+        "coffeeType": {
+          "id": 10,
+          "type": "coffeeType",
+          "name": "카페모카",
+          "description": "내 마음에 카페모카",
+          "image": "coffeetypes/caffemocha.png"
+        },
+        "bottle": {
+          "id": 4,
+          "name": "텀블러",
+          "description": "텀블러",
+          "image": "bottles/cup-tumbler.png",
+          "type": "bottle"
+        },
+        "temperature": {
+          "id": 22,
+          "type": "temperature",
+          "name": "얼.죽.아",
+          "description": "겨울에도 차가운 아이스 커피 못 잃어",
+          "image": "temperature/ice.png"
+        }
+      },
+      "id": 16
+    },
+    {
+      "userName": "Hello",
+      "userCardSmallType": {
+        "brand": {
+          "id": 1,
+          "name": "EDIYA COFFEE",
+          "description": "이디아 브랜드가 좋아요",
+          "image": "brands/ediya.png",
+          "type": "brand"
+        },
+        "beans": {
+          "id": 2,
+          "name": "콜롬비아 수프리모",
+          "description": "적절한 산미가 깔끔한 맛의 콜롬비아 수프리모가 내 취향~",
+          "image": "beans/colombiaSupremo.png",
+          "type": "beans"
+        },
+        "coffeeType": {
+          "id": 3,
+          "name": "아메리카노",
+          "description": "내 마음에 아메리카노",
+          "image": "coffeetypes/americano.png",
+          "type": "coffeeType"
+        },
+        "bottle": {
+          "id": 4,
+          "name": "텀블러",
+          "description": "텀블러",
+          "image": "bottles/cup-tumbler.png",
+          "type": "bottle"
+        },
+        "temperature": {
+          "id": 5,
+          "name": "쪄.죽.따",
+          "description": "이열치열! 여름에도 뜨거운 커피 못 잃어",
+          "image": "temperature/hot.png",
+          "type": "temperature"
+        }
+      },
+      "id": 17
     }
   ],
   "othersCoffee": {
