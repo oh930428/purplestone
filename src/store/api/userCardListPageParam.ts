@@ -9,6 +9,6 @@ const httpClient = axios.create({
 
 export const getUserCard = async (pageParam: number) => {
   return await httpClient
-    .get(`/userCardSmallList?_page=${pageParam}&_limit=3`)
+    .get(`/userCardSmallList?_page=${pageParam}&_limit=6`)
     .then(response => response);
 };

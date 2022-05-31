@@ -4,16 +4,12 @@ import useFetch from 'hooks/useFetch';
 import { maxWidth } from 'styles/mixin';
 import { userCardProps } from 'types/userCardSmall';
 import { Header, Loader, UserCardSmall } from 'components';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 const UserCardListSection = () => {
   const observer = useRef<IntersectionObserver>();
   const [page, setPage] = useState<number>(1);
   const { isLoading, isError, cards, hasMore } = useFetch(page);
-
-  useEffect(() => {
-    setPage(page => page + 1);
-  }, []);
 
   const lastItemRef = useCallback(
     (node: HTMLElement) => {
