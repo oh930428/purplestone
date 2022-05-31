@@ -3,5 +3,6 @@ export interface ButtonProps {
   size: string;
   label: string;
   isRegular?: boolean;
-  onPress?: any;
+  onPress?: () => void;
+  onClick?: () => void;
 }
