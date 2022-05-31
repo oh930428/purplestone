@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-
 import { Button } from 'components';
 import { fonts, colors } from 'styles';
+import { Link } from 'react-router-dom';
 import { maxWidth } from 'styles/mixin';
 import { useMouseEffect } from 'hooks/useMouseEffect';
 
+import styled from 'styled-components';
 import Card from '../../../../assets/Images/card-image.png';
 import background from '../../../../assets/Images/bg-section.jpg';
 
@@ -23,7 +23,9 @@ const HeaderSection = () => {
             </h1>
             <p>내가 좋아하는 커피 취향 카드 만들기</p>
           </Title>
-          <Button theme="primary" label="취향 카드 만들기" size="large" />
+          <Link to="/myCard">
+            <Button theme="primary" label="취향 카드 만들기" size="large" />
+          </Link>
         </LeftBox>
 
         <CardImage ref={ImageRef}>
@@ -45,8 +47,8 @@ const Container = styled.section`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 50px;
-    padding: 200px 20px;
+    gap: 5rem;
+    padding: 20rem 2rem;
     z-index: 100;
   }
 `;
@@ -57,7 +59,7 @@ const LeftBox = styled.div`
 `;
 
 const Title = styled.div`
-  padding: 10px 0 60px;
+  padding: 1rem 0 6rem;
 
   h1 {
     ${fonts.Hero1};
@@ -65,16 +67,16 @@ const Title = styled.div`
 
     span {
       background: linear-gradient(to top, #f5f2c2 35%, transparent 35%);
-      line-height: 110px;
+      line-height: 11rem;
     }
   }
 
   p {
     padding-top: 12px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 22px;
+    font-size: 2.2rem;
     font-weight: 500;
-    line-height: 30px;
+    line-height: 3rem;
     letter-spacing: -0.01em;
     color: ${colors.Secondary_01};
   }
