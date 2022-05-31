@@ -8,11 +8,6 @@ const useFetch = (page: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
-  /*
-  처음 로직 : list 요소의 가장 아래에 빈 div을 생성하고, ref을 달아준다. 이 ref를 통해서 교차시점을 확인할 수 있다.
-  지금 로직 : list의 마지막 요소에만 선택적으로 ref를 달아주고, ref가 있을 때, 새롭게 데이터를 fetch한다.
-  */
-
   const sendQuery = useCallback(async (page: number) => {
     try {
       setIsLoading(true);

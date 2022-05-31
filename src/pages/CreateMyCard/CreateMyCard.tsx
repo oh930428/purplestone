@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import Button from 'components/Button/Button';
 import background from '../../assets/Images/bg-section.jpg';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
+import { useState } from 'react';
 import { maxWidth } from 'styles/mixin';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { RootState } from '../../store/index';
 import { Header, UserCard } from 'components';
+import { confirmAlert } from 'react-confirm-alert';
 import { CoffeeOptionSection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
-import { useState } from 'react';
 import { useAddUserCardListMutation } from 'store/api/userCardList';
 
 const CreateMyCard = () => {
@@ -16,12 +19,37 @@ const CreateMyCard = () => {
   const [addUserCardList] = useAddUserCardListMutation();
   const [userName, setUserName] = useState<string>('');
   const userMyCard = useSelector<RootState>(state => state.myCardReducer);
+  const navigate = useNavigate();
 
   const handleAddCard = async () => {
-    await addUserCardList({
-      id: Date.now(),
-      userName: userName,
-      userCardSmallType: userMyCard,
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <Modal>
+            <h1>게시하시겠습니까?</h1>
+            <p>
+              게시하기를 누르시면 All Coffees 페이지에 카드가 게시됩니다. <br />
+              사람들과 취향을 공유해보세요.
+            </p>
+            <div className="button-wrapper">
+              <button onClick={onClose}>취소하기</button>
+              <button
+                onClick={() => {
+                  addUserCardList({
+                    id: Date.now(),
+                    userName: userName,
+                    userCardSmallType: userMyCard,
+                  });
+                  navigate('/all-coffees');
+                  onClose();
+                }}
+              >
+                게시하기
+              </button>
+            </div>
+          </Modal>
+        );
+      },
     });
   };
 
@@ -44,7 +72,7 @@ const CreateMyCard = () => {
                 theme="primary"
                 label="게시하기"
                 onPress={handleAddCard}
-              />
+              ></Button>
             </ButtonWrapper>
           </Flex>
         </Wrpper>
@@ -84,4 +112,37 @@ const ButtonWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 5rem;
+`;
+
+const Modal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8rem 5rem;
+  background: #fff;
+  border: 5px dashed #ccc;
+  border-radius: 20px;
+
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  p {
+    padding: 3.5rem;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 5.5rem;
+
+    button {
+      font-size: 1.5rem;
+      border: 1px solid #999;
+      padding: 2rem 5rem;
+      border-radius: 10px;
+    }
+  }
 `;
