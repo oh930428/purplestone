@@ -44,7 +44,7 @@ const CreateMyCard = ({
           }
         >
           <DrawSvg />
-          <Items>
+          <Items isMobile={isMobile}>
             <Item
               isMobile={isMobile}
               isTablet={isTablet}
@@ -94,7 +94,7 @@ const Container = styled.section`
 
     .main-isMoblie,
     .main-isTablet {
-      width: 100%;
+      width: 80%;
       height: 100%;
       display: flex;
       align-items: flex-start;
@@ -103,14 +103,14 @@ const Container = styled.section`
   }
 `;
 
-const Items = styled.ul`
+const Items = styled.ul<{ isMobile: boolean }>`
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-top: 8rem;
+  padding-top: ${props => (props.isMobile ? '0rem' : '8rem')};
 `;
 
 const Item = styled.li<{
@@ -166,13 +166,12 @@ const Item = styled.li<{
   ${props =>
     props.isTablet &&
     css`
-      width: 100%;
-      justify-content: center;
+      width: 80%;
+      justify-content: flex-end;
       padding-bottom: 8rem;
 
       img {
-        width: 40rem;
-        height: 32rem;
+        width: 100%;
         border-radius: 2rem;
       }
 
@@ -181,9 +180,9 @@ const Item = styled.li<{
       }
 
       &:nth-child(6) {
-        padding-bottom: 10rem;
+        padding-bottom: 4rem;
         img {
-          width: 40rem;
+          width: 100%;
           height: 21rem;
           border-radius: 2rem;
         }
@@ -192,8 +191,7 @@ const Item = styled.li<{
       &:nth-child(7) {
         padding-top: 6rem;
         img {
-          width: 40rem;
-          height: 32rem;
+          width: 100%;
           border-radius: 2rem;
         }
       }
@@ -202,13 +200,12 @@ const Item = styled.li<{
     ${props =>
     props.isMobile &&
     css`
-      width: 100%;
-      justify-content: center;
+      width: 80%;
+      justify-content: flex-end;
       padding-bottom: 8rem;
 
       img {
-        width: 34rem;
-        height: 29rem;
+        width: 100%;
         border-radius: 2rem;
       }
 
@@ -219,17 +216,15 @@ const Item = styled.li<{
       &:nth-child(6) {
         padding-bottom: 10rem;
         img {
-          width: 34rem;
-          height: 18rem;
+          width: 100%;
+          height: 12rem;
           border-radius: 2rem;
         }
       }
 
       &:nth-child(7) {
-        padding-top: 6rem;
         img {
-          width: 34rem;
-          height: 29rem;
+          width: 100%;
           border-radius: 2rem;
         }
       }

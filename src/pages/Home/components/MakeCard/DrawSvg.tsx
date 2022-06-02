@@ -9,9 +9,11 @@ import LineCircle from './LineCircle';
 const DrawSvg = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
   const isTablet = useMediaQuery({
-    query: '(min-width: 540px) and (max-width: 1179px)',
+    query: '(min-width: 769px) and (max-width: 1179px)',
   });
-  const isMobile = useMediaQuery({ query: '(max-width: 539px)' });
+
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
   const div = useRef<HTMLDivElement>(null);
 
   gsap.registerPlugin(ScrollTrigger);
@@ -62,9 +64,9 @@ const DrawSvg = () => {
 export default DrawSvg;
 
 const Container = styled.div<{
-  isMobile: boolean;
   isDesktop: boolean;
   isTablet: boolean;
+  isMobile: boolean;
 }>`
   ${props =>
     props.isDesktop &&
@@ -88,8 +90,8 @@ const Container = styled.div<{
   ${props =>
     props.isTablet &&
     css`
-      width: 100%;
-      height: 280vh;
+      width: 20%;
+      height: 100%;
       transform: none;
       display: flex;
       align-items: center;
@@ -97,25 +99,14 @@ const Container = styled.div<{
       overflow: hidden;
 
       svg {
-        width: 100%;
+        width: 59%;
         height: 100%;
       }
     `}
 
-  ${props =>
+    ${props =>
     props.isMobile &&
     css`
-      left: 0%;
-      width: 100%;
-      height: 260vh;
-      position: static;
-      transform: none;
-      display: flex;
-      overflow: hidden;
-
-      svg {
-        width: 100%;
-        height: 100%;
-      }
+      display: none;
     `}
 `;
