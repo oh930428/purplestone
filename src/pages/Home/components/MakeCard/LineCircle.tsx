@@ -1,7 +1,7 @@
 import { SVGProps } from 'react';
 
 const LineCircle = (props: SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 52 2047" fill="none" {...props}>
+  <svg viewBox="-2 0 60 2047" fill="none" {...props}>
     <path
       strokeWidth={6}
       className="svg-path"
