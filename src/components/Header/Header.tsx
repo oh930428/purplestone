@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-import { colors, fonts } from 'styles';
+import { colors } from 'styles';
 import { HeaderProps } from '../../types/header.type';
 
-const Header = ({ title, subTitle, textAlign }: HeaderProps) => {
+const Header = ({ title, subTitle, textAlign, font, subFont }: HeaderProps) => {
   return (
     <Container textAlign={textAlign}>
       <div className="title">
-        <span>{title}</span>
+        <span style={font}>{title}</span>
       </div>
       <div className="subtitle">
-        <span>{subTitle}</span>
+        <span style={subFont}>{subTitle}</span>
       </div>
     </Container>
   );
@@ -29,10 +29,7 @@ const Container = styled.div<{ textAlign?: string }>`
     margin-bottom: 1rem;
 
     span {
-      ${fonts.Hero2}
-      line-height: 80px;
       color: ${colors.Primary_01};
-      letter-spacing: -0.01em;
       background: linear-gradient(
         to top,
         ${colors.Secondary_03} 40%,
@@ -42,11 +39,6 @@ const Container = styled.div<{ textAlign?: string }>`
   }
   .subtitle {
     span {
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 24px;
-      font-weight: 500;
-      line-height: 32px;
-      letter-spacing: -0.01em;
       color: ${colors.Secondary_01};
     }
   }
