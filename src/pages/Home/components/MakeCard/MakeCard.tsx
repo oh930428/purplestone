@@ -1,56 +1,65 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
 
 import background from '../../../../assets/Images/bg-section.jpg';
-import { maxWidth } from 'styles/mixin';
 
 import { Header } from 'components';
 import DrawSvg from './DrawSvg';
+import { ResponsiveByDeivceProps } from 'types/responsiveByDevice.type';
 
-const CreateMyCard = () => {
+const CreateMyCard = ({
+  maxWidth,
+  margin,
+  font,
+  subFont,
+}: ResponsiveByDeivceProps) => {
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 540px) and (max-width: 1179px)',
+  });
+  const isMobile = useMediaQuery({ query: '(max-width: 539px)' });
+
+  const processCardItems = [
+    { img: require('../../../../assets/Images/process-card_01.png') },
+    { img: require('../../../../assets/Images/process-card_02.png') },
+    { img: require('../../../../assets/Images/process-card_03.png') },
+    { img: require('../../../../assets/Images/process-card_04.png') },
+    { img: require('../../../../assets/Images/process-card_05.png') },
+  ];
+
   return (
     <Container>
-      <div className="wrapper">
+      <div className="wrapper" style={{ maxWidth: maxWidth, margin: margin }}>
         <div className="header">
           <Header
             title="Make a Card."
             subTitle="나의 커피 취향 카드를 만드는 방법은?"
+            font={font}
+            subFont={subFont}
           />
         </div>
-        <div className="main">
+        <div
+          className={
+            isMobile ? 'main-isMoblie' : isTablet ? 'main-isTablet' : 'main'
+          }
+        >
           <DrawSvg />
           <Items>
-            <Item></Item>
-            <Item>
-              <img
-                src={require('../../../../assets/Images/process-card_01.png')}
-                alt=""
-              />
-            </Item>
-            <Item>
-              <img
-                src={require('../../../../assets/Images/process-card_02.png')}
-                alt=""
-              />
-            </Item>
-            <Item>
-              <img
-                src={require('../../../../assets/Images/process-card_03.png')}
-                alt=""
-              />
-            </Item>
-            <Item>
-              <img
-                src={require('../../../../assets/Images/process-card_04.png')}
-                alt=""
-              />
-            </Item>
-            <Item>
-              <img
-                src={require('../../../../assets/Images/process-card_05.png')}
-                alt=""
-              />
-            </Item>
-            <Item>
+            <Item
+              isMobile={isMobile}
+              isTablet={isTablet}
+              isDesktop={isDesktop}
+            />
+            {processCardItems.map(item => (
+              <Item
+                isMobile={isMobile}
+                isTablet={isTablet}
+                isDesktop={isDesktop}
+              >
+                <img src={item.img} alt="" />
+              </Item>
+            ))}
+            <Item isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop}>
               <img
                 src={require('../../../../assets/Images/coffee-card-image.png')}
                 alt=""
@@ -69,71 +78,160 @@ const Container = styled.section`
   background: url(${background});
 
   .wrapper {
-    ${maxWidth}
     display: flex;
     flex-flow: column;
     align-items: center;
-    padding: 150px 20px 250px;
+    padding: 15rem 2rem 25rem;
 
     .main {
       width: 100%;
-      height: 200vh;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
     }
+
+    .main-isMoblie,
+    .main-isTablet {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+    }
   }
 `;
 
 const Items = styled.ul`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: start;
-  padding-top: 12rem;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 8rem;
 `;
 
-const Item = styled.li`
-  width: 80%;
-  height: 100%;
+const Item = styled.li<{
+  isMobile: boolean;
+  isTablet: boolean;
+  isDesktop: boolean;
+}>`
   display: flex;
 
-  &:nth-child(odd) {
-    justify-content: flex-start;
-    img {
-      width: 40rem;
-      height: 32rem;
-      border-radius: 2rem;
-    }
-  }
-  &:nth-child(even) {
-    justify-content: flex-end;
-    img {
-      width: 40rem;
-      height: 32rem;
-      border-radius: 2rem;
-    }
-  }
+  ${props =>
+    props.isDesktop &&
+    css`
+      width: 90%;
+      &:nth-child(odd) {
+        justify-content: flex-start;
+        img {
+          width: 42rem;
+          height: 33rem;
+          border-radius: 2rem;
+        }
+      }
 
-  &:nth-child(4) {
-    justify-content: flex-end;
-    margin-top: 4rem;
+      &:nth-child(even) {
+        justify-content: flex-end;
+        img {
+          width: 42rem;
+          height: 33rem;
+          border-radius: 2rem;
+        }
+      }
 
-    img {
-      width: 40rem;
-      height: 23rem;
-    }
-  }
+      &:nth-child(6) {
+        justify-content: flex-end;
+        height: 33rem;
+        img {
+          width: 42rem;
+          height: 22rem;
+          border-radius: 2rem;
+        }
+      }
 
-  &:nth-child(7) {
-    justify-content: center;
-    margin-top: 8rem;
-    img {
-      width: 40rem;
-      height: 30rem;
-    }
-  }
+      &:nth-child(7) {
+        justify-content: center;
+        padding-top: 1rem;
+        img {
+          width: 42rem;
+          height: 33rem;
+          border-radius: 2rem;
+        }
+      }
+    `}
+
+  ${props =>
+    props.isTablet &&
+    css`
+      width: 100%;
+      justify-content: center;
+      padding-bottom: 8rem;
+
+      img {
+        width: 40rem;
+        height: 32rem;
+        border-radius: 2rem;
+      }
+
+      &:nth-child(1) {
+        padding-bottom: 0;
+      }
+
+      &:nth-child(6) {
+        padding-bottom: 10rem;
+        img {
+          width: 40rem;
+          height: 21rem;
+          border-radius: 2rem;
+        }
+      }
+
+      &:nth-child(7) {
+        padding-top: 6rem;
+        img {
+          width: 40rem;
+          height: 32rem;
+          border-radius: 2rem;
+        }
+      }
+    `}
+
+    ${props =>
+    props.isMobile &&
+    css`
+      width: 100%;
+      justify-content: center;
+      padding-bottom: 8rem;
+
+      img {
+        width: 34rem;
+        height: 29rem;
+        border-radius: 2rem;
+      }
+
+      &:nth-child(1) {
+        padding-bottom: 0;
+      }
+
+      &:nth-child(6) {
+        padding-bottom: 10rem;
+        img {
+          width: 34rem;
+          height: 18rem;
+          border-radius: 2rem;
+        }
+      }
+
+      &:nth-child(7) {
+        padding-top: 6rem;
+        img {
+          width: 34rem;
+          height: 29rem;
+          border-radius: 2rem;
+        }
+      }
+    `}
 `;

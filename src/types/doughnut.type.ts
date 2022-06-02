@@ -11,11 +11,6 @@ export interface ChartProps {
   }[];
 }
 
-export interface ChartStyleProps {
-  width: string;
-  height: string;
-}
-
 export interface ChartOptionProps {
   maintainAspectRatio: boolean;
   layout: {
