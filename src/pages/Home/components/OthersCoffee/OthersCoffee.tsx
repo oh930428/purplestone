@@ -2,20 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Header } from 'components';
-import { maxWidth } from 'styles/mixin';
+import { ResponsiveByDeivceProps } from 'types/responsiveByDevice.type';
 import CoverflowSection from './CoverflowSection';
 import HeaderSkeleton from 'components/Skeleton/HeaderSkeleton';
 
 import { useFetchOthersCoffeeQuery } from 'store/api/otherscoffee';
 
-const OthersCoffee = () => {
+const OthersCoffee = ({
+  maxWidth,
+  margin,
+  font,
+  subFont,
+}: ResponsiveByDeivceProps) => {
   const { data, isSuccess } = useFetchOthersCoffeeQuery();
 
   return (
     <Container>
-      <div className="wrapper">
+      <div className="wrapper" style={{ maxWidth: maxWidth, margin: margin }}>
         {isSuccess ? (
-          <Header title={data.title} subTitle={data.subTitle} />
+          <Header
+            title={data.title}
+            subTitle={data.subTitle}
+            font={font}
+            subFont={subFont}
+          />
         ) : (
           <HeaderSkeleton />
         )}
@@ -29,7 +39,6 @@ export default OthersCoffee;
 
 const Container = styled.section`
   .wrapper {
-    ${maxWidth}
     display: flex;
     flex-flow: column;
     align-items: center;

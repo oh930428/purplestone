@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination } from 'swiper';
 import styled from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -12,12 +13,14 @@ import Skeleton from 'components/Skeleton/Skeleton';
 const CoverflowSection = () => {
   const { data, isSuccess } = useFetchOthersCoffeeQuery();
 
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
+
   return (
     <Container>
       <Swiper
-        effect={'coverflow'}
+        effect={isDesktop ? 'coverflow' : 'slide'}
         centeredSlides={true}
-        slidesPerView={3}
+        slidesPerView={1}
         grabCursor={true}
         spaceBetween={0}
         loop={true}
@@ -29,6 +32,11 @@ const CoverflowSection = () => {
           slideShadows: false,
         }}
         pagination={true}
+        breakpoints={{
+          1180: {
+            slidesPerView: 3,
+          },
+        }}
         modules={[EffectCoverflow, Pagination]}
         className="swiper-container"
       >
