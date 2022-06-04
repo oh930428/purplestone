@@ -80,10 +80,7 @@ const Home = () => {
         </>
       )}
 
-      {isDesktop && <Creators />}
-      {isTablet && <Creators />}
-      {isMobile && <Creators />}
-
+      <Creators />
       {isPop ? <CookiePopup getIsPop={getIsPop} /> : ''}
     </Container>
   );
