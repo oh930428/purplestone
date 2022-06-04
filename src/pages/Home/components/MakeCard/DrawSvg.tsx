@@ -1,11 +1,19 @@
 import { useLayoutEffect, useRef } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useMediaQuery } from 'react-responsive';
 
 import LineCircle from './LineCircle';
 
 const DrawSvg = () => {
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 769px) and (max-width: 1179px)',
+  });
+
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
   const div = useRef<HTMLDivElement>(null);
 
   gsap.registerPlugin(ScrollTrigger);
@@ -42,7 +50,12 @@ const DrawSvg = () => {
   }, []);
 
   return (
-    <Container ref={div}>
+    <Container
+      isDesktop={isDesktop}
+      isTablet={isTablet}
+      isMobile={isMobile}
+      ref={div}
+    >
       <LineCircle />
     </Container>
   );
@@ -50,18 +63,50 @@ const DrawSvg = () => {
 
 export default DrawSvg;
 
-const Container = styled.div`
-  position: absolute;
-  top: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+const Container = styled.div<{
+  isDesktop: boolean;
+  isTablet: boolean;
+  isMobile: boolean;
+}>`
+  ${props =>
+    props.isDesktop &&
+    css`
+      display: flex;
+      align-items: flex-start;
+      position: absolute;
+      left: 50%;
+      top: 0.5rem;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 85%;
+      overflow: hidden;
 
-  svg {
-    padding-bottom: 8rem;
-    width: 100%;
-    height: 100%;
-  }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    `}
+
+  ${props =>
+    props.isTablet &&
+    css`
+      width: 20%;
+      height: 100%;
+      transform: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      svg {
+        width: 59%;
+        height: 100%;
+      }
+    `}
+
+    ${props =>
+    props.isMobile &&
+    css`
+      display: none;
+    `}
 `;
