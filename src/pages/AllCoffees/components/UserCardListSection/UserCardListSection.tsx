@@ -1,16 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import useFetch from 'hooks/useFetch';
 
 import { maxWidth } from 'styles/mixin';
+import { useMediaQuery } from 'react-responsive';
 import { userCardProps } from 'types/userCardSmall';
-import { Header, Loader, UserCardSmall } from 'components';
 import { useState, useRef, useCallback } from 'react';
+import { Header, Loader, UserCardSmall } from 'components';
+import { desktopMain } from 'styles/mixin';
 
 const UserCardListSection = () => {
   const observer = useRef<IntersectionObserver>();
   const [page, setPage] = useState<number>(1);
   const { isLoading, isError, cards, hasMore } = useFetch(page);
-
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
   const lastItemRef = useCallback(
     (node: HTMLElement) => {
       if (isLoading) return;
@@ -28,10 +30,12 @@ const UserCardListSection = () => {
   );
 
   return (
-    <Container>
+    <Container isDesktop={isDesktop}>
       <Header
         title={"Other's Coffee."}
         subTitle={'다른 사람들은 어떤 취향을 가지고 있을까요?'}
+        font={desktopMain.font}
+        subFont={desktopMain.subFont}
       />
 
       <CardListContainer>
@@ -52,8 +56,15 @@ const UserCardListSection = () => {
 
 export default UserCardListSection;
 
-const Container = styled.div`
-  ${maxWidth}
+const Container = styled.div<{ isDesktop: boolean }>`
+  width: 100%;
+  padding: 0 2rem;
+
+  ${props =>
+    props.isDesktop &&
+    css`
+      ${maxWidth}
+    `}
 `;
 
 const CardListContainer = styled.div`
