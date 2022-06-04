@@ -4,7 +4,7 @@ import ConfettiComponents from './Confetti';
 import { maxWidth } from 'styles/mixin';
 import { Header, ProfileCard } from 'components';
 import { useFetchCreatorsQuery } from 'store/api/creators';
-import { desktopMain, mobileMain, tabletMain } from 'styles/mixin';
+import { desktopMain } from 'styles/mixin';
 import { ProfileCardProps } from '../../../../types/profileCard.type';
 import ProfileCardSkeleton from '../../../../components/Skeleton/ProfileCardSkeleton';
 
