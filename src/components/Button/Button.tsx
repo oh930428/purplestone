@@ -98,12 +98,12 @@ const Container = styled.button<{
   ${props =>
     props.size === 'large' &&
     css`
-      width: 244px;
-      height: 85px;
+      width: 24.4rem;
+      height: 8.5rem;
       font-family: 'Noto Sans KR', sans-serif;
       font-style: normal;
       font-weight: 500;
-      font-size: 24px;
+      font-size: 2.4rem;
       line-height: 33px;
       letter-spacing: -0.01em;
       color: #474306;
