@@ -2,17 +2,20 @@ import { Button } from 'components';
 import { fonts, colors } from 'styles';
 import { Link } from 'react-router-dom';
 import { maxWidth } from 'styles/mixin';
+import { useMediaQuery } from 'react-responsive';
 import { useMouseEffect } from 'hooks/useMouseEffect';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Card from '../../../../assets/Images/card-image.png';
 import background from '../../../../assets/Images/bg-section.jpg';
 
 const HeaderSection = () => {
   const ImageRef = useMouseEffect();
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
-    <Container>
+    <Container isDesktop={isDesktop} isMobile={isMobile}>
       <div className="wrapper">
         <LeftBox>
           <Title>
@@ -28,7 +31,7 @@ const HeaderSection = () => {
           </Link>
         </LeftBox>
 
-        <CardImage ref={ImageRef}>
+        <CardImage ref={ImageRef} isMobile={isMobile}>
           <img src={Card} alt="카드 완성 이미지" />
         </CardImage>
       </div>
@@ -38,11 +41,11 @@ const HeaderSection = () => {
 
 export default HeaderSection;
 
-const Container = styled.section`
+const Container = styled.section<{ isDesktop: boolean; isMobile: boolean }>`
   background-image: url(${background});
 
   .wrapper {
-    ${maxWidth}
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -50,6 +53,22 @@ const Container = styled.section`
     gap: 5rem;
     padding: 20rem 2rem;
     z-index: 100;
+
+    ${props =>
+      props.isDesktop &&
+      css`
+        ${maxWidth}
+      `}
+
+    ${props =>
+      props.isMobile &&
+      css`
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      `}
   }
 `;
 
@@ -82,7 +101,7 @@ const Title = styled.div`
   }
 `;
 
-const CardImage = styled.figure`
+const CardImage = styled.figure<{ isMobile: boolean }>`
   flex: 1;
   width: 100%;
   cursor: pointer;
@@ -96,6 +115,12 @@ const CardImage = styled.figure`
     transform-style: preserve-3d;
     transform: perspective(1000px);
     transition: transform 0.5s ease-in-out;
+
+    ${props =>
+      props.isMobile &&
+      css`
+        width: 75%;
+      `}
 
     &:hover {
       transition: none;
