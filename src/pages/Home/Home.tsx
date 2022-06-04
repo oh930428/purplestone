@@ -34,10 +34,10 @@ const Home = () => {
       {isDesktop && (
         <>
           <OthersCoffee
-            maxWidth={tabletMain.maxWidth}
-            margin={tabletMain.margin}
-            font={tabletMain.font}
-            subFont={tabletMain.subFont}
+            maxWidth={desktopMain.maxWidth}
+            margin={desktopMain.margin}
+            font={desktopMain.font}
+            subFont={desktopMain.subFont}
           />
           <MakeCard
             maxWidth={desktopMain.maxWidth}
