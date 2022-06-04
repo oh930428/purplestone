@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import UserCardSmallOption from './UserCardSmallOption';
 import CardImage from '../../../assets/Images/bg-card-small.png';
 import IconsCoffeeOption from 'components/Icon/IconsCoffeeOption';
 
 import { colors } from 'styles';
+import { useMediaQuery } from 'react-responsive';
 import { userCardProps } from '../../../types/userCardSmall';
 
 interface UserCardSmallProps {
@@ -12,8 +13,18 @@ interface UserCardSmallProps {
 }
 
 const UserCardSmall = ({ card, reference }: UserCardSmallProps) => {
+  const isDesktop = useMediaQuery({ query: '(min-width: 960px)' });
+  const isTablet = useMediaQuery({
+    query: '(min-width: 540px) and (max-width: 959px)',
+  });
+
   return (
-    <Container bgCard={CardImage} ref={reference}>
+    <Container
+      bgCard={CardImage}
+      ref={reference}
+      isDesktop={isDesktop}
+      isTablet={isTablet}
+    >
       <Card>
         <div className="header">
           <div className="header-title">
@@ -37,9 +48,13 @@ const UserCardSmall = ({ card, reference }: UserCardSmallProps) => {
 
 export default UserCardSmall;
 
-const Container = styled.div<{ bgCard: string }>`
-  width: calc(100% / 3 - (3rem));
-  min-width: 30rem;
+const Container = styled.div<{
+  bgCard: string;
+  isDesktop: boolean;
+  isTablet: boolean;
+}>`
+  width: 100%;
+  min-width: 20rem;
   height: 46rem;
   background-image: ${props => `url(${props.bgCard})`};
   background-position: center;
@@ -49,6 +64,19 @@ const Container = styled.div<{ bgCard: string }>`
   box-sizing: border-box;
   padding: 3rem 2.5rem;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+
+  ${props =>
+    props.isTablet &&
+    css`
+      width: calc(100% / 2 - (3rem));
+    `}
+
+  ${props =>
+    props.isDesktop &&
+    css`
+      min-width: 30rem;
+      width: calc(100% / 3 - (3rem));
+    `}
 `;
 
 const Card = styled.div`

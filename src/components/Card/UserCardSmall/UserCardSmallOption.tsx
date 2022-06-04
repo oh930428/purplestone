@@ -1,5 +1,6 @@
 import { fonts } from 'styles';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useMediaQuery } from 'react-responsive';
 import DigramImage from '../../../assets/Images/bg-digram-small.png';
 import { userCardSmallTypeProps } from '../../../types/userCardSmall';
 
@@ -8,9 +9,11 @@ interface Props {
 }
 
 const UserCardSmallOption = ({ option }: Props) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 539px)' });
+
   return (
     <Container>
-      <Digram bgDigram={DigramImage}>
+      <Digram bgDigram={DigramImage} isMobile={isMobile}>
         <div className="thumbnail">
           <img
             src={require(`../../../assets/Icons/${option.coffeeType.image}`)}
@@ -37,7 +40,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Digram = styled.figure<{ bgDigram: string }>`
+const Digram = styled.figure<{ bgDigram: string; isMobile: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,12 +69,18 @@ const Digram = styled.figure<{ bgDigram: string }>`
     width: 100%;
     height: 100%;
 
+    ${props =>
+      props.isMobile &&
+      css`
+        width: 80%;
+      `}
+
     li {
+      ${fonts.BoldBody1}
       position: absolute;
       box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
       width: 12rem;
       padding: 0.2rem 1rem;
-      ${fonts.BoldBody1}
       font-size: 1.4rem;
       background-color: rgba(255, 255, 255, 0.5);
       border-radius: 10px;
@@ -81,6 +90,12 @@ const Digram = styled.figure<{ bgDigram: string }>`
       &.brand {
         left: 31%;
         top: -19%;
+
+        ${props =>
+          props.isMobile &&
+          css`
+            left: 35%;
+          `}
       }
       &.beans {
         right: -5%;

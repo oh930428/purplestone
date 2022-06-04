@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Button from 'components/Button/Button';
 import background from '../../assets/Images/bg-section.jpg';
 import 'react-confirm-alert/src/react-confirm-alert.css';
@@ -9,9 +9,11 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { RootState } from '../../store/index';
 import { Header, UserCard } from 'components';
+import { useMediaQuery } from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 import { CoffeeOptionSection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
+import { desktopMain } from 'styles/mixin';
 import { useAddUserCardListMutation } from 'store/api/userCardList';
 
 const CreateMyCard = () => {
@@ -19,6 +21,7 @@ const CreateMyCard = () => {
   const [addUserCardList] = useAddUserCardListMutation();
   const [userName, setUserName] = useState<string>('');
   const userMyCard = useSelector<RootState>(state => state.myCardReducer);
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
   const navigate = useNavigate();
 
   const handleAddCard = async () => {
@@ -56,8 +59,13 @@ const CreateMyCard = () => {
   if (isSuccess) {
     return (
       <Container>
-        <Wrpper>
-          <Header title={data.title} subTitle={data.subTitle} />
+        <Wrpper isDesktop={isDesktop}>
+          <Header
+            title={data.title}
+            subTitle={data.subTitle}
+            font={desktopMain.font}
+            subFont={desktopMain.subFont}
+          />
           <Flex>
             <CoffeeOptionSection />
             <UserCard
@@ -93,8 +101,15 @@ const Container = styled.div`
   background-image: url(${background});
 `;
 
-const Wrpper = styled.div`
-  ${maxWidth}
+const Wrpper = styled.div<{ isDesktop: boolean }>`
+  width: 100%;
+  padding: 0 2rem;
+
+  ${props =>
+    props.isDesktop &&
+    css`
+      ${maxWidth}
+    `}
 `;
 
 const Flex = styled.div`
@@ -122,6 +137,7 @@ const Modal = styled.div`
   background: #fff;
   border: 5px dashed #ccc;
   border-radius: 20px;
+  z-index: 1000;
 
   h1 {
     font-size: 3.5rem;

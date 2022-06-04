@@ -1,18 +1,21 @@
-import styled from 'styled-components';
-
 import { Button } from 'components';
 import { fonts, colors } from 'styles';
+import { Link } from 'react-router-dom';
 import { maxWidth } from 'styles/mixin';
+import { useMediaQuery } from 'react-responsive';
 import { useMouseEffect } from 'hooks/useMouseEffect';
 
+import styled, { css } from 'styled-components';
 import Card from '../../../../assets/Images/card-image.png';
 import background from '../../../../assets/Images/bg-section.jpg';
 
 const HeaderSection = () => {
   const ImageRef = useMouseEffect();
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
-    <Container>
+    <Container isDesktop={isDesktop} isMobile={isMobile}>
       <div className="wrapper">
         <LeftBox>
           <Title>
@@ -23,10 +26,12 @@ const HeaderSection = () => {
             </h1>
             <p>내가 좋아하는 커피 취향 카드 만들기</p>
           </Title>
-          <Button theme="primary" label="취향 카드 만들기" size="large" />
+          <Link to="/myCard">
+            <Button theme="primary" label="취향 카드 만들기" size="large" />
+          </Link>
         </LeftBox>
 
-        <CardImage ref={ImageRef}>
+        <CardImage ref={ImageRef} isMobile={isMobile}>
           <img src={Card} alt="카드 완성 이미지" />
         </CardImage>
       </div>
@@ -36,18 +41,34 @@ const HeaderSection = () => {
 
 export default HeaderSection;
 
-const Container = styled.section`
+const Container = styled.section<{ isDesktop: boolean; isMobile: boolean }>`
   background-image: url(${background});
 
   .wrapper {
-    ${maxWidth}
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 50px;
-    padding: 200px 20px;
+    gap: 5rem;
+    padding: 20rem 2rem;
     z-index: 100;
+
+    ${props =>
+      props.isDesktop &&
+      css`
+        ${maxWidth}
+      `}
+
+    ${props =>
+      props.isMobile &&
+      css`
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      `}
   }
 `;
 
@@ -57,7 +78,7 @@ const LeftBox = styled.div`
 `;
 
 const Title = styled.div`
-  padding: 10px 0 60px;
+  padding: 1rem 0 6rem;
 
   h1 {
     ${fonts.Hero1};
@@ -65,22 +86,22 @@ const Title = styled.div`
 
     span {
       background: linear-gradient(to top, #f5f2c2 35%, transparent 35%);
-      line-height: 110px;
+      line-height: 11rem;
     }
   }
 
   p {
     padding-top: 12px;
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 22px;
+    font-size: 2.2rem;
     font-weight: 500;
-    line-height: 30px;
+    line-height: 3rem;
     letter-spacing: -0.01em;
     color: ${colors.Secondary_01};
   }
 `;
 
-const CardImage = styled.figure`
+const CardImage = styled.figure<{ isMobile: boolean }>`
   flex: 1;
   width: 100%;
   cursor: pointer;
@@ -94,6 +115,12 @@ const CardImage = styled.figure`
     transform-style: preserve-3d;
     transform: perspective(1000px);
     transition: transform 0.5s ease-in-out;
+
+    ${props =>
+      props.isMobile &&
+      css`
+        width: 75%;
+      `}
 
     &:hover {
       transition: none;

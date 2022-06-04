@@ -1,25 +1,43 @@
 import styled from 'styled-components';
+import { CookiePopup } from 'components';
+import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-
 import { HeaderSection, Creators, OthersCoffee, MakeCard } from './components';
 import { desktopMain, mobileMain, tabletMain } from 'styles/mixin';
 
 const Home = () => {
+  let [isPop, setIsPop] = useState(false);
+
+  const getIsPop = (value: boolean | ((prevState: boolean) => boolean)) => {
+    setIsPop(value);
+  };
+
+  useEffect(() => {
+    const isCookie = document.cookie.indexOf('welcomePop=done');
+    if (isCookie === -1) {
+      getIsPop(true);
+    } else {
+      getIsPop(false);
+    }
+  }, []);
+
   const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
   const isTablet = useMediaQuery({
     query: '(min-width: 540px) and (max-width: 1179px)',
   });
   const isMobile = useMediaQuery({ query: '(max-width: 539px)' });
+
   return (
     <Container>
       <HeaderSection />
+
       {isDesktop && (
         <>
           <OthersCoffee
-            maxWidth={desktopMain.maxWidth}
-            margin={desktopMain.margin}
-            font={desktopMain.font}
-            subFont={desktopMain.subFont}
+            maxWidth={tabletMain.maxWidth}
+            margin={tabletMain.margin}
+            font={tabletMain.font}
+            subFont={tabletMain.subFont}
           />
           <MakeCard
             maxWidth={desktopMain.maxWidth}
@@ -63,6 +81,7 @@ const Home = () => {
       )}
 
       <Creators />
+      {isPop ? <CookiePopup getIsPop={getIsPop} /> : ''}
     </Container>
   );
 };

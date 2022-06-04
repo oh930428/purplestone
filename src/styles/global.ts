@@ -4,7 +4,6 @@ import 'reset-css';
 export default createGlobalStyle`
     * {
       box-sizing: border-box;
-      font-size: 62.5%;
     }
 
     a {
@@ -18,7 +17,15 @@ export default createGlobalStyle`
       touch-action: pan-y;
       -webkit-font-smoothing: antialiased;
       font-size: 62.5%;
-    }
+
+      @media screen and (min-width: 768px) and (max-width: 1179px) {
+        font-size: 55%;
+      }
+
+    @media screen and (max-width: 767px) {
+        font-size: 45%;
+      }
+  }
 
     button {
       background: inherit; 
@@ -42,5 +49,9 @@ export default createGlobalStyle`
       input::-moz-focus-inner,
       ::-moz-focus-inner {
         border: 0;
+    }
+
+    .react-confirm-alert-overlay {
+      z-index: 1000;
     }
     `;

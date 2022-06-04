@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-
-import { Header, ProfileCard } from 'components';
-import { maxWidth } from 'styles/mixin';
-import { useFetchCreatorsQuery } from 'store/api/creators';
-import { ProfileCardProps } from '../../../../types/profileCard.type';
 import ConfettiComponents from './Confetti';
+
+import { maxWidth } from 'styles/mixin';
+import { Header, ProfileCard } from 'components';
+import { useFetchCreatorsQuery } from 'store/api/creators';
+import { desktopMain } from 'styles/mixin';
+import { ProfileCardProps } from '../../../../types/profileCard.type';
 import ProfileCardSkeleton from '../../../../components/Skeleton/ProfileCardSkeleton';
 
 const Creators = () => {
@@ -15,7 +16,12 @@ const Creators = () => {
       <Container>
         <ConfettiComponents />
         <div className="wrapper">
-          <Header title={data.title} subTitle={data.subTitle} />
+          <Header
+            title={data.title}
+            subTitle={data.subTitle}
+            font={desktopMain.font}
+            subFont={desktopMain.subFont}
+          />
           <div className="profile-box">
             {data.profiles.map((profile: ProfileCardProps, index: number) => (
               <ProfileCard
