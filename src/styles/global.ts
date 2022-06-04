@@ -50,4 +50,8 @@ export default createGlobalStyle`
       ::-moz-focus-inner {
         border: 0;
     }
+
+    .react-confirm-alert-overlay {
+      z-index: 1000;
+    }
     `;
