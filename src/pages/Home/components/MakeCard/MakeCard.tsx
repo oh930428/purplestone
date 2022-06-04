@@ -183,7 +183,6 @@ const Item = styled.li<{
         padding-bottom: 4rem;
         img {
           width: 100%;
-          height: 21rem;
           border-radius: 2rem;
         }
       }
@@ -217,7 +216,6 @@ const Item = styled.li<{
         padding-bottom: 10rem;
         img {
           width: 100%;
-          height: 12rem;
           border-radius: 2rem;
         }
       }
