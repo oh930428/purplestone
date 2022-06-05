@@ -119,7 +119,7 @@ const CardImage = styled.figure<{ isMobile: boolean }>`
     ${props =>
       props.isMobile &&
       css`
-        width: 75%;
+        width: 90%;
       `}
 
     &:hover {
