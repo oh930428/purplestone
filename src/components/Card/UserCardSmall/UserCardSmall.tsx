@@ -17,6 +17,7 @@ const UserCardSmall = ({ card, reference }: UserCardSmallProps) => {
   const isTablet = useMediaQuery({
     query: '(min-width: 540px) and (max-width: 959px)',
   });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
   return (
     <Container
@@ -24,6 +25,7 @@ const UserCardSmall = ({ card, reference }: UserCardSmallProps) => {
       ref={reference}
       isDesktop={isDesktop}
       isTablet={isTablet}
+      isMobile={isMobile}
     >
       <Card>
         <div className="header">
@@ -52,6 +54,7 @@ const Container = styled.div<{
   bgCard: string;
   isDesktop: boolean;
   isTablet: boolean;
+  isMobile: boolean;
 }>`
   width: 100%;
   min-width: 20rem;
@@ -64,6 +67,12 @@ const Container = styled.div<{
   box-sizing: border-box;
   padding: 3rem 2.5rem;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+
+  ${props =>
+    props.isMobile &&
+    css`
+      width: 75%;
+    `}
 
   ${props =>
     props.isTablet &&

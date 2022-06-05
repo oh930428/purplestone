@@ -87,7 +87,7 @@ const CreateMyCard = () => {
       </Container>
     );
   } else if (isLoading) {
-    return <div>no data</div>;
+    return <div>loading...</div>;
   } else {
     return <div>not found</div>;
   }

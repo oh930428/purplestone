@@ -23,7 +23,7 @@ export default createGlobalStyle`
       }
 
     @media screen and (max-width: 767px) {
-        font-size: 45%;
+        font-size: 40%;
       }
   }
 
