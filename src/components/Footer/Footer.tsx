@@ -1,12 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colors, fonts } from 'styles';
 import { Link } from 'react-router-dom';
 import IconSocial from '../Icon/IconSocial';
+import { useMediaQuery } from 'react-responsive';
 
 const Footer = () => {
+  const isDesktop = useMediaQuery({ query: '(min-width: 960px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
   return (
-    <Container>
-      <Wrapper>
+    <Container isDesktop={isDesktop} isMobile={isMobile}>
+      <Wrapper isDesktop={isDesktop} isMobile={isMobile}>
         <TextBox>
           <Logo>
             <Link to="/">PurpleStone</Link>
@@ -34,10 +38,16 @@ const Footer = () => {
 
 export default Footer;
 
-const Container = styled.footer`
+const Container = styled.footer<{ isDesktop: boolean; isMobile: boolean }>`
   width: 100%;
-  height: 16rem;
+  padding: 2rem;
   background-color: ${colors.Primary_01};
+
+  ${props =>
+    props.isDesktop &&
+    css`
+      padding: 0;
+    `}
 `;
 
 const Logo = styled.h1`
@@ -53,14 +63,25 @@ const Logo = styled.h1`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isDesktop: boolean; isMobile: boolean }>`
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  width: 100%;
-  height: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+
+  ${props =>
+    props.isDesktop &&
+    css`
+      max-width: 1400px;
+    `}
+
+  ${props =>
+    props.isMobile &&
+    css`
+      flex-direction: column;
+    `}
 
   p {
     ${fonts.RegularBody2}
