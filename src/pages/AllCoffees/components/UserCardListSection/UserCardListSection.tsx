@@ -12,7 +12,7 @@ const UserCardListSection = () => {
   const observer = useRef<IntersectionObserver>();
   const [page, setPage] = useState<number>(1);
   const { isLoading, isError, cards, hasMore } = useFetch(page);
-  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
+
   const lastItemRef = useCallback(
     (node: HTMLElement) => {
       if (isLoading) return;
@@ -29,6 +29,9 @@ const UserCardListSection = () => {
     [isLoading, hasMore]
   );
 
+  const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
   return (
     <Container isDesktop={isDesktop}>
       <Header
@@ -38,7 +41,7 @@ const UserCardListSection = () => {
         subFont={desktopMain.subFont}
       />
 
-      <CardListContainer>
+      <CardListContainer isMobile={isMobile}>
         {cards?.map((card: userCardProps, index: number) =>
           index + 1 === cards.length ? ( // index + 1 번이 페이지의 마지막 item
             <UserCardSmall key={index} card={card} reference={lastItemRef} />
@@ -67,11 +70,18 @@ const Container = styled.div<{ isDesktop: boolean }>`
     `}
 `;
 
-const CardListContainer = styled.div`
+const CardListContainer = styled.div<{ isMobile: boolean }>`
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
   align-items: center;
   gap: 4rem;
   padding: 6rem 0;
+
+  ${props =>
+    props.isMobile &&
+    css`
+      justify-content: center;
+      flex-direction: column;
+    `}
 `;
