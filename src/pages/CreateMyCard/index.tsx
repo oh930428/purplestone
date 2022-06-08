@@ -3,7 +3,7 @@ import Button from 'components/Button/Button';
 import background from '../../assets/Images/bg-section.jpg';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { maxWidth } from 'styles/mixin';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
