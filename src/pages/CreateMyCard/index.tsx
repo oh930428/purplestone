@@ -1,30 +1,30 @@
 import styled, { css } from 'styled-components';
-import Button from 'components/Button/Button';
+import Button from 'components/Button';
 import background from '../../assets/Images/bg-section.jpg';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { maxWidth } from 'styles/mixin';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { desktopMain } from 'styles/mixin';
 import { RootState } from '../../store/index';
 import { Header, UserCard } from 'components';
 import { useMediaQuery } from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 import { CoffeeOptionSection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
-import { desktopMain } from 'styles/mixin';
 import { useAddUserCardListMutation } from 'store/api/userCardList';
 
 const CreateMyCard = () => {
+  const navigate = useNavigate();
   const { data, isLoading, isSuccess } = useFetchMyCardQuery();
   const [addUserCardList] = useAddUserCardListMutation();
   const [userName, setUserName] = useState<string>('');
   const userMyCard = useSelector<RootState>(state => state.myCardReducer);
   const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
-  const navigate = useNavigate();
 
-  const handleAddCard = async () => {
+  const handleConfirm = () => {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -36,24 +36,26 @@ const CreateMyCard = () => {
             </p>
             <div className="button-wrapper">
               <button onClick={onClose}>취소하기</button>
-              <button
-                onClick={() => {
-                  addUserCardList({
-                    id: Date.now(),
-                    userName: userName,
-                    userCardSmallType: userMyCard,
-                  });
-                  navigate('/all-coffees');
-                  onClose();
-                }}
-              >
-                게시하기
-              </button>
+              <button onClick={() => handleAddCard(onClose)}>게시하기</button>
             </div>
           </Modal>
         );
       },
     });
+  };
+
+  /**
+   * 컨펌창에서 "게시하기" 버튼 눌렀을때, POST API 호출
+   * @param {funtion} onClose 컨펌창이 닫히는 함수
+   */
+  const handleAddCard = async (onClose: { (): void }) => {
+    await addUserCardList({
+      id: Date.now(),
+      userName: userName,
+      userCardSmallType: userMyCard,
+    });
+    navigate('/all-coffees');
+    onClose();
   };
 
   if (isSuccess) {
@@ -79,7 +81,7 @@ const CreateMyCard = () => {
                 size="large"
                 theme="primary"
                 label="게시하기"
-                onPress={handleAddCard}
+                onPress={handleConfirm}
               ></Button>
             </ButtonWrapper>
           </Flex>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ChooseCoffeeOption } from 'components';
+import CoffeeOption from './CoffeeOption';
+import { ChooseOption } from 'types/createMyCard.type';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
-import { ChooseCoffeeOptionProps } from 'types/createMyCard';
 
 const CoffeeOptionSection = () => {
   const { data, isLoading, isSuccess } = useFetchMyCardQuery();
@@ -9,11 +9,9 @@ const CoffeeOptionSection = () => {
   if (isSuccess) {
     return (
       <Container>
-        {data.chooseCoffeeOption.map(
-          (option: ChooseCoffeeOptionProps, index: number) => (
-            <ChooseCoffeeOption key={index} option={option} />
-          )
-        )}
+        {data.chooseCoffeeOption.map((option: ChooseOption, index: number) => (
+          <CoffeeOption key={index} option={option} />
+        ))}
       </Container>
     );
   } else if (isLoading) {

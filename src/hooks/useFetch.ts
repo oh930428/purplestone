@@ -1,9 +1,9 @@
-import { userCardProps } from './../types/userCardSmall';
 import { useState, useEffect, useCallback } from 'react';
+import { userCardSmall } from '../types/cardUserSmall.type';
 import { getUserCard } from 'store/api/userCardListPageParam';
 
 const useFetch = (page: number) => {
-  const [cards, setCards] = useState<userCardProps[]>([]);
+  const [cards, setCards] = useState<userCardSmall[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import IconSocial from '../../Icon/IconSocial';
 
 import { fonts, colors } from 'styles';
-import { ProfileCardProps } from '../../../types/profileCard.type';
+import { CardProfile } from '../../../types/cardProfile.type';
 
 const ProfileCard = ({
   userName,
@@ -10,7 +10,7 @@ const ProfileCard = ({
   thumbnail,
   background,
   iconSocial,
-}: ProfileCardProps) => {
+}: CardProfile) => {
   return (
     <Container background={background}>
       <div className="header">
@@ -31,7 +31,7 @@ const ProfileCard = ({
         ></div>
         <div className="main-socials">
           {iconSocial.map((icon, index) => (
-            <IconSocial key={index} name={icon.name} />
+            <IconSocial key={index} name={icon} />
           ))}
         </div>
       </div>

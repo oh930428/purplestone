@@ -1,19 +1,23 @@
 import styled from 'styled-components';
-import circle from '../../assets/Images/bg-circle.png';
-import circleActive from '../../assets/Images/bg-circle-active.png';
-import ProcessCard from 'components/Card/ProcessCard/ProcessCard';
 import { useRef, useState } from 'react';
-import { ChooseCoffeeOptionProps } from 'types/createMyCard';
+import { ChooseOption } from 'types/createMyCard.type';
+import ProcessCard from 'components/Card/CardProcess';
+import circle from '../../../../assets/Images/bg-circle.png';
+import circleActive from '../../../../assets/Images/bg-circle-active.png';
 
 interface Props {
-  option: ChooseCoffeeOptionProps;
+  option: ChooseOption;
 }
 
-const ChooseCoffeeOption = ({ option }: Props) => {
+const CoffeeOption = ({ option }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>('');
 
+  /**
+   * 커피 옵션을 선택하면, 선택한 옵션의 UI만 변경한다.
+   * @param {any} e 클릭 이벤트
+   */
   const onClickActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;
     const optionItem = document.querySelectorAll('.option-box');
@@ -40,13 +44,13 @@ const ChooseCoffeeOption = ({ option }: Props) => {
       {selected ? (
         <img
           className="option-image"
-          src={require(`../../assets/Icons/${selected}`)}
+          src={require(`../../../../assets/Icons/${selected}`)}
           alt={option.name}
         />
       ) : (
         <img
           className="option-image"
-          src={require(`../../assets/Icons/${option.thumbnail}`)}
+          src={require(`../../../../assets/Icons/${option.thumbnail}`)}
           alt={option.name}
         />
       )}
@@ -60,7 +64,7 @@ const ChooseCoffeeOption = ({ option }: Props) => {
   );
 };
 
-export default ChooseCoffeeOption;
+export default CoffeeOption;
 
 const Container = styled.article<{
   circle: string;

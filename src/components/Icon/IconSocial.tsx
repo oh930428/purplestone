@@ -1,7 +1,10 @@
 import styled, { css } from 'styled-components';
-import { IconSocialProps } from '../../types/iconSocial.type';
 
-export const IconSocial = ({ name }: IconSocialProps) => {
+interface Props {
+  name: string;
+}
+
+export const IconSocial = ({ name }: Props) => {
   return (
     <Container name={name}>
       {name === 'facebook' && (

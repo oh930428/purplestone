@@ -1,22 +1,24 @@
 import styled from 'styled-components';
-
 import { useCallback } from 'react';
-import { colors, fonts } from '../../../styles';
-import { ChooseCoffeeOptionProps, CoffeeTypeProps } from 'types/createMyCard';
-
 import { useDispatch } from 'react-redux';
+import { colors, fonts } from '../../../styles';
 import { setSelectOptions } from 'store/state/MyCardSlice';
+import { ChooseOption, CoffeeType } from 'types/createMyCard.type';
 
-interface ProcessCardProps {
-  option: ChooseCoffeeOptionProps;
+interface Props {
+  option: ChooseOption;
   setSelected: (arg: string) => void;
 }
 
-const ProcessCard = ({ option, setSelected }: ProcessCardProps) => {
+const ProcessCard = ({ option, setSelected }: Props) => {
   const dispatch = useDispatch();
 
+  /**
+   * 선택한 옵션의 데이터를 state에 담고, dispatch에 담아 리듀서로 보낸다.
+   * @param {ChooseOption} selected - the first thing
+   */
   const handleSelectedOption = useCallback(
-    async (selected: CoffeeTypeProps) => {
+    (selected: CoffeeType) => {
       setSelected(selected.image);
       dispatch(setSelectOptions({ ...selected }));
     },
@@ -28,7 +30,7 @@ const ProcessCard = ({ option, setSelected }: ProcessCardProps) => {
       <div className="header">{option.text}</div>
       <div className="main">
         {option.types &&
-          option.types.map((type: CoffeeTypeProps, index: number) => (
+          option.types.map((type: CoffeeType, index: number) => (
             <article
               data-type={option.name}
               className="main-section"

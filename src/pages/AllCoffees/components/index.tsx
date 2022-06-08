@@ -1,2 +1,2 @@
-export { default as UserCardListSection } from './UserCardListSection/UserCardListSection';
-export { default as MostPopularSection } from './MostPopularSection/MostPopularSection';
+export { default as UserCardListSection } from './UserCardListSection';
+export { default as MostPopularSection } from './MostPopularSection';

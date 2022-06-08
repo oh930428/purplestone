@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import Button from '../Button/Button';
+import Button from '../Button';
 
 import { useState, useEffect } from 'react';
 import { colors } from '../../styles';

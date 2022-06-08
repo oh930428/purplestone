@@ -1,15 +1,17 @@
-export { default as Header } from './Header/Header';
-export { default as Footer } from './Footer/Footer';
-export { default as Navigation } from './Navigation/Navigation';
-export { default as Button } from './Button/Button';
+export { default as Header } from './Header';
+export { default as Footer } from './Footer';
+export { default as Button } from './Button';
+export { default as Navigation } from './Navigation';
+
 export { default as IconSocial } from './Icon/IconSocial';
 export { default as IconsCoffeeOption } from './Icon/IconsCoffeeOption';
-export { default as ChooseCoffeeOption } from './ChooseCoffeeOption/ChooseCoffeeOption';
-export { default as UserCard } from './Card/UserCard/UserCard';
-export { default as UserCardOption } from './Card/UserCard/UserCardOption';
-export { default as ProfileCard } from './Card/ProfileCard/ProfileCard';
-export { default as ProcessCard } from './Card/ProcessCard/ProcessCard';
-export { default as UserCardSmall } from './Card/UserCardSmall/UserCardSmall';
-export { default as UserCardSmallOption } from './Card/UserCardSmall/UserCardSmallOption';
-export { default as Loader } from './Loader/Loader';
+
+export { default as ProfileCard } from './Card/CardProfile';
+export { default as ProcessCard } from './Card/CardProcess';
+export { default as UserCard } from './Card/CardUser';
+export { default as UserCardOption } from './Card/CardUser/UserOption';
+export { default as UserCardSmall } from './Card/CardUserSmall';
+export { default as UserCardSmallOption } from './Card/CardUserSmall/UserOptionSmall';
+
+export { default as Loader } from './Loader';
 export { default as CookiePopup } from './CookiePopup/CookiePopup';

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import UserCardOption from './UserCardOption';
+import UserCardOption from './UserOption';
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
 

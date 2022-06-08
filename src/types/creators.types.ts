@@ -1,7 +1,7 @@
-import { ProfileCardProps } from './profileCard.type';
+import { CardProfile } from './cardProfile.type';
 
 export interface CreatorsPorps {
   title: string;
   subTitle: string;
-  profiles: ProfileCardProps[];
+  profiles: CardProfile[];
 }

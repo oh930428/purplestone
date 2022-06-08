@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { colors } from 'styles';
-import { userCardSmallOptionProps } from '../../types/userCardSmall';
+import { userOption } from '../../types/cardUserSmall.type';
 
 interface Props {
-  option: userCardSmallOptionProps;
+  option: userOption;
 }
 
 const IconsCoffeeOption = ({ option }: Props) => {

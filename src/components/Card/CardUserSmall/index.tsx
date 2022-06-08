@@ -1,14 +1,14 @@
 import styled, { css } from 'styled-components';
-import UserCardSmallOption from './UserCardSmallOption';
+import UserCardSmallOption from './UserOptionSmall';
 import CardImage from '../../../assets/Images/bg-card-small.png';
 import IconsCoffeeOption from 'components/Icon/IconsCoffeeOption';
 
 import { colors } from 'styles';
 import { useMediaQuery } from 'react-responsive';
-import { userCardProps } from '../../../types/userCardSmall';
+import { userCardSmall } from '../../../types/cardUserSmall.type';
 
 interface UserCardSmallProps {
-  card: userCardProps;
+  card: userCardSmall;
   reference?: any;
 }
 

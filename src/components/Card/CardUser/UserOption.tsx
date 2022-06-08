@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { fonts, colors } from 'styles';
-import { CoffeeTypeProps } from '../../../types/createMyCard';
+import { CoffeeType } from '../../../types/createMyCard.type';
 interface Props {
-  option: CoffeeTypeProps;
+  option: CoffeeType;
 }
 
 const UserCardOption = ({ option }: Props) => {

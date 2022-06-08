@@ -1,12 +1,11 @@
-import styled, { css } from 'styled-components';
 import useFetch from 'hooks/useFetch';
-
 import { maxWidth } from 'styles/mixin';
+import { desktopMain } from 'styles/mixin';
+import styled, { css } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
-import { userCardProps } from 'types/userCardSmall';
+import { userCardSmall } from 'types/cardUserSmall.type';
 import { useState, useRef, useCallback } from 'react';
 import { Header, Loader, UserCardSmall } from 'components';
-import { desktopMain } from 'styles/mixin';
 
 const UserCardListSection = () => {
   const observer = useRef<IntersectionObserver>();
@@ -42,8 +41,8 @@ const UserCardListSection = () => {
       />
 
       <CardListContainer isMobile={isMobile}>
-        {cards?.map((card: userCardProps, index: number) =>
-          index + 1 === cards.length ? ( // index + 1 번이 페이지의 마지막 item
+        {cards?.map((card: userCardSmall, index: number) =>
+          index + 1 === cards.length ? (
             <UserCardSmall key={index} card={card} reference={lastItemRef} />
           ) : (
             <UserCardSmall key={index} card={card} />

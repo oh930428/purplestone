@@ -2,10 +2,10 @@ import { fonts } from 'styles';
 import styled, { css } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import DigramImage from '../../../assets/Images/bg-digram-small.png';
-import { userCardSmallTypeProps } from '../../../types/userCardSmall';
+import { userCardSmallType } from '../../../types/cardUserSmall.type';
 
 interface Props {
-  option: userCardSmallTypeProps;
+  option: userCardSmallType;
 }
 
 const UserCardSmallOption = ({ option }: Props) => {

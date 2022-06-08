@@ -1,6 +1,6 @@
-import { UserCardProps } from 'types/createMyCard';
+import { UserCard } from 'types/createMyCard.type';
 
-export const coffeeDefaultOption: UserCardProps = {
+export const coffeeDefaultOption: UserCard = {
   brand: {
     id: 1,
     name: 'EDIYA COFFEE',
