@@ -56,7 +56,7 @@
       }
     ]
   },
-  "createMyCard": {
+  "create-card": {
     "title": "Make My Coffee Card",
     "subTitle": "내가 좋아하는 커피 취향을 만들어요",
     "chooseCoffeeOption": [
@@ -322,7 +322,7 @@
       }
     }
   },
-  "userCardSmallList": [
+  "cards": [
     {
       "userName": "딸기우유",
       "userCardSmallType": {
@@ -1175,14 +1175,7 @@
       "datasets": [
         {
           "label": "원두 종류 선호도",
-          "data": [
-            3,
-            20,
-            4,
-            7,
-            2,
-            5
-          ],
+          "data": [3, 20, 4, 7, 2, 5],
           "backgroundColor": [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
@@ -1217,14 +1210,7 @@
       "datasets": [
         {
           "label": "커피 브랜드 선호도",
-          "data": [
-            3,
-            20,
-            4,
-            7,
-            2,
-            5
-          ],
+          "data": [3, 20, 4, 7, 2, 5],
           "backgroundColor": [
             "rgba(255, 99, 132, 0.2)",
             "rgba(54, 162, 235, 0.2)",
