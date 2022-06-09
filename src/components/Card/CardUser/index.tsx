@@ -1,18 +1,18 @@
 import styled from 'styled-components';
-import UserCardOption from './UserOption';
+import UserCardOption from './UserCardOption';
 import CardImage from '../../../assets/Images/bg-card.png';
 import DigramImage from '../../../assets/Images/bg-digram.png';
 
 import { colors, fonts } from 'styles';
 import { useState, useRef, useEffect, useCallback } from 'react';
 
-interface UserCardProps {
+interface Props {
   userMyCard: any;
   userName: string;
   setUserName: (value: string) => void;
 }
 
-const UserCard = ({ userMyCard, userName, setUserName }: UserCardProps) => {
+const CardUser = ({ userMyCard, userName, setUserName }: Props) => {
   const [width, setWidth] = useState<number>(0);
   const textRef = useRef<HTMLSpanElement>(null);
 
@@ -60,7 +60,7 @@ const UserCard = ({ userMyCard, userName, setUserName }: UserCardProps) => {
   }
 };
 
-export default UserCard;
+export default CardUser;
 
 const Container = styled.div<{ Card: string }>`
   position: relative;

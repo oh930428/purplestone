@@ -8,7 +8,7 @@ interface Props {
   option: userCardSmallType;
 }
 
-const UserCardSmallOption = ({ option }: Props) => {
+const UserOptionSmall = ({ option }: Props) => {
   const isMobile = useMediaQuery({ query: '(max-width: 539px)' });
 
   return (
@@ -16,7 +16,7 @@ const UserCardSmallOption = ({ option }: Props) => {
       <Digram bgDigram={DigramImage} isMobile={isMobile}>
         <div className="thumbnail">
           <img
-            src={require(`../../../assets/Icons/${option.coffeeType.image}`)}
+            src={require(`../../../assets/Icons/${option.bottle.image}`)}
             alt="다이어그램 이미지"
           />
         </div>
@@ -32,7 +32,7 @@ const UserCardSmallOption = ({ option }: Props) => {
   );
 };
 
-export default UserCardSmallOption;
+export default UserOptionSmall;
 
 const Container = styled.div`
   display: flex;

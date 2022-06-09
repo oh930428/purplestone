@@ -4,9 +4,9 @@ import ProfileCardSkeleton from '../../../../components/Skeleton/ProfileCardSkel
 
 import { maxWidth } from 'styles/mixin';
 import { desktopMain } from 'styles/mixin';
-import { Header, ProfileCard } from 'components';
+import { Header, CardProfile } from 'components';
 import { useFetchCreatorsQuery } from 'store/api/creators';
-import { CardProfile } from '../../../../types/cardProfile.type';
+import { Profile } from '../../../../types/profile.type';
 
 const Creators = () => {
   const { data, isSuccess, isLoading } = useFetchCreatorsQuery();
@@ -23,8 +23,8 @@ const Creators = () => {
             subFont={desktopMain.subFont}
           />
           <div className="profile-box">
-            {data.profiles.map((profile: CardProfile, index: number) => (
-              <ProfileCard
+            {data.profiles.map((profile: Profile, index: number) => (
+              <CardProfile
                 key={index}
                 userName={profile.userName}
                 descrition={profile.descrition}
