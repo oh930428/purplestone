@@ -8,16 +8,16 @@ import { desktopMain, mobileMain, tabletMain } from 'styles/mixin';
 const Home = () => {
   let [isPop, setIsPop] = useState(false);
 
-  const getIsPop = (value: boolean | ((prevState: boolean) => boolean)) => {
+  const popUpVisible = (value: boolean) => {
     setIsPop(value);
   };
 
   useEffect(() => {
     const isCookie = document.cookie.indexOf('welcomePop=done');
     if (isCookie === -1) {
-      getIsPop(true);
+      popUpVisible(true);
     } else {
-      getIsPop(false);
+      popUpVisible(false);
     }
   }, []);
 
@@ -81,7 +81,7 @@ const Home = () => {
       )}
 
       <Creators />
-      {isPop ? <CookiePopup getIsPop={getIsPop} /> : ''}
+      {isPop ? <CookiePopup visible={popUpVisible} /> : ''}
     </Container>
   );
 };
