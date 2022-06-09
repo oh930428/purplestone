@@ -26,12 +26,9 @@ const Container = styled.article`
   position: absolute;
 
   &.bottle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 34.5%;
-    top: -15%;
-    width: 25rem;
+    left: 39.5%;
+    top: -20%;
+    width: 15rem;
 
     .name {
       margin-right: 1rem;
@@ -83,14 +80,14 @@ const ImageContainer = styled.figure`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   &.bottle-image {
     width: 11rem;
     height: 11rem;
-    top: 400%;
-    left: 24%;
+    top: 315%;
+    left: 15%;
     z-index: 100;
   }
 
