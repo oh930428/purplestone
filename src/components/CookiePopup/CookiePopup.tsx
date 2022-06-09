@@ -27,9 +27,9 @@ const CookiePopup = (props: { getIsPop: (arg: boolean) => void }) => {
     <Container>
       <aside id="popup" ref={popupRef}>
         <div className="content">
-          <Link to="#" className="close" onClick={handleClose}>
+          <Close className="close" onClick={handleClose}>
             <b>CLOSE</b>
-          </Link>
+          </Close>
 
           <div className="inner">
             <figure className="pic">
@@ -45,8 +45,8 @@ const CookiePopup = (props: { getIsPop: (arg: boolean) => void }) => {
               <ul>
                 <li>안녕하세요.</li>
                 <li>
-                  PurpleStone는 Typescript 기반의 React 라이브러리로 제작된
-                  포트폴리오 사이트입니다.
+                  PurpleStone은 Typescript 기반의 React로 제작된 포트폴리오
+                  사이트입니다.
                 </li>
                 <li>
                   현재 방문하신 사이트는 <strong>크롬</strong> 브라우저를
@@ -113,63 +113,6 @@ const Container = styled.div`
       border: 2px solid #fff;
       padding: 3rem;
 
-      .close {
-        float: right;
-        ${fonts.BoldBody2};
-        color: ${colors.Primary_01};
-        position: absolute;
-        top: 15px;
-        right: 15px;
-
-        b {
-          display: block;
-          transform: translateY(-20px);
-          opacity: 0;
-          transition: 0.5s;
-        }
-
-        &:hover {
-          &::before,
-          &::after {
-            transform: rotate(0deg);
-            top: 120%;
-          }
-
-          b {
-            transform: translateY(0px);
-            opacity: 1;
-          }
-        }
-
-        &::before {
-          content: '';
-          display: block;
-          width: 20px;
-          height: 2px;
-          background: #fff;
-          transform: rotate(45deg);
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          margin-left: -1rem;
-          transition: 0.5s;
-        }
-
-        &::after {
-          content: '';
-          display: block;
-          width: 20px;
-          height: 2px;
-          background: #fff;
-          transform: rotate(-45deg);
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          margin-left: -1rem;
-          transition: 0.5s;
-        }
-      }
-
       .inner {
         display: flex;
         justify-content: center;
@@ -206,13 +149,13 @@ const Container = styled.div`
           h1 {
             margin-bottom: 1rem;
             ${fonts.Hero2};
-            color: ${colors.Primary_01};
+            color: #a26fcc;
             line-height: 6rem;
             text-align: center;
           }
 
           ul {
-            padding: 1.5rem 3rem;
+            padding: 1.5rem 1.1rem;
             word-break: break-word;
 
             li {
@@ -222,7 +165,7 @@ const Container = styled.div`
               margin-bottom: 1rem;
 
               strong {
-                color: ${colors.Primary_01};
+                color: #a26fcc;
               }
             }
           }
@@ -245,7 +188,7 @@ const Container = styled.div`
 
             &:focus {
               color: #eee;
-              border: 2px solid ${colors.Primary_01};
+              border: 2px solid #a26fcc;
               background: transparent;
             }
           }
@@ -282,7 +225,7 @@ const Container = styled.div`
           width: 20px;
           height: 20px;
           background-color: transparent;
-          border: 1px solid ${colors.Primary_01};
+          border: 1px solid #a26fcc;
           border-radius: 3px;
           cursor: pointer;
           vertical-align: middle;
@@ -306,7 +249,7 @@ const Container = styled.div`
           }
 
           &.on {
-            background-color: ${colors.Primary_01};
+            background-color: #a26fcc;
             animation: ${check} 0.6s ease;
 
             &::after {
@@ -317,5 +260,62 @@ const Container = styled.div`
         }
       }
     }
+  }
+`;
+
+const Close = styled.span`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  ${fonts.BoldBody2};
+  color: #a26fcc;
+  cursor: pointer;
+
+  b {
+    display: block;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      transform: rotate(0deg);
+      top: 120%;
+    }
+
+    b {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1rem;
+    transition: 0.5s;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -1rem;
+    transition: 0.5s;
   }
 `;
