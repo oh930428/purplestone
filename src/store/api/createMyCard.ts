@@ -7,7 +7,7 @@ export const createMyCardApi = createApi({
   tagTypes: ['MyCard'],
   endpoints: builder => ({
     fetchMyCard: builder.query<createMyCard, void>({
-      query: () => '/createMyCard',
+      query: () => '/create-card',
       providesTags: ['MyCard'],
     }),
   }),

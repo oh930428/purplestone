@@ -25,7 +25,7 @@ export const coffeeDefaultOption: UserCard = {
   bottle: {
     id: 4,
     name: '텀블러',
-    description: '텀블러',
+    description: '텀블러가 좋아요',
     image: 'bottles/cup-tumbler.png',
     type: 'bottle',
   },

@@ -12,7 +12,7 @@ interface UserCardSmallProps {
   reference?: any;
 }
 
-const UserCardSmall = ({ card, reference }: UserCardSmallProps) => {
+const CardUserSmall = ({ card, reference }: UserCardSmallProps) => {
   const isDesktop = useMediaQuery({ query: '(min-width: 960px)' });
   const isTablet = useMediaQuery({
     query: '(min-width: 540px) and (max-width: 959px)',
@@ -48,7 +48,7 @@ const UserCardSmall = ({ card, reference }: UserCardSmallProps) => {
   );
 };
 
-export default UserCardSmall;
+export default CardUserSmall;
 
 const Container = styled.div<{
   bgCard: string;
