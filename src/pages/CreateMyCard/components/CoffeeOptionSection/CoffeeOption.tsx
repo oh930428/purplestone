@@ -16,7 +16,7 @@ const CoffeeOption = ({ option }: Props) => {
 
   /**
    * 커피 옵션을 선택하면, 선택한 옵션의 UI만 변경한다.
-   * @param {any} e 클릭 이벤트
+   * @param {any} e 현재 클릭한 노드
    */
   const onClickActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;
