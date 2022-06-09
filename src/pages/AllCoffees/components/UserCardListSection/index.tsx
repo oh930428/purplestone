@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
 import { userCardSmall } from 'types/cardUserSmall.type';
 import { useState, useRef, useCallback } from 'react';
-import { Header, Loader, UserCardSmall } from 'components';
+import { Header, Loader, CardUserSmall } from 'components';
 
 const UserCardListSection = () => {
   const observer = useRef<IntersectionObserver>();
@@ -43,9 +43,9 @@ const UserCardListSection = () => {
       <CardListContainer isMobile={isMobile}>
         {cards?.map((card: userCardSmall, index: number) =>
           index + 1 === cards.length ? (
-            <UserCardSmall key={index} card={card} reference={lastItemRef} />
+            <CardUserSmall key={index} card={card} reference={lastItemRef} />
           ) : (
-            <UserCardSmall key={index} card={card} />
+            <CardUserSmall key={index} card={card} />
           )
         )}
 
