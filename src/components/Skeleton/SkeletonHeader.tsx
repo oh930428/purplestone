@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Skeleton from './Skeleton';
-const HeaderSkeleton = () => {
+const SkeletonHeader = () => {
   return (
     <Container>
       <div className="header">
@@ -16,17 +16,17 @@ const HeaderSkeleton = () => {
   );
 };
 
-export default HeaderSkeleton;
+export default SkeletonHeader;
 
 const Container = styled.div`
   display: flex;
   flex-flow: column;
-  gap: 60px;
+  padding-bottom: 6rem;
 
   .header {
     display: flex;
     flex-flow: column;
     align-items: center;
-    gap: 7px;
+    gap: 0.7rem;
   }
 `;

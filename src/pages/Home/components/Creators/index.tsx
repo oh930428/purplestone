@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ConfettiComponents from './Confetti';
-import ProfileCardSkeleton from '../../../../components/Skeleton/ProfileCardSkeleton';
+import SkeletonProfileCard from '../../../../components/Skeleton/SkeletonProfileCard';
 
 import { maxWidth } from 'styles/mixin';
 import { desktopMain } from 'styles/mixin';
@@ -11,37 +11,38 @@ import { Profile } from '../../../../types/profile.type';
 const Creators = () => {
   const { data, isSuccess, isLoading } = useFetchCreatorsQuery();
 
-  if (isSuccess) {
-    return (
-      <Container>
-        <ConfettiComponents />
-        <div className="wrapper">
-          <Header
-            title={data.title}
-            subTitle={data.subTitle}
-            font={desktopMain.font}
-            subFont={desktopMain.subFont}
-          />
-          <div className="profile-box">
-            {data.profiles.map((profile: Profile, index: number) => (
-              <CardProfile
-                key={index}
-                userName={profile.userName}
-                descrition={profile.descrition}
-                thumbnail={profile.thumbnail}
-                background={profile.background}
-                iconSocial={profile.iconSocial}
-              />
-            ))}
-          </div>
-        </div>
-      </Container>
-    );
-  } else if (isLoading) {
-    return <ProfileCardSkeleton />;
-  } else {
-    return <div>not found</div>;
-  }
+  return (
+    <Container>
+      <ConfettiComponents />
+      <div className="wrapper">
+        {isSuccess ? (
+          <>
+            <Header
+              title={data.title}
+              subTitle={data.subTitle}
+              font={desktopMain.font}
+              subFont={desktopMain.subFont}
+            />
+            <div className="profile-box">
+              {data.profiles.map((profile: CardProfile, index: number) => (
+                <ProfileCard
+                  key={index}
+                  userName={profile.userName}
+                  descrition={profile.descrition}
+                  thumbnail={profile.thumbnail}
+                  background={profile.background}
+                  iconSocial={profile.iconSocial}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <SkeletonProfileCard />
+        )}
+        {isLoading && <SkeletonProfileCard />}
+      </div>
+    </Container>
+  );
 };
 
 export default Creators;

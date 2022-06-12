@@ -4,6 +4,7 @@ import { Header } from 'components';
 import { useFetchMostPopularQuery } from 'store/api/mostPopular';
 import { DoughnutSection } from './DoughnutSection';
 import { ResponsiveByDeivceProps } from 'types/responsiveByDevice.type';
+import SkeletonChart from 'components/Skeleton/SkeletonChart';
 
 const MostPopularSection = ({
   maxWidth,
@@ -12,7 +13,7 @@ const MostPopularSection = ({
   font,
   subFont,
 }: ResponsiveByDeivceProps) => {
-  const { data } = useFetchMostPopularQuery();
+  const { data, isSuccess, isLoading } = useFetchMostPopularQuery();
 
   return (
     <Container>
@@ -23,24 +24,31 @@ const MostPopularSection = ({
           margin: margin,
         }}
       >
-        <Header
-          title="The Most Popular."
-          subTitle="원산지별 원두 및 커피 브랜드별 취향을 가지고 있을까요?"
-          font={font}
-          subFont={subFont}
-        />
-        <div className="main" style={{ flexWrap: flexWrap }}>
-          {data?.map(item => (
-            <div className="main-section">
-              <DoughnutSection
-                key={item.id}
-                id={item.id}
-                labels={item.labels}
-                datasets={item.datasets}
-              />
+        {isSuccess ? (
+          <>
+            <Header
+              title="The Most Popular."
+              subTitle="원산지별 원두 및 커피 브랜드별 취향을 가지고 있을까요?"
+              font={font}
+              subFont={subFont}
+            />
+            <div className="main" style={{ flexWrap: flexWrap }}>
+              {data?.map(item => (
+                <div className="main-section">
+                  <DoughnutSection
+                    key={item.id}
+                    id={item.id}
+                    labels={item.labels}
+                    datasets={item.datasets}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        ) : (
+          <SkeletonChart />
+        )}
+        {isLoading && <SkeletonChart />}
       </div>
     </Container>
   );

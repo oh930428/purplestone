@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Header } from 'components';
 import { ResponsiveByDeivceProps } from 'types/responsiveByDevice.type';
 import CoverflowSection from './CoverflowSection';
-import HeaderSkeleton from 'components/Skeleton/HeaderSkeleton';
+import SkeletonHeader from 'components/Skeleton/SkeletonHeader';
 
 import { useFetchOthersCoffeeQuery } from 'store/api/otherscoffee';
 
@@ -27,7 +27,7 @@ const OthersCoffee = ({
             subFont={subFont}
           />
         ) : (
-          <HeaderSkeleton />
+          <SkeletonHeader />
         )}
         <CoverflowSection />
       </div>
