@@ -25,12 +25,10 @@ export default UserCardOption;
 const Container = styled.article`
   position: absolute;
 
-  &.brand {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 41%;
-    top: -15%;
+  &.bottle {
+    left: 39.5%;
+    top: -20%;
+    width: 15rem;
 
     .name {
       margin-right: 1rem;
@@ -49,11 +47,9 @@ const Container = styled.article`
     width: 15rem;
   }
 
-  &.bottle {
-    bottom: -20%;
-    left: 20%;
-    width: 15rem;
-    text-align: right;
+  &.brand {
+    bottom: -5rem;
+    left: 21rem;
   }
 
   &.temperature {
@@ -84,33 +80,33 @@ const ImageContainer = styled.figure`
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
-  &.coffeeType-image {
-    width: 10rem;
-    height: 10rem;
-    top: -400%;
-    left: -75%;
+  &.bottle-image {
+    width: 11rem;
+    height: 11rem;
+    top: 315%;
+    left: 15%;
     z-index: 100;
   }
 
-  &.brand-image {
-    left: 3rem;
-    top: 10.5rem;
+  &.beans-image {
+    top: -5rem;
   }
 
-  &.beans-image {
-    right: 238px;
-    top: 0px;
+  &.coffeeType-image {
+    left: 10rem;
+    top: -0.5rem;
+  }
+
+  &.brand-image {
+    left: -6rem;
+    top: -0.5rem;
   }
 
   &.temperature-image {
     top: -100%;
     right: -30%;
-  }
-
-  &.bottle-image {
-    transform: translate(200%, -200%);
   }
 `;

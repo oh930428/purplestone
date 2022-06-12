@@ -3,19 +3,19 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const userCardListApi = createApi({
   reducerPath: 'userCardListApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
-  tagTypes: ['CardList'],
+  tagTypes: ['Cards'],
   endpoints: builder => ({
     fetchUserCardList: builder.query<any, void>({
-      query: () => '/userCardSmallList',
-      providesTags: ['CardList'],
+      query: () => '/cards',
+      providesTags: ['Cards'],
     }),
     addUserCardList: builder.mutation<{}, any>({
       query: ({ id, ...rest }) => ({
-        url: '/userCardSmallList',
+        url: '/cards',
         method: 'POST',
         body: rest,
       }),
-      invalidatesTags: ['CardList'],
+      invalidatesTags: ['Cards'],
     }),
   }),
 });

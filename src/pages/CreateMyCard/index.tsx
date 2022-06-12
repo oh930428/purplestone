@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { desktopMain } from 'styles/mixin';
 import { RootState } from '../../store/index';
-import { Header, UserCard } from 'components';
+import { Header, CardUser } from 'components';
 import { useMediaQuery } from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
 import { CoffeeOptionSection } from './components';
@@ -70,7 +70,7 @@ const CreateMyCard = () => {
           />
           <Flex>
             <CoffeeOptionSection />
-            <UserCard
+            <CardUser
               userMyCard={userMyCard}
               userName={userName}
               setUserName={setUserName}
@@ -99,6 +99,7 @@ export default CreateMyCard;
 
 const Container = styled.div`
   width: 100%;
+  min-height: 100vh;
   padding: 21rem 0;
   background-image: url(${background});
 `;

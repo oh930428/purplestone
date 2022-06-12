@@ -4,9 +4,9 @@ import SkeletonProfileCard from '../../../../components/Skeleton/SkeletonProfile
 
 import { maxWidth } from 'styles/mixin';
 import { desktopMain } from 'styles/mixin';
-import { Header, ProfileCard } from 'components';
+import { Header, CardProfile } from 'components';
 import { useFetchCreatorsQuery } from 'store/api/creators';
-import { CardProfile } from '../../../../types/cardProfile.type';
+import { Profile } from '../../../../types/profile.type';
 
 const Creators = () => {
   const { data, isSuccess, isLoading } = useFetchCreatorsQuery();

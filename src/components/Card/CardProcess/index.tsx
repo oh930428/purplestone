@@ -10,7 +10,7 @@ interface Props {
   setSelected: (arg: string) => void;
 }
 
-const ProcessCard = ({ option, setSelected }: Props) => {
+const CardProcess = ({ option, setSelected }: Props) => {
   const dispatch = useDispatch();
 
   /**
@@ -117,4 +117,4 @@ const Container = styled.li`
   }
 `;
 
-export default ProcessCard;
+export default CardProcess;

@@ -46,7 +46,7 @@ const Container = styled.footer<{ isDesktop: boolean; isMobile: boolean }>`
   ${props =>
     props.isDesktop &&
     css`
-      padding: 0;
+      padding: 1rem 0 3rem;
     `}
 `;
 
