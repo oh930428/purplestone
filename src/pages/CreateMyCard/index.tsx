@@ -15,6 +15,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { CoffeeOptionSection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
 import { useAddUserCardListMutation } from 'store/api/userCardList';
+import SkeletonCoffeeOption from 'components/Skeleton/SkeletonCoffeeOption';
 
 const CreateMyCard = () => {
   const navigate = useNavigate();
@@ -58,41 +59,42 @@ const CreateMyCard = () => {
     onClose();
   };
 
-  if (isSuccess) {
-    return (
-      <Container>
-        <Wrpper isDesktop={isDesktop}>
-          <Header
-            title={data.title}
-            subTitle={data.subTitle}
-            font={desktopMain.font}
-            subFont={desktopMain.subFont}
-          />
-          <Flex>
-            <CoffeeOptionSection />
-            <CardUser
-              userMyCard={userMyCard}
-              userName={userName}
-              setUserName={setUserName}
+  return (
+    <Container>
+      <Wrpper isDesktop={isDesktop}>
+        {isSuccess ? (
+          <>
+            <Header
+              title={data.title}
+              subTitle={data.subTitle}
+              font={desktopMain.font}
+              subFont={desktopMain.subFont}
             />
-            <ButtonWrapper>
-              <Button size="large" theme="primary" label="캡처하기" />
-              <Button
-                size="large"
-                theme="primary"
-                label="게시하기"
-                onPress={handleConfirm}
-              ></Button>
-            </ButtonWrapper>
-          </Flex>
-        </Wrpper>
-      </Container>
-    );
-  } else if (isLoading) {
-    return <div>loading...</div>;
-  } else {
-    return <div>not found</div>;
-  }
+            <Flex>
+              <CoffeeOptionSection />
+              <CardUser
+                userMyCard={userMyCard}
+                userName={userName}
+                setUserName={setUserName}
+              />
+              <ButtonWrapper>
+                <Button size="large" theme="primary" label="캡처하기" />
+                <Button
+                  size="large"
+                  theme="primary"
+                  label="게시하기"
+                  onPress={handleConfirm}
+                ></Button>
+              </ButtonWrapper>
+            </Flex>
+          </>
+        ) : (
+          <SkeletonCoffeeOption />
+        )}
+        {isLoading && <SkeletonCoffeeOption />}
+      </Wrpper>
+    </Container>
+  );
 };
 
 export default CreateMyCard;
