@@ -1133,31 +1133,31 @@
     "cardImages": [
       {
         "id": 1,
-        "thumbnail": "coffee-card-image.png"
+        "thumbnail": "coffee-card-image1.png"
       },
       {
         "id": 2,
-        "thumbnail": "coffee-card-image.png"
+        "thumbnail": "coffee-card-image2.png"
       },
       {
         "id": 3,
-        "thumbnail": "coffee-card-image.png"
+        "thumbnail": "coffee-card-image3.png"
       },
       {
         "id": 4,
-        "thumbnail": "coffee-card-image.png"
+        "thumbnail": "coffee-card-image4.png"
       },
       {
         "id": 5,
-        "thumbnail": "coffee-card-image.png"
+        "thumbnail": "coffee-card-image5.png"
       },
       {
         "id": 6,
-        "thumbnail": "coffee-card-image.png"
+        "thumbnail": "coffee-card-image6.png"
       },
       {
         "id": 7,
-        "thumbnail": "coffee-card-image.png"
+        "thumbnail": "coffee-card-image7.png"
       }
     ]
   },
