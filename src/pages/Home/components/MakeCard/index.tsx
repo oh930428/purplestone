@@ -20,11 +20,11 @@ const CreateMyCard = ({
   const isMobile = useMediaQuery({ query: '(max-width: 539px)' });
 
   const processCardItems = [
-    { img: require('../../../../assets/Images/process-card_01.png') },
-    { img: require('../../../../assets/Images/process-card_02.png') },
-    { img: require('../../../../assets/Images/process-card_03.png') },
-    { img: require('../../../../assets/Images/process-card_04.png') },
-    { img: require('../../../../assets/Images/process-card_05.png') },
+    { img: require('../../../../assets/Images/process-card1.png') },
+    { img: require('../../../../assets/Images/process-card2.png') },
+    { img: require('../../../../assets/Images/process-card3.png') },
+    { img: require('../../../../assets/Images/process-card4.png') },
+    { img: require('../../../../assets/Images/process-card5.png') },
   ];
 
   return (
@@ -44,7 +44,7 @@ const CreateMyCard = ({
           }
         >
           <DrawSvg />
-          <Items isMobile={isMobile}>
+          <Items isDesktop={isDesktop}>
             <Item
               isMobile={isMobile}
               isTablet={isTablet}
@@ -61,7 +61,7 @@ const CreateMyCard = ({
             ))}
             <Item isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop}>
               <img
-                src={require('../../../../assets/Images/coffee-card-image.png')}
+                src={require('../../../../assets/Images/coffee-card-image1.png')}
                 alt=""
               />
             </Item>
@@ -103,14 +103,14 @@ const Container = styled.section`
   }
 `;
 
-const Items = styled.ul<{ isMobile: boolean }>`
+const Items = styled.ul<{ isDesktop: boolean }>`
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-top: ${props => (props.isMobile ? '0rem' : '8rem')};
+  padding-top: ${props => (props.isDesktop ? '8rem' : '0rem')};
 `;
 
 const Item = styled.li<{
@@ -127,8 +127,8 @@ const Item = styled.li<{
       &:nth-child(odd) {
         justify-content: flex-start;
         img {
-          width: 42rem;
-          height: 33rem;
+          width: 50rem;
+          height: 35rem;
           border-radius: 2rem;
         }
       }
@@ -136,8 +136,8 @@ const Item = styled.li<{
       &:nth-child(even) {
         justify-content: flex-end;
         img {
-          width: 42rem;
-          height: 33rem;
+          width: 50rem;
+          height: 35rem;
           border-radius: 2rem;
         }
       }
@@ -146,18 +146,17 @@ const Item = styled.li<{
         justify-content: flex-end;
         height: 33rem;
         img {
-          width: 42rem;
-          height: 22rem;
+          width: 50rem;
+          height: 26rem;
           border-radius: 2rem;
         }
       }
 
       &:nth-child(7) {
         justify-content: center;
-        padding-top: 1rem;
         img {
-          width: 42rem;
-          height: 33rem;
+          width: 50rem;
+          height: 38rem;
           border-radius: 2rem;
         }
       }
@@ -166,7 +165,7 @@ const Item = styled.li<{
   ${props =>
     props.isTablet &&
     css`
-      width: 80%;
+      width: 100%;
       justify-content: flex-end;
       padding-bottom: 8rem;
 
@@ -199,7 +198,7 @@ const Item = styled.li<{
     ${props =>
     props.isMobile &&
     css`
-      width: 80%;
+      width: 100%;
       justify-content: flex-end;
       padding-bottom: 8rem;
 

@@ -33,14 +33,14 @@ export const tabletMain: ResponsiveByDeivceProps = {
   font: {
     fontFamily: 'Poppins',
     fontWeight: 'bold',
-    fontSize: '4rem',
+    fontSize: '6rem',
     lineHeight: '6rem',
     letterSpacing: '-0.01em',
   },
   subFont: {
     fontFamily: 'Noto Sans KR, sans-serif',
     fontWeight: '500',
-    fontSize: '1.6rem',
+    fontSize: '2.4rem',
     lineHeight: '2rem',
     letterSpacing: '-0.01em',
   },
@@ -53,14 +53,14 @@ export const mobileMain: ResponsiveByDeivceProps = {
   font: {
     fontFamily: 'Poppins',
     fontWeight: 'bold',
-    fontSize: '3rem',
+    fontSize: '6rem',
     lineHeight: '4.2rem',
     letterSpacing: '-0.01em',
   },
   subFont: {
     fontFamily: 'Noto Sans KR, sans-serif',
     fontWeight: '500',
-    fontSize: '1.2rem',
+    fontSize: '2.4rem',
     lineHeight: '1.4rem',
     letterSpacing: '-0.01em',
   },
