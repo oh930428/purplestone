@@ -13,7 +13,7 @@ export const desktopMain: ResponsiveByDeivceProps = {
   font: {
     fontFamily: 'Poppins',
     fontWeight: 'bold',
-    fontSize: '6rem',
+    fontSize: '5.5rem',
     lineHeight: '8rem',
     letterSpacing: '-0.01em',
   },
