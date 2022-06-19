@@ -91,17 +91,19 @@ const Container = styled.div`
   align-items: center;
 
   .swiper-container {
-    height: 40rem;
+    height: 50rem;
 
     .swiper-slide {
+      width: 100%;
+      height: 50rem;
       background-position: center;
       background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
       .photo {
-        width: 40rem;
-        height: 30rem;
+        width: 50rem;
+        height: 36rem;
       }
     }
   }

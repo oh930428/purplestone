@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import HeaderSkeleton from './HeaderSkeleton';
 import Skeleton from './Skeleton';
+import SkeletonHeader from './SkeletonHeader';
 
-const ProfileCardSkeleton = () => {
+const SkeletonProfileCard = () => {
   return (
     <Container>
-      <HeaderSkeleton />
+      <SkeletonHeader />
       <div className="profile-cards">
         <Skeleton
           style={{ width: 338, height: 426, borderRadius: 20 }}
@@ -25,19 +25,12 @@ const ProfileCardSkeleton = () => {
   );
 };
 
-export default ProfileCardSkeleton;
+export default SkeletonProfileCard;
 
 const Container = styled.div`
   display: flex;
   flex-flow: column;
-  gap: 60px;
 
-  .header {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    gap: 7px;
-  }
   .profile-cards {
     display: flex;
     align-items: center;
