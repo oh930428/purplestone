@@ -12,6 +12,10 @@ const UserCardListSection = () => {
   const [page, setPage] = useState<number>(1);
   const { isLoading, isError, cards, hasMore } = useFetch(page);
 
+  /**
+   * 스크롤시 마지막 카드가 감지되면, 페이지 state를 업데이트 한다.
+   * @param {HTMLElement} node 마지막 노드
+   */
   const lastItemRef = useCallback(
     (node: HTMLElement) => {
       if (isLoading) return;
