@@ -1,12 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
 import { fonts, colors } from 'styles';
-import styled, { keyframes } from 'styled-components';
+import { useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import styled, { css, keyframes } from 'styled-components';
 import CardImage from '../../assets/Images/popup-image.jpg';
 
 const CookiePopup = ({ visible }) => {
   const popupRef = useRef<HTMLElement>(null);
   const iconRef = useRef<HTMLSpanElement>(null);
   let [check, setCheck] = useState('');
+  const isMobile = useMediaQuery({ query: '(max-width: 680px)' });
 
   const handleCheck = (e: any) => {
     const isCheck = e.target.checked;
@@ -35,7 +37,7 @@ const CookiePopup = ({ visible }) => {
   return (
     <Container>
       <aside id="popup" ref={popupRef}>
-        <PopupContents>
+        <PopupContents isMobile={isMobile}>
           <Close className="close" onClick={handleClose}>
             <b>CLOSE</b>
           </Close>
@@ -104,7 +106,7 @@ const Container = styled.div`
   }
 `;
 
-const PopupContents = styled.div`
+const PopupContents = styled.div<{ isMobile: boolean }>`
   width: 80rem;
   min-height: 40rem;
   position: absolute;
@@ -115,6 +117,12 @@ const PopupContents = styled.div`
   border: 2px solid #fff;
   padding: 3rem;
 
+  ${props =>
+    props.isMobile &&
+    css`
+      width: 80%;
+    `}
+
   .inner {
     display: flex;
     justify-content: center;
@@ -124,6 +132,16 @@ const PopupContents = styled.div`
     height: 40rem;
     margin: 1.5rem 0px;
 
+    ${props =>
+      props.isMobile &&
+      css`
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        height: 100%;
+        margin: 3.5rem 0px;
+      `}
+
     &::after {
       content: '';
       display: block;
@@ -131,8 +149,8 @@ const PopupContents = styled.div`
     }
 
     .pic {
-      flex: 1;
-      height: 100%;
+      height: 42rem;
+
       background: #fff;
       border-radius: 20px;
 
@@ -141,12 +159,25 @@ const PopupContents = styled.div`
         height: 100%;
         object-fit: cover;
       }
+
+      ${props =>
+        !props.isMobile &&
+        css`
+          flex: 1;
+          height: 100%;
+        `}
     }
 
     .description {
       position: relative;
       flex: 1;
       padding: 1rem 3rem;
+
+      ${props =>
+        props.isMobile &&
+        css`
+          padding: 3rem 3rem 1rem;
+        `}
 
       h1 {
         margin-bottom: 1rem;
