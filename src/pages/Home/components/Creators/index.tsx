@@ -24,8 +24,8 @@ const Creators = () => {
               subFont={desktopMain.subFont}
             />
             <div className="profile-box">
-              {data.profiles.map((profile: CardProfile, index: number) => (
-                <ProfileCard
+              {data.profiles.map((profile: Profile, index: number) => (
+                <CardProfile
                   key={index}
                   userName={profile.userName}
                   descrition={profile.descrition}
