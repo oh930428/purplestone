@@ -76,18 +76,8 @@ const Navigation = () => {
             <li onClick={() => setSlideEffect(false)}>
               <NavLink to="/all-coffees">All Coffees</NavLink>
             </li>
-            <li
-              className="nav-button-item"
-              onClick={() => setSlideEffect(false)}
-            >
-              <NavLink to="/mycard">
-                <Button
-                  size="medium"
-                  theme="primary"
-                  label="Create My Card"
-                  isRegular
-                ></Button>
-              </NavLink>
+            <li onClick={() => setSlideEffect(false)}>
+              <NavLink to="/mycard">Create My Card</NavLink>
             </li>
           </MobileGnb>
 
@@ -119,12 +109,6 @@ const Container = styled.nav<{ isDesktop: boolean }>`
   width: 100%;
   padding: 0 2rem;
   z-index: 1000;
-
-  ${props =>
-    props.isDesktop &&
-    css`
-      padding: 0;
-    `}
 
   .wrapper {
     display: flex;
@@ -234,7 +218,30 @@ const MobileGnb = styled.ul`
   gap: 50px;
 
   li {
+    position: relative;
     font-size: 4rem;
+  }
+
+  li::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 120%;
+    height: 130%;
+    left: 50%;
+    top: 50%;
+    transform-origin: center;
+    transform: translate(-50%, -50%) scale(1.1);
+    border: 3px solid ${colors.Primary_02};
+    border-radius: 1.5em;
+    z-index: -1;
+    transition: 0.3s;
+    opacity: 0;
+  }
+
+  li:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 `;
 

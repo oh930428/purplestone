@@ -8,6 +8,10 @@ const useFetch = (page: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
 
+  /**
+   * 페이지 param을 받아서, getUserCard에 담아 호출한다.
+   * @param {number} page 페이지 번호
+   */
   const sendQuery = useCallback(async (page: number) => {
     try {
       setIsLoading(true);

@@ -29,6 +29,7 @@ const Container = styled.article`
     left: 39.5%;
     top: -20%;
     width: 15rem;
+    text-align: center;
 
     .name {
       margin-right: 1rem;
