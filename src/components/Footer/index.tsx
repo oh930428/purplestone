@@ -42,12 +42,6 @@ const Container = styled.footer<{ isDesktop: boolean; isMobile: boolean }>`
   width: 100%;
   padding: 2rem;
   background-color: ${colors.Primary_01};
-
-  ${props =>
-    props.isDesktop &&
-    css`
-      padding: 1rem 0 3rem;
-    `}
 `;
 
 const Logo = styled.h1`
