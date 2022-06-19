@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const userCardListApi = createApi({
   reducerPath: 'userCardListApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://purplestone.herokuapp.com' }),
   tagTypes: ['Cards'],
   endpoints: builder => ({
     fetchUserCardList: builder.query<any, void>({

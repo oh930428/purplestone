@@ -3,7 +3,7 @@ import { CreatorsPorps } from '../../types/creators.types';
 
 export const creatorsApi = createApi({
   reducerPath: 'creatorsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://purplestone.herokuapp.com' }),
   tagTypes: ['Creators'],
   endpoints: builder => ({
     fetchCreators: builder.query<CreatorsPorps, void>({
