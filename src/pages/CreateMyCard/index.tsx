@@ -1,13 +1,15 @@
-import styled, { css } from 'styled-components';
+import downloadjs from 'downloadjs';
+import html2canvas from 'html2canvas';
 import Button from 'components/Button';
+import styled, { css } from 'styled-components';
 import background from '../../assets/Images/bg-section.jpg';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-import { useState } from 'react';
 import { maxWidth } from 'styles/mixin';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { desktopMain } from 'styles/mixin';
+import { useState, useCallback } from 'react';
 import { RootState } from '../../store/index';
 import { Header, CardUser } from 'components';
 import { useMediaQuery } from 'react-responsive';
@@ -25,6 +27,9 @@ const CreateMyCard = () => {
   const userMyCard = useSelector<RootState>(state => state.myCardReducer);
   const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
 
+  /**
+   * CreateMyCard 페이지에서 "게시하기" 버튼을 눌렀을때, 컨펌창을 띄운다.
+   */
   const handleConfirm = () => {
     confirmAlert({
       customUI: ({ onClose }) => {
@@ -59,6 +64,14 @@ const CreateMyCard = () => {
     onClose();
   };
 
+  const handleCapture = useCallback(async () => {
+    const card = document.querySelector<HTMLElement>('#card');
+    if (!card) return;
+    const canvas = await html2canvas(card);
+    const dataURL = canvas.toDataURL('image/png');
+    downloadjs(dataURL, 'download.png', 'image/png');
+  }, []);
+
   return (
     <Container>
       <Wrpper isDesktop={isDesktop}>
@@ -78,7 +91,12 @@ const CreateMyCard = () => {
                 setUserName={setUserName}
               />
               <ButtonWrapper>
-                <Button size="large" theme="primary" label="캡처하기" />
+                <Button
+                  size="large"
+                  theme="primary"
+                  label="캡처하기"
+                  onPress={handleCapture}
+                />
                 <Button
                   size="large"
                   theme="primary"

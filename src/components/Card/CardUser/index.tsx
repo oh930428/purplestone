@@ -32,7 +32,7 @@ const CardUser = ({ userMyCard, userName, setUserName }: Props) => {
 
   if (userMyCard) {
     return (
-      <Container Card={CardImage}>
+      <Container id="card" Card={CardImage}>
         <Header width={width}>
           <span ref={textRef} className="hide">
             {userName}
@@ -64,9 +64,6 @@ export default CardUser;
 
 const Container = styled.div<{ Card: string }>`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 72rem;
   height: 55rem;
   background-image: ${props => `url(${props.Card})`};
@@ -75,16 +72,12 @@ const Container = styled.div<{ Card: string }>`
 `;
 
 const Header = styled.header<{ width: number }>`
-  .hide {
-    ${fonts.Hero3}
-    position: absolute;
-    opacity: 0;
-    z-index: -100;
-  }
+  text-align: center;
 
   input {
     width: ${props => props.width}px;
     max-width: 46rem;
+    height: 100%;
     margin-top: 5.5rem;
     ${fonts.Hero3}
     color: ${colors.Primary_01};
@@ -95,6 +88,13 @@ const Header = styled.header<{ width: number }>`
       color: ${colors.Primary_01};
       opacity: 0.9;
     }
+  }
+
+  .hide {
+    ${fonts.Hero3}
+    position: absolute;
+    opacity: 0;
+    z-index: -100;
   }
 `;
 
