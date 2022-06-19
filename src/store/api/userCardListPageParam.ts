@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const httpClient = axios.create({
-  baseURL: 'https://purplestone.herokuapp.com',
+  baseURL: 'https://purplestone.herokuapp.com/api',
   headers: {
     'Content-Type': 'application/json',
   },

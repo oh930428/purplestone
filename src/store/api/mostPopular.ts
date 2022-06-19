@@ -3,7 +3,9 @@ import { ChartProps } from 'types/doughnut.type';
 
 export const mostPopularApi = createApi({
   reducerPath: 'mostPopularApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://purplestone.herokuapp.com' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://purplestone.herokuapp.com/api',
+  }),
   tagTypes: ['MostPopular'],
   endpoints: builder => ({
     fetchMostPopular: builder.query<ChartProps[], void>({

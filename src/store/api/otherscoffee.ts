@@ -3,7 +3,9 @@ import { OthersCoffeeProps } from '../../types/othersCoffee.type';
 
 export const otherscoffeeApi = createApi({
   reducerPath: 'otherscoffeeApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://purplestone.herokuapp.com' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://purplestone.herokuapp.com/api',
+  }),
   tagTypes: ['OthersCoffee'],
   endpoints: builder => ({
     fetchOthersCoffee: builder.query<OthersCoffeeProps, void>({
