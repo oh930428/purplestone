@@ -1,11 +1,11 @@
-export interface createMyCard {
+export interface CreateMyCard {
   title: string;
   subTitle: string;
-  chooseCoffeeOption: ChooseOption[];
+  coffeeOptions: CoffeeOption[];
   userCard: UserCard;
 }
 
-export interface ChooseOption {
+export interface CoffeeOption {
   id: string;
   name: string;
   text: string;

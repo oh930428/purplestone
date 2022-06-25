@@ -1,4 +1,4 @@
-import { createMyCard } from '../../types/createMyCard.type';
+import { CreateMyCard } from '../../types/createMyCard.type';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const createMyCardApi = createApi({
@@ -8,7 +8,7 @@ export const createMyCardApi = createApi({
   }),
   tagTypes: ['MyCard'],
   endpoints: builder => ({
-    fetchMyCard: builder.query<createMyCard, void>({
+    fetchMyCard: builder.query<CreateMyCard, void>({
       query: () => '/create-card',
       providesTags: ['MyCard'],
     }),

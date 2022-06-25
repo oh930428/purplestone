@@ -40,7 +40,7 @@ export default Footer;
 
 const Container = styled.footer<{ isDesktop: boolean; isMobile: boolean }>`
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 2rem 4rem;
   background-color: ${colors.Primary_01};
 `;
 

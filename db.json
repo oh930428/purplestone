@@ -59,7 +59,7 @@
   "create-card": {
     "title": "Make My Coffee Card",
     "subTitle": "내가 좋아하는 커피 취향을 만들어요",
-    "chooseCoffeeOption": [
+    "coffeeOptions": [
       {
         "id": 13,
         "name": "bottle",
