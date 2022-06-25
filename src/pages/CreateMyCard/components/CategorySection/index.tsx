@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import CoffeeOption from './CoffeeOption';
+import Category from './Category';
 import { ChooseOption } from 'types/createMyCard.type';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
 
-const CoffeeOptionSection = () => {
+const CategorySection = () => {
   const { data, isLoading, isSuccess } = useFetchMyCardQuery();
 
   if (isSuccess) {
     return (
       <Container>
         {data.chooseCoffeeOption.map((option: ChooseOption, index: number) => (
-          <CoffeeOption key={index} option={option} />
+          <Category key={index} option={option} />
         ))}
       </Container>
     );
@@ -21,7 +21,7 @@ const CoffeeOptionSection = () => {
   }
 };
 
-export default CoffeeOptionSection;
+export default CategorySection;
 
 const Container = styled.div`
   display: inline-flex;

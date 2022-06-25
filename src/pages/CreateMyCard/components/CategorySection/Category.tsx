@@ -9,7 +9,7 @@ interface Props {
   option: ChooseOption;
 }
 
-const CoffeeOption = ({ option }: Props) => {
+const Category = ({ option }: Props) => {
   const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>('');
@@ -64,7 +64,7 @@ const CoffeeOption = ({ option }: Props) => {
   );
 };
 
-export default CoffeeOption;
+export default Category;
 
 const Container = styled.article<{
   circle: string;
