@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { useRef, useState } from 'react';
-import { ChooseOption } from 'types/createMyCard.type';
+import { CoffeeOption } from 'types/createMyCard.type';
 import ProcessCard from 'components/Card/CardProcess';
 import circle from '../../../../assets/Images/bg-circle.png';
 import circleActive from '../../../../assets/Images/bg-circle-active.png';
 
 interface Props {
-  option: ChooseOption;
+  option: CoffeeOption;
 }
 
 const Category = ({ option }: Props) => {

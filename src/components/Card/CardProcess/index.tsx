@@ -3,10 +3,10 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { colors, fonts } from '../../../styles';
 import { setSelectOptions } from 'store/state/MyCardSlice';
-import { ChooseOption, CoffeeType } from 'types/createMyCard.type';
+import { CoffeeOption, CoffeeType } from 'types/createMyCard.type';
 
 interface Props {
-  option: ChooseOption;
+  option: CoffeeOption;
   setSelected: (arg: string) => void;
 }
 
@@ -15,7 +15,7 @@ const CardProcess = ({ option, setSelected }: Props) => {
 
   /**
    * 선택한 옵션의 데이터를 state에 담고, dispatch에 담아 리듀서로 보낸다.
-   * @param {ChooseOption} selected 선택한 커피 옵션
+   * @param {CoffeeOption} selected 선택한 커피 옵션
    */
   const handleSelectedOption = useCallback(
     (selected: CoffeeType) => {
