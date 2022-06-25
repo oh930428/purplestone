@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 const Loader = () => {
   return (
-    <Container>
+    <Container className="loader">
       <svg
         className="loading"
         xmlns="http://www.w3.org/2000/svg"

@@ -38,8 +38,8 @@ const CardUser = ({ userMyCard, userName, setUserName }: Props) => {
             {userName}
           </span>
           <input
-            maxLength={7}
             type="text"
+            maxLength={12}
             placeholder={userName}
             autoFocus
             onChange={changeHandler}
@@ -64,8 +64,14 @@ export default CardUser;
 
 const Container = styled.div<{ Card: string }>`
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
   width: 72rem;
   height: 55rem;
+  padding: 5.5rem;
   background-image: ${props => `url(${props.Card})`};
   background-repeat: no-repeat;
   background-size: cover;
@@ -77,8 +83,7 @@ const Header = styled.header<{ width: number }>`
   input {
     width: ${props => props.width}px;
     max-width: 46rem;
-    height: 100%;
-    margin-top: 5.5rem;
+    height: 5.5rem;
     ${fonts.Hero3}
     color: ${colors.Primary_01};
     background: linear-gradient(to top, #f5f2c2 50%, transparent 50%);
