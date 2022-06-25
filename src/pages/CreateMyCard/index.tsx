@@ -1,36 +1,42 @@
-import downloadjs from 'downloadjs';
-import html2canvas from 'html2canvas';
-import Button from 'components/Button';
 import styled, { css } from 'styled-components';
+import { Header, CardUser, Loader } from 'components';
+import { useCallback, useRef, useState } from 'react';
+
+import Button from 'components/Button';
+import SkeletonCoffeeOption from 'components/Skeleton/SkeletonCoffeeOption';
+
 import background from '../../assets/Images/bg-section.jpg';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+import download from 'downloadjs';
+import { toPng } from 'html-to-image';
 import { maxWidth } from 'styles/mixin';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { desktopMain } from 'styles/mixin';
-import { useState, useCallback } from 'react';
 import { RootState } from '../../store/index';
-import { Header, CardUser } from 'components';
 import { useMediaQuery } from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
-import { CoffeeOptionSection } from './components';
+import { CategorySection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
 import { useAddUserCardListMutation } from 'store/api/userCardList';
-import SkeletonCoffeeOption from 'components/Skeleton/SkeletonCoffeeOption';
 
 const CreateMyCard = () => {
   const navigate = useNavigate();
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [userName, setUserName] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+
   const { data, isLoading, isSuccess } = useFetchMyCardQuery();
   const [addUserCardList] = useAddUserCardListMutation();
-  const [userName, setUserName] = useState<string>('');
+
   const userMyCard = useSelector<RootState>(state => state.myCardReducer);
   const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
 
   /**
    * CreateMyCard 페이지에서 "게시하기" 버튼을 눌렀을때, 컨펌창을 띄운다.
    */
-  const handleConfirm = () => {
+  const handleConfirm = useCallback(() => {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -48,13 +54,13 @@ const CreateMyCard = () => {
         );
       },
     });
-  };
+  }, []);
 
   /**
    * 컨펌창에서 "게시하기" 버튼 눌렀을때, POST API 호출
    * @param {funtion} onClose 컨펌창이 닫히는 함수
    */
-  const handleAddCard = async (onClose: { (): void }) => {
+  const handleAddCard = useCallback(async (onClose: { (): void }) => {
     await addUserCardList({
       id: Date.now(),
       userName: userName,
@@ -62,15 +68,15 @@ const CreateMyCard = () => {
     });
     navigate('/all-coffees');
     onClose();
-  };
+  }, []);
 
   const handleCapture = useCallback(async () => {
-    const card = document.querySelector<HTMLElement>('#card');
-    if (!card) return;
-    const canvas = await html2canvas(card);
-    const dataURL = canvas.toDataURL('image/png');
-    downloadjs(dataURL, 'download.png', 'image/png');
-  }, []);
+    setLoading(true);
+    if (cardRef.current) {
+      download(await toPng(cardRef.current), 'MyCard.png');
+    }
+    setLoading(false);
+  }, [cardRef?.current]);
 
   return (
     <Container>
@@ -83,19 +89,26 @@ const CreateMyCard = () => {
               font={desktopMain.font}
               subFont={desktopMain.subFont}
             />
-            <Flex>
-              <CoffeeOptionSection />
-              <CardUser
-                userMyCard={userMyCard}
-                userName={userName}
-                setUserName={setUserName}
-              />
+
+            <Contents>
+              <CategorySection />
+
+              <div ref={cardRef} className="card-wrapper">
+                <CardUser
+                  userMyCard={userMyCard}
+                  userName={userName}
+                  setUserName={setUserName}
+                />
+
+                {loading && <Loader />}
+              </div>
+
               <ButtonWrapper>
                 <Button
                   size="large"
                   theme="primary"
                   label="캡처하기"
-                  onPress={handleCapture}
+                  onPress={() => handleCapture()}
                 />
                 <Button
                   size="large"
@@ -104,7 +117,7 @@ const CreateMyCard = () => {
                   onPress={handleConfirm}
                 ></Button>
               </ButtonWrapper>
-            </Flex>
+            </Contents>
           </>
         ) : (
           <SkeletonCoffeeOption />
@@ -122,6 +135,16 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 21rem 0;
   background-image: url(${background});
+
+  .card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loader {
+    position: absolute;
+  }
 `;
 
 const Wrpper = styled.div<{ isDesktop: boolean }>`
@@ -135,7 +158,7 @@ const Wrpper = styled.div<{ isDesktop: boolean }>`
     `}
 `;
 
-const Flex = styled.div`
+const Contents = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
