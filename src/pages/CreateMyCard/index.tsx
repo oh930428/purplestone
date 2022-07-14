@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Header, CardUser, Loader } from 'components';
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Button from 'components/Button';
 import SkeletonCoffeeOption from 'components/Skeleton/SkeletonCoffeeOption';
@@ -36,7 +36,7 @@ const CreateMyCard = () => {
   /**
    * CreateMyCard 페이지에서 "게시하기" 버튼을 눌렀을때, 컨펌창을 띄운다.
    */
-  const handleConfirm = useCallback(() => {
+  const handleConfirm = () => {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -54,13 +54,13 @@ const CreateMyCard = () => {
         );
       },
     });
-  }, []);
+  };
 
   /**
    * 컨펌창에서 "게시하기" 버튼 눌렀을때, POST API 호출
    * @param {funtion} onClose 컨펌창이 닫히는 함수
    */
-  const handleAddCard = useCallback(async (onClose: { (): void }) => {
+  const handleAddCard = async (onClose: { (): void }) => {
     await addUserCardList({
       id: Date.now(),
       userName: userName,
@@ -68,15 +68,15 @@ const CreateMyCard = () => {
     });
     navigate('/all-coffees');
     onClose();
-  }, []);
+  };
 
-  const handleCapture = useCallback(async () => {
+  const handleCapture = async () => {
     setLoading(true);
     if (cardRef.current) {
       download(await toPng(cardRef.current), 'MyCard.png');
     }
     setLoading(false);
-  }, [cardRef?.current]);
+  };
 
   return (
     <Container>
