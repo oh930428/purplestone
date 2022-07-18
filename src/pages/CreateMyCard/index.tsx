@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Header, CardUser, Loader } from 'components';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import Button from 'components/Button';
 import SkeletonCoffeeOption from 'components/Skeleton/SkeletonCoffeeOption';
@@ -60,23 +60,26 @@ const CreateMyCard = () => {
    * 컨펌창에서 "게시하기" 버튼 눌렀을때, POST API 호출
    * @param {funtion} onClose 컨펌창이 닫히는 함수
    */
-  const handleAddCard = async (onClose: { (): void }) => {
-    await addUserCardList({
-      id: Date.now(),
-      userName: userName,
-      userCardSmallType: userMyCard,
-    });
-    navigate('/all-coffees');
-    onClose();
-  };
+  const handleAddCard = useCallback(
+    async (onClose: { (): void }) => {
+      await addUserCardList({
+        id: Date.now(),
+        userName: userName,
+        userCardSmallType: userMyCard,
+      });
+      navigate('/all-coffees');
+      onClose();
+    },
+    [addUserCardList, navigate, userMyCard, userName]
+  );
 
-  const handleCapture = async () => {
+  const handleCapture = useCallback(async () => {
     setLoading(true);
     if (cardRef.current) {
       download(await toPng(cardRef.current), 'MyCard.png');
     }
     setLoading(false);
-  };
+  }, []);
 
   return (
     <Container>
