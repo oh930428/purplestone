@@ -26,7 +26,7 @@ const Container = styled.article`
   position: absolute;
 
   &.bottle {
-    left: 39.5%;
+    left: 40.5%;
     top: -20%;
     width: 15rem;
     text-align: center;
