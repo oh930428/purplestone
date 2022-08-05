@@ -1,3 +1,4 @@
+import './App.css';
 import GlobalStyled from 'styles/global';
 import { Footer, Navigation } from 'components';
 import { Home, AllCoffees, CreateMyCard } from 'pages';

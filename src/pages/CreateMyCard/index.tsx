@@ -24,13 +24,14 @@ import { useAddUserCardListMutation } from 'store/api/userCardList';
 const CreateMyCard = () => {
   const navigate = useNavigate();
   const cardRef = useRef<HTMLDivElement>(null);
+  const userMyCard = useSelector<RootState>(state => state.myCardReducer);
+
   const [userName, setUserName] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
   const { data, isLoading, isSuccess } = useFetchMyCardQuery();
   const [addUserCardList] = useAddUserCardListMutation();
 
-  const userMyCard = useSelector<RootState>(state => state.myCardReducer);
   const isDesktop = useMediaQuery({ query: '(min-width: 1180px)' });
 
   /**
@@ -111,7 +112,7 @@ const CreateMyCard = () => {
                   size="large"
                   theme="primary"
                   label="캡처하기"
-                  onPress={() => handleCapture()}
+                  onPress={handleCapture}
                 />
                 <Button
                   size="large"

@@ -14,16 +14,16 @@ const CardProcess = ({ option, setSelected }: Props) => {
   const dispatch = useDispatch();
 
   /**
-   * 선택한 옵션의 데이터를 state에 담고, dispatch에 담아 리듀서로 보낸다.
-   * @param {CoffeeOption} selected 선택한 커피 옵션
+   * active된 카테고리를 삭제 + 팝업창을 닫아준다.
    */
-  const handleSelectedOption = useCallback(
-    (selected: CoffeeType) => {
-      setSelected(selected.image);
-      dispatch(setSelectOptions({ ...selected }));
-    },
-    [dispatch, setSelected]
-  );
+  const handleRemoveActive = useCallback((e: any) => {
+    e.stopPropagation();
+    const activeClass = e.target.closest('.active');
+
+    if (activeClass) {
+      activeClass.classList.remove('active');
+    }
+  }, []);
 
   return (
     <Container className="option-item">
@@ -32,10 +32,13 @@ const CardProcess = ({ option, setSelected }: Props) => {
         {option.types &&
           option.types.map((type: CoffeeType, index: number) => (
             <article
-              data-type={option.name}
-              className="main-section"
               key={index}
-              onClick={() => handleSelectedOption(type)}
+              className="main-section"
+              onClick={e => {
+                setSelected(type.image);
+                dispatch(setSelectOptions({ ...type }));
+                handleRemoveActive(e);
+              }}
             >
               <div className="main-thumbnail">
                 <img
@@ -43,6 +46,7 @@ const CardProcess = ({ option, setSelected }: Props) => {
                   alt={type.name}
                 />
               </div>
+
               <div className="main-title">
                 <span className="name">{type.name}</span>
               </div>
