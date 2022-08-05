@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { CoffeeOption } from 'types/createMyCard.type';
+
 import ProcessCard from 'components/Card/CardProcess';
 import circle from '../../../../assets/Images/bg-circle.png';
 import circleActive from '../../../../assets/Images/bg-circle-active.png';
@@ -10,46 +11,43 @@ interface Props {
 }
 
 const Category = ({ option }: Props) => {
-  const optionRef = useRef<HTMLElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>('');
 
   /**
-   * 커피 옵션을 선택하면, 선택한 옵션의 UI만 변경한다.
+   * Category 선택시, 선택한 카테고리 아이템의 UI가 변경된다. (active)
    * @param {any} e 현재 클릭한 노드
    */
-  const onClickActive = (e: any) => {
+  const handleActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;
-    const optionItem = document.querySelectorAll('.option-box');
-    const newOptionItem = Array.from(optionItem);
+    const categoryItem = document.querySelectorAll('.category');
+    const newCategoryItem = Array.from(categoryItem);
 
-    for (let item of newOptionItem) {
+    for (let item of newCategoryItem) {
       if (item.classList.contains('active')) {
         item.classList.remove('active');
       }
     }
     target.classList.add('active');
-    setIsPupupCard(prev => !prev);
+    setIsPupupCard(true);
   };
 
   return (
     <Container
-      ref={optionRef}
-      className="option-box"
-      data-type={`${option.name}`}
-      onClick={onClickActive}
+      className="category-item"
+      onClick={handleActive}
       circle={circle}
       circleActive={circleActive}
     >
       {selected ? (
         <img
-          className="option-image"
+          className="category-image"
           src={require(`../../../../assets/Icons/${selected}`)}
           alt={option.name}
         />
       ) : (
         <img
-          className="option-image"
+          className="category-image"
           src={require(`../../../../assets/Icons/${option.thumbnail}`)}
           alt={option.name}
         />
@@ -57,7 +55,11 @@ const Category = ({ option }: Props) => {
 
       {isPopupCard && (
         <ProcessCardContainer className="process-card-container">
-          <ProcessCard option={option} setSelected={setSelected} />
+          <ProcessCard
+            option={option}
+            setSelected={setSelected}
+            setIsPupupCard={setIsPupupCard}
+          />
         </ProcessCardContainer>
       )}
     </Container>
@@ -81,7 +83,7 @@ const Container = styled.article<{
   background-size: cover;
   background-repeat: no-repeat;
 
-  .option-image {
+  .category-image {
     width: 9rem;
     height: 9rem;
     object-fit: contain;
