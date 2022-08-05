@@ -4,21 +4,15 @@ import { CoffeeOption } from 'types/createMyCard.type';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
 
 const CategorySection = () => {
-  const { data, isLoading, isSuccess } = useFetchMyCardQuery();
+  const { data } = useFetchMyCardQuery();
 
-  if (isSuccess) {
-    return (
-      <Container>
-        {data.coffeeOptions.map((option: CoffeeOption, index: number) => (
-          <Category key={index} option={option} />
-        ))}
-      </Container>
-    );
-  } else if (isLoading) {
-    return <div>로딩중</div>;
-  } else {
-    return <div>no found</div>;
-  }
+  return (
+    <Container>
+      {data?.coffeeOptions.map((option: CoffeeOption, index: number) => (
+        <Category key={index} option={option} />
+      ))}
+    </Container>
+  );
 };
 
 export default CategorySection;
