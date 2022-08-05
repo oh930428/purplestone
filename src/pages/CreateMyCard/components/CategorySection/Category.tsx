@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { CoffeeOption } from 'types/createMyCard.type';
 
 import ProcessCard from 'components/Card/CardProcess';
@@ -11,6 +11,7 @@ interface Props {
 }
 
 const Category = ({ option }: Props) => {
+  const popupRef = useRef<HTMLUListElement>(null);
   const [isPopupCard, setIsPupupCard] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>('');
 
@@ -20,15 +21,16 @@ const Category = ({ option }: Props) => {
    */
   const handleActive = (e: any) => {
     const target = e.currentTarget || e.currentTarget.parentNode;
-    const categoryItem = document.querySelectorAll('.category');
+    const categoryItem = document.querySelectorAll('.category-item');
     const newCategoryItem = Array.from(categoryItem);
 
     for (let item of newCategoryItem) {
       if (item.classList.contains('active')) {
         item.classList.remove('active');
+        setIsPupupCard(false);
       }
     }
-    target.classList.add('active');
+    target.classList.toggle('active');
     setIsPupupCard(true);
   };
 
@@ -54,12 +56,8 @@ const Category = ({ option }: Props) => {
       )}
 
       {isPopupCard && (
-        <ProcessCardContainer className="process-card-container">
-          <ProcessCard
-            option={option}
-            setSelected={setSelected}
-            setIsPupupCard={setIsPupupCard}
-          />
+        <ProcessCardContainer ref={popupRef} className="process-card-container">
+          <ProcessCard option={option} setSelected={setSelected} />
         </ProcessCardContainer>
       )}
     </Container>
