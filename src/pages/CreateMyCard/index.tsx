@@ -36,7 +36,7 @@ const CreateMyCard = () => {
   /**
    * CreateMyCard 페이지에서 "게시하기" 버튼을 눌렀을때, 컨펌창을 띄운다.
    */
-  const handleConfirm = useCallback(() => {
+  const handleConfirm = () => {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
@@ -54,21 +54,24 @@ const CreateMyCard = () => {
         );
       },
     });
-  }, []);
+  };
 
   /**
    * 컨펌창에서 "게시하기" 버튼 눌렀을때, POST API 호출
    * @param {funtion} onClose 컨펌창이 닫히는 함수
    */
-  const handleAddCard = useCallback(async (onClose: { (): void }) => {
-    await addUserCardList({
-      id: Date.now(),
-      userName: userName,
-      userCardSmallType: userMyCard,
-    });
-    navigate('/all-coffees');
-    onClose();
-  }, []);
+  const handleAddCard = useCallback(
+    async (onClose: { (): void }) => {
+      await addUserCardList({
+        id: Date.now(),
+        userName: userName,
+        userCardSmallType: userMyCard,
+      });
+      navigate('/all-coffees');
+      onClose();
+    },
+    [addUserCardList, navigate, userMyCard, userName]
+  );
 
   const handleCapture = useCallback(async () => {
     setLoading(true);
@@ -76,7 +79,7 @@ const CreateMyCard = () => {
       download(await toPng(cardRef.current), 'MyCard.png');
     }
     setLoading(false);
-  }, [cardRef?.current]);
+  }, []);
 
   return (
     <Container>
