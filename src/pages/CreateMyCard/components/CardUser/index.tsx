@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import UserCardOption from './UserCardOption';
-import CardImage from '../../../assets/Images/bg-card.png';
-import DigramImage from '../../../assets/Images/bg-digram.png';
+import CardImage from '../../../../assets/Images/bg-card.png';
+import DigramImage from '../../../../assets/Images/bg-digram.png';
 
 import { colors, fonts } from 'styles';
 import { useState, useRef, useEffect, useCallback } from 'react';

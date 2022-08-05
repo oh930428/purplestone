@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { fonts, colors } from 'styles';
-import { CoffeeType } from '../../../types/createMyCard.type';
+import { CoffeeType } from '../../../../types/createMyCard.type';
 interface Props {
   option: CoffeeType;
 }
@@ -12,7 +12,7 @@ const UserCardOption = ({ option }: Props) => {
       <p className="description">{option.description}</p>
       <ImageContainer className={`${option.type}-image`}>
         <img
-          src={require(`../../../assets/Icons/${option.image}`)}
+          src={require(`../../../../assets/Icons/${option.image}`)}
           alt={option.type}
         />
       </ImageContainer>
