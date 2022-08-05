@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { colors, fonts } from '../../../styles';
+import { colors, fonts } from '../../../../styles';
 import { setSelectOptions } from 'store/state/MyCardSlice';
 import { CoffeeOption, CoffeeType } from 'types/createMyCard.type';
 
@@ -42,7 +42,7 @@ const CardProcess = ({ option, setSelected }: Props) => {
             >
               <div className="main-thumbnail">
                 <img
-                  src={require(`../../../assets/Icons/${type.image}`)}
+                  src={require(`../../../../assets/Icons/${type.image}`)}
                   alt={type.name}
                 />
               </div>

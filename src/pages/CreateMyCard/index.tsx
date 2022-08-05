@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Header, CardUser, Loader } from 'components';
+import { Header, Loader } from 'components';
 import { useCallback, useRef, useState } from 'react';
 
 import Button from 'components/Button';
@@ -17,7 +17,7 @@ import { desktopMain } from 'styles/mixin';
 import { RootState } from '../../store/index';
 import { useMediaQuery } from 'react-responsive';
 import { confirmAlert } from 'react-confirm-alert';
-import { CategorySection } from './components';
+import { CardUser, CategorySection } from './components';
 import { useFetchMyCardQuery } from 'store/api/createMyCard';
 import { useAddUserCardListMutation } from 'store/api/userCardList';
 

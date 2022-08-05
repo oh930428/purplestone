@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState, useRef } from 'react';
 import { CoffeeOption } from 'types/createMyCard.type';
 
-import ProcessCard from 'components/Card/CardProcess';
+import CardProcess from '../CardProcess';
 import circle from '../../../../assets/Images/bg-circle.png';
 import circleActive from '../../../../assets/Images/bg-circle-active.png';
 
@@ -57,7 +57,7 @@ const Category = ({ option }: Props) => {
 
       {isPopupCard && (
         <ProcessCardContainer ref={popupRef} className="process-card-container">
-          <ProcessCard option={option} setSelected={setSelected} />
+          <CardProcess option={option} setSelected={setSelected} />
         </ProcessCardContainer>
       )}
     </Container>

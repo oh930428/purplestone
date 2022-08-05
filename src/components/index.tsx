@@ -7,9 +7,6 @@ export { default as IconSocial } from './Icon/IconSocial';
 export { default as IconsCoffeeOption } from './Icon/IconsCoffeeOption';
 
 export { default as CardProfile } from './Card/CardProfile';
-export { default as CardProcess } from './Card/CardProcess';
-export { default as CardUser } from './Card/CardUser';
-export { default as UserCardOption } from './Card/CardUser/UserCardOption';
 export { default as CardUserSmall } from './Card/CardUserSmall';
 export { default as UserCardSmallOption } from './Card/CardUserSmall/UserOptionSmall';
 
