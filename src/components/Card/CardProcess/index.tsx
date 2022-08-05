@@ -8,24 +8,22 @@ import { CoffeeOption, CoffeeType } from 'types/createMyCard.type';
 interface Props {
   option: CoffeeOption;
   setSelected: (arg: string) => void;
-  setIsPupupCard: (arg: boolean) => void;
 }
 
-const CardProcess = ({ option, setSelected, setIsPupupCard }: Props) => {
+const CardProcess = ({ option, setSelected }: Props) => {
   const dispatch = useDispatch();
 
-  const handleRemoveActive = useCallback(
-    (e: any) => {
-      e.stopPropagation();
-      const activeClass = e.target.closest('.active');
+  /**
+   * active된 카테고리를 삭제 + 팝업창을 닫아준다.
+   */
+  const handleRemoveActive = useCallback((e: any) => {
+    e.stopPropagation();
+    const activeClass = e.target.closest('.active');
 
-      if (activeClass) {
-        activeClass.classList.remove('active');
-        setIsPupupCard(false);
-      }
-    },
-    [setIsPupupCard]
-  );
+    if (activeClass) {
+      activeClass.classList.remove('active');
+    }
+  }, []);
 
   return (
     <Container className="option-item">
