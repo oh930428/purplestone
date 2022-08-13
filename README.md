@@ -1,6 +1,6 @@
 # PurpleStone
 `직장인, 학생 등 커피를 좋아하는 사람을 위해 본인만의 커피 인증서 만들기 위한 프로젝트입니다` <br/>
-배포사이트는 ❤️[프로젝트 구경하기](https://dhrjfx841etu6.cloudfront.net/)❤️ 링크에서 확인할 수 있습니다. <br/>
+배포사이트는 ❤️[프로젝트 구경하기](https://purplestone.herokuapp.com/)❤️ 링크에서 확인할 수 있습니다. <br/>
 
 ![chrome_OtqlJovOA0](https://user-images.githubusercontent.com/70184893/183333675-b896c8c1-f16a-4103-b423-7489fd49b744.png)
 
