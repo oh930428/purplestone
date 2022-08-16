@@ -31,6 +31,6 @@ React, Typescript, Redux-toolkit, RTK-Query
 
 ## 프로젝트 제작 과정 및 담당 기능
 더 자세한 프로젝트 제작 과정과 담당한 기능들을 보시고 싶다면, <br />
-김보라님의 💜 [담당한 기능](https://www.notion.so/PurpleStone-95b6ddd3babc416d866bacb444f60bf5)  <br />
+김보라님의 💜 [담당한 기능](https://chill-silicon-d01.notion.site/PurpleStone-95b6ddd3babc416d866bacb444f60bf5)  <br />
 오민석님의 💝 [담당한 기능](https://www.notion.so/PurpleStone-435d2d2f634c464bb43b1dad14aabdc9)  <br />
 
